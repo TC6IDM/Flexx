@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import javax.swing.JCheckBox;
 
 public class FlexxClass {
 
@@ -82,5 +83,9 @@ public class FlexxClass {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(264, 34, 96, 19);
 		frame.getContentPane().add(passwordField);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("New check box");
+		chckbxNewCheckBox.setBounds(283, 95, 93, 21);
+		frame.getContentPane().add(chckbxNewCheckBox);
 	}
 }
