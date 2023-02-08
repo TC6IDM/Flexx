@@ -8,13 +8,14 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class FlexxClass {
 
 	private JFrame frame;
 	private JTextField username_TextField;
 	private JTextField email_TextField;
-	private JTextField password_TextField;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -62,17 +63,12 @@ public class FlexxClass {
 		frame.getContentPane().add(email_TextField);
 		email_TextField.setColumns(10);
 		
-		password_TextField = new JTextField();
-		password_TextField.setBounds(264, 34, 96, 19);
-		frame.getContentPane().add(password_TextField);
-		password_TextField.setColumns(10);
-		
 		JLabel lblEmail = new JLabel("Email");
 		lblEmail.setBounds(167, 21, 45, 13);
 		frame.getContentPane().add(lblEmail);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(294, 21, 45, 13);
+		lblPassword.setBounds(294, 21, 85, 13);
 		frame.getContentPane().add(lblPassword);
 		
 		JButton btnNewButton = new JButton("Sign In");
@@ -82,5 +78,9 @@ public class FlexxClass {
 		});
 		btnNewButton.setBounds(167, 173, 85, 21);
 		frame.getContentPane().add(btnNewButton);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(264, 34, 96, 19);
+		frame.getContentPane().add(passwordField);
 	}
 }
