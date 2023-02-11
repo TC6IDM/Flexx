@@ -1,19 +1,22 @@
 package Package1;
 
 import java.awt.EventQueue;
-import java.awt.Font;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class Page1 extends JFrame {
+public class Page1 {
 
-	private JPanel contentPane;
+	public JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -22,8 +25,8 @@ public class Page1 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Page1 frame = new Page1();
-					frame.setVisible(true);
+					Page1 window = new Page1();
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -32,32 +35,36 @@ public class Page1 extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Create the application.
 	 */
 	public Page1() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		initialize();
+	}
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("PAGE 1");
 		lblNewLabel.setBounds(132, 10, 172, 35);
 		lblNewLabel.setFont(new Font("Berlin Sans FB", Font.PLAIN, 31));
-		contentPane.add(lblNewLabel);
+		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Back");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Home home = new Home();
-				home.setVisible(true);
-				contentPane.setVisible(false);
+				home.frame.setVisible(true);
+				frame.setVisible(false);
 			}
 		});
-		btnNewButton.setBounds(10, 10, 85, 21);
-		contentPane.add(btnNewButton);
+		btnNewButton.setBounds(10, 10, 77, 35);
+		frame.getContentPane().add(btnNewButton);
 	}
 
 }

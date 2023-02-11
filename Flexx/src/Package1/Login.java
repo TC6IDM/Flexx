@@ -17,7 +17,7 @@ import java.awt.Window;
 
 public class Login {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField usernameField;
 	private JPasswordField passwordField;
 
@@ -83,7 +83,7 @@ public class Login {
 					JOptionPane.showMessageDialog(frame, "Welcome");
 				
 					Home home = new Home();
-					home.setVisible(true);
+					home.frame.setVisible(true);
 					frame.setVisible(false);
 					
 				}
