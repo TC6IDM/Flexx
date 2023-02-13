@@ -17,11 +17,12 @@ import javax.swing.JLabel;
 public class Page5 {
 
 	public JFrame frame;
-
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		System.out.print("testing");
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
