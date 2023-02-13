@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class Page5 {
 
@@ -52,11 +53,6 @@ public class Page5 {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("PAGE 5");
-		lblNewLabel.setBounds(132, 10, 172, 35);
-		lblNewLabel.setFont(new Font("Berlin Sans FB", Font.PLAIN, 31));
-		frame.getContentPane().add(lblNewLabel);
-		
 		JButton btnNewButton = new JButton("Back");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -65,8 +61,7 @@ public class Page5 {
 				frame.setVisible(false);
 			}
 		});
-		btnNewButton.setBounds(10, 10, 77, 35);
+		btnNewButton.setBounds(6, 6, 77, 35);
 		frame.getContentPane().add(btnNewButton);
 	}
-
 }
