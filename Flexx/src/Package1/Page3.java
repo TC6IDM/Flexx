@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+/* Andrew Tissi */
 public class Page3 {
 
 	public JFrame frame;
