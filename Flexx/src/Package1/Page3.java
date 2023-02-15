@@ -63,15 +63,23 @@ class Exercise{
 					
 					for (int i=exerciseNumber;i<exercises.size();i++) {
 						Exercise tempExercise = exercises.get(i);
+						Exercise prevExercise = exercises.get(i-1);
 						JLabel tempNameLabel = tempExercise.nameLabel;
 						JTextField tempNameField = tempExercise.nameField;
 						JButton tempAddSetButton = tempExercise.addSetButton;
-						int tempY = tempAddSetButton.getY()+tempAddSetButton.getHeight()+10;
+						
+//						System.out.println(tempAddSetButton.getY());
+						//WHY IS IT DELETING ALL SETS?????
+						
+						int tempY = prevExercise.addSetButton.getY()+prevExercise.addSetButton.getHeight()+10;
+						
+						
+						
+
 						tempNameLabel.setLocation(tempNameLabel.getX(),	tempY);
 						tempNameField.setLocation(tempNameField.getX(),	tempY);
 						tempY+=25;
 						for (int k=0;k<tempExercise.sets.size();k++) {
-//							System.out.println(k);
 							Set tempSet = tempExercise.sets.get(k);
 							JLabel tempRepsLabel = tempSet.repsLabel;
 							JTextField tempRepsField = tempSet.repsField;
