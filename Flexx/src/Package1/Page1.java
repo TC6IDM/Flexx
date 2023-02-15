@@ -17,6 +17,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTextPane;
 
 public class Page1 {
 
@@ -54,9 +55,9 @@ public class Page1 {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("PAGE 1");
-		lblNewLabel.setBounds(158, 2, 172, 35);
-		lblNewLabel.setFont(new Font("Berlin Sans FB", Font.PLAIN, 31));
+		JLabel lblNewLabel = new JLabel("Personalized For You");
+		lblNewLabel.setBounds(148, 8, 172, 35);
+		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 14));
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Back");
@@ -72,27 +73,43 @@ public class Page1 {
 		
 		JTextArea txtrMuscleGroup = new JTextArea();
 		txtrMuscleGroup.setEditable(false);
-		txtrMuscleGroup.setFont(new Font("Geneva", Font.PLAIN, 13));
+		txtrMuscleGroup.setFont(new Font("Geneva", Font.BOLD, 13));
 		txtrMuscleGroup.setLineWrap(true);
 		txtrMuscleGroup.setText("Muscle Group");
-		txtrMuscleGroup.setBounds(29, 128, 92, 16);
+		txtrMuscleGroup.setBounds(29, 71, 92, 16);
 		frame.getContentPane().add(txtrMuscleGroup);
 		
 		JTextArea txtrWorkoutTypes = new JTextArea();
 		txtrWorkoutTypes.setEditable(false);
-		txtrWorkoutTypes.setFont(new Font("Geneva", Font.PLAIN, 13));
+		txtrWorkoutTypes.setFont(new Font("Geneva", Font.BOLD, 13));
 		txtrWorkoutTypes.setText("Workout Types");
-		txtrWorkoutTypes.setBounds(158, 128, 101, 16);
+		txtrWorkoutTypes.setBounds(161, 71, 101, 16);
 		frame.getContentPane().add(txtrWorkoutTypes);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Test 1", "Test 2"}));
-		comboBox.setBounds(29, 162, 92, 27);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select", "Test 2"}));
+		comboBox.setBounds(29, 115, 92, 27);
 		frame.getContentPane().add(comboBox);
 		
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Test 1", "Test 2"}));
-		comboBox_1.setBounds(158, 162, 92, 27);
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select", "Test 2"}));
+		comboBox_1.setBounds(170, 115, 92, 27);
 		frame.getContentPane().add(comboBox_1);
+		
+		JTextArea txtrTest = new JTextArea();
+		txtrTest.setText("Objectives/Goals");
+		txtrTest.setFont(new Font("Geneva", Font.BOLD, 13));
+		txtrTest.setEditable(false);
+		txtrTest.setBounds(304, 71, 108, 16);
+		frame.getContentPane().add(txtrTest);
+		
+		JComboBox comboBox_1_1 = new JComboBox();
+		comboBox_1_1.setModel(new DefaultComboBoxModel(new String[] {"Select", "Build Muscle", "Lose Fat"}));
+		comboBox_1_1.setBounds(311, 115, 101, 27);
+		frame.getContentPane().add(comboBox_1_1);
+		
+		JTextPane textPane = new JTextPane();
+		textPane.setBounds(0, 148, 448, 124);
+		frame.getContentPane().add(textPane);
 	}
 }
