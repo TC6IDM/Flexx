@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author Andrew
+ * @author Gurkirat
  *
  */
 module Flexx {
