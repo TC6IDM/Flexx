@@ -76,46 +76,39 @@ public class Page1 {
 		frame.getContentPane().add(btnNewButton);
 		
 		JTextArea txtrMuscleGroup = new JTextArea();
-		txtrMuscleGroup.setBackground(new Color(251, 234, 235));
+		txtrMuscleGroup.setBackground(new Color(138, 170, 229));
 		txtrMuscleGroup.setEditable(false);
 		txtrMuscleGroup.setFont(new Font("Geneva", Font.BOLD, 13));
 		txtrMuscleGroup.setLineWrap(true);
-		txtrMuscleGroup.setText("Muscle Group");
-		txtrMuscleGroup.setBounds(29, 71, 92, 16);
+		txtrMuscleGroup.setText("       Muscle Group");
+		txtrMuscleGroup.setBounds(29, 71, 134, 16);
 		frame.getContentPane().add(txtrMuscleGroup);
 		
 		JTextArea txtrWorkoutTypes = new JTextArea();
+		txtrWorkoutTypes.setBackground(new Color(138, 170, 229));
 		txtrWorkoutTypes.setEditable(false);
 		txtrWorkoutTypes.setFont(new Font("Geneva", Font.BOLD, 13));
-		txtrWorkoutTypes.setText("Workout Types");
-		txtrWorkoutTypes.setBounds(161, 71, 101, 16);
+		txtrWorkoutTypes.setText("       Workout Types");
+		txtrWorkoutTypes.setBounds(29, 119, 145, 16);
 		frame.getContentPane().add(txtrWorkoutTypes);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select", "Arms", "Legs", "Shoulders", "Biceps"}));
-		comboBox.setBounds(29, 115, 92, 27);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select", "Arms", "Legs", "Chest", "Back"}));
+		comboBox.setBounds(252, 67, 145, 27);
 		frame.getContentPane().add(comboBox);
 		
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select", "Test 2"}));
-		comboBox_1.setBounds(170, 115, 92, 27);
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select", "Incline dumbell - Chest", "Pectoral flys - Chest", "Cable chest flys - Chest", "Lat pulldowns - Back", "T-bar - Back", "Cable rows - Back", "Shoulder press- Shoulders", "Lateral raises with dumbbells - Shoulders", "Reverse flys-shoulders", "Hammer curls with rope-biceps", "Preacher curls-biceps", "Incline curls-biceps", "Tricep extensions-tricep", "Tricep extensions-tricep", "Dips-tricep"}));
+		comboBox_1.setBounds(252, 115, 145, 27);
 		frame.getContentPane().add(comboBox_1);
 		
-		JTextArea txtrTest = new JTextArea();
-		txtrTest.setText("Objectives/Goals");
-		txtrTest.setFont(new Font("Geneva", Font.BOLD, 13));
-		txtrTest.setEditable(false);
-		txtrTest.setBounds(304, 71, 108, 16);
-		frame.getContentPane().add(txtrTest);
-		
-		JComboBox comboBox_1_1 = new JComboBox();
-		comboBox_1_1.setModel(new DefaultComboBoxModel(new String[] {"Select", "Build Muscle", "Lose Fat"}));
-		comboBox_1_1.setBounds(311, 115, 101, 27);
-		frame.getContentPane().add(comboBox_1_1);
-		
 		JTextPane textPane = new JTextPane();
-		textPane.setBackground(SystemColor.window);
-		textPane.setBounds(0, 148, 448, 124);
+		textPane.setBackground(new Color(138, 170, 229));
+		textPane.setBounds(0, 182, 448, 90);
 		frame.getContentPane().add(textPane);
+		
+		JButton btnNewButton_1 = new JButton("Apply");
+		btnNewButton_1.setBounds(159, 157, 117, 29);
+		frame.getContentPane().add(btnNewButton_1);
 	}
 }
