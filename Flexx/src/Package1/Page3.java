@@ -80,6 +80,7 @@ class Exercise{
 						tempNameField.setLocation(tempNameField.getX(),	tempY);
 						tempY+=25;
 						for (int k=0;k<tempExercise.sets.size();k++) {
+//							System.out.println(tempExercise.sets.size());
 							Set tempSet = tempExercise.sets.get(k);
 							JLabel tempRepsLabel = tempSet.repsLabel;
 							JTextField tempRepsField = tempSet.repsField;
@@ -90,6 +91,7 @@ class Exercise{
 							tempWeightLabel.setLocation(tempWeightLabel.getX(), tempY+20);
 							tempWeightField.setLocation(tempWeightField.getX(), tempY+20);
 							tempAddSetButton.setLocation(tempAddSetButton.getX(),tempWeightField.getY()+tempWeightField.getHeight());
+							tempY = tempAddSetButton.getY();
 							
 						}
 						newExerciseButton.setLocation(newExerciseButton.getX(), tempAddSetButton.getY()+tempAddSetButton.getHeight()+10);
