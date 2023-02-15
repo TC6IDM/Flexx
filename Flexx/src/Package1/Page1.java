@@ -18,6 +18,8 @@ import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextPane;
+import java.awt.Color;
+import java.awt.SystemColor;
 
 public class Page1 {
 
@@ -51,6 +53,8 @@ public class Page1 {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(SystemColor.textHighlight);
+		frame.getContentPane().setForeground(new Color(238, 255, 249));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -87,7 +91,7 @@ public class Page1 {
 		frame.getContentPane().add(txtrWorkoutTypes);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select", "Test 2"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select", "Arms", "Legs", "Shoulders", "Biceps"}));
 		comboBox.setBounds(29, 115, 92, 27);
 		frame.getContentPane().add(comboBox);
 		
@@ -109,6 +113,7 @@ public class Page1 {
 		frame.getContentPane().add(comboBox_1_1);
 		
 		JTextPane textPane = new JTextPane();
+		textPane.setBackground(SystemColor.window);
 		textPane.setBounds(0, 148, 448, 124);
 		frame.getContentPane().add(textPane);
 	}
