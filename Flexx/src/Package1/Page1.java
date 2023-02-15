@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JProgressBar;
 
 public class Page1 {
 
@@ -66,5 +67,4 @@ public class Page1 {
 		btnNewButton.setBounds(10, 10, 77, 35);
 		frame.getContentPane().add(btnNewButton);
 	}
-
 }
