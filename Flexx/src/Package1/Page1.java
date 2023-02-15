@@ -53,7 +53,7 @@ public class Page1 {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(SystemColor.textHighlight);
+		frame.getContentPane().setBackground(new Color(138, 170, 229));
 		frame.getContentPane().setForeground(new Color(238, 255, 249));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,6 +76,7 @@ public class Page1 {
 		frame.getContentPane().add(btnNewButton);
 		
 		JTextArea txtrMuscleGroup = new JTextArea();
+		txtrMuscleGroup.setBackground(new Color(251, 234, 235));
 		txtrMuscleGroup.setEditable(false);
 		txtrMuscleGroup.setFont(new Font("Geneva", Font.BOLD, 13));
 		txtrMuscleGroup.setLineWrap(true);
