@@ -24,6 +24,8 @@ class Exercise{
 	public ArrayList<Set> sets = new ArrayList<Set>();
 	public JButton addSetButton;
 	public JButton newExerciseButton;
+	public int exerciseNumber;
+	public ArrayList<Exercise> exercises = new ArrayList<Exercise>();
 	
 	public Exercise(JFrame frame,int Y){
 		
@@ -55,7 +57,36 @@ class Exercise{
 				sets.add(newSet);
 				addSetButton.setLocation(addSetButton.getX(), newWeightField.getY()+newWeightField.getHeight());
 				
-				newExerciseButton.setLocation(newExerciseButton.getX(), addSetButton.getY()+addSetButton.getHeight()+10);
+				if (exerciseNumber != exercises.size()) {
+					for (int i=exerciseNumber;i<exercises.size();i++) {
+						Exercise tempExercise = exercises.get(i);
+						JLabel tempNameLabel = tempExercise.nameLabel;
+						JTextField tempNameField = tempExercise.nameField;
+						JButton tempAddSetButton = tempExercise.addSetButton;
+						int tempY = tempAddSetButton.getY()+tempAddSetButton.getHeight()+10;
+						tempNameLabel.setLocation(tempNameLabel.getX(),	tempY);
+						tempNameField.setLocation(tempNameField.getX(),	tempY);
+						tempY+=25;
+						for (int k=0;k<tempExercise.sets.size();k++) {
+							Set tempSet = tempExercise.sets.get(i);
+							JLabel tempRepsLabel = tempSet.repsLabel;
+							JTextField tempRepsField = tempSet.repsField;
+							JLabel tempWeightLabel = tempSet.repsLabel;
+							JTextField tempWeightField = tempSet.repsField;
+							tempRepsLabel.setLocation(tempRepsLabel.getX(), tempY);
+							tempRepsField.setLocation(tempRepsField.getX(), tempY);
+							tempWeightLabel.setLocation(tempWeightLabel.getX(), tempY+20);
+							tempWeightField.setLocation(tempWeightField.getX(), tempY+20);
+							tempAddSetButton.setLocation(tempAddSetButton.getX(),tempWeightField.getY()+tempWeightField.getHeight());
+							
+						}
+						newExerciseButton.setLocation(newExerciseButton.getX(), tempAddSetButton.getY()+tempAddSetButton.getHeight()+10);
+						
+					}
+					
+				}else {
+					newExerciseButton.setLocation(newExerciseButton.getX(), addSetButton.getY()+addSetButton.getHeight()+10);
+				}
 			}
 		});
 		
@@ -66,6 +97,12 @@ class Exercise{
 	
 	public void setNewExerciseButton(JButton e){
 		newExerciseButton = e;
+	}
+	
+	public void setExerciseNumber(ArrayList<Exercise> e) {
+		exercises = e;
+		exerciseNumber = e.size();
+		//add code to display number to the left of the reps counter
 	}
 	
 }
@@ -197,7 +234,7 @@ public class Page3 {
 				JButton addSetButton = thisExercise.addSetButton;
 				newExerciseButton.setLocation(newExerciseButton.getX(), addSetButton.getY()+addSetButton.getHeight()+moveDown);	
 				thisExercise.setNewExerciseButton(newExerciseButton);
-				
+				thisExercise.setExerciseNumber(exercises);
 				frame.validate();
 				frame.repaint();
 //				newExerciseButton.setVisible(false);
