@@ -72,7 +72,7 @@ public class Page1 {
 				frame.setVisible(false);
 			}
 		});
-		btnNewButton.setBounds(10, 10, 77, 35);
+		btnNewButton.setBounds(6, 6, 75, 21);
 		frame.getContentPane().add(btnNewButton);
 		
 		JTextArea txtrMuscleGroup = new JTextArea();
