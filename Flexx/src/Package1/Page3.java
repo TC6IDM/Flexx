@@ -28,9 +28,10 @@ class Exercise{
 	public ArrayList<Exercise> exercises = new ArrayList<Exercise>();
 	
 	public Exercise(JFrame frame,int Y){
-		
+		int distanceBetweenExerciseAndReps = 25;
+//		int moveDown = 10;
 		nameLabel = new JLabel("Exercise Name:");
-		nameLabel.setBounds(100, Y, 71, 20);
+		nameLabel.setBounds(80, Y, 90, 20);
 		frame.getContentPane().add(nameLabel);
 		
 		nameField = new JTextField();
@@ -41,7 +42,8 @@ class Exercise{
 		frame.validate();
 		frame.repaint();
 		
-		Set thisSet = new Set (frame,Y+25);		
+		Set thisSet = new Set (frame,Y+distanceBetweenExerciseAndReps);	
+		thisSet.setSetNumber(sets);
 		
 		sets.add(thisSet);
 		
@@ -53,6 +55,7 @@ class Exercise{
 			public void actionPerformed(ActionEvent e) {
 				
 				Set newSet = new Set (frame,addSetButton.getY());	
+				newSet.setSetNumber(sets);
 				JTextField newWeightField = newSet.weightField;
 				sets.add(newSet);
 				addSetButton.setLocation(addSetButton.getX(), newWeightField.getY()+newWeightField.getHeight());
@@ -66,26 +69,22 @@ class Exercise{
 						Exercise prevExercise = exercises.get(i-1);
 						JLabel tempNameLabel = tempExercise.nameLabel;
 						JTextField tempNameField = tempExercise.nameField;
-						JButton tempAddSetButton = tempExercise.addSetButton;
-						
-//						System.out.println(tempAddSetButton.getY());
-						//WHY IS IT DELETING ALL SETS?????
+						JButton tempAddSetButton = tempExercise.addSetButton;		
 						
 						int tempY = prevExercise.addSetButton.getY()+prevExercise.addSetButton.getHeight()+10;
 						
-						
-						
-
 						tempNameLabel.setLocation(tempNameLabel.getX(),	tempY);
 						tempNameField.setLocation(tempNameField.getX(),	tempY);
-						tempY+=25;
+						tempY+=distanceBetweenExerciseAndReps;
 						for (int k=0;k<tempExercise.sets.size();k++) {
 //							System.out.println(tempExercise.sets.size());
 							Set tempSet = tempExercise.sets.get(k);
+							JLabel tempSetCount = tempSet.setCount;
 							JLabel tempRepsLabel = tempSet.repsLabel;
 							JTextField tempRepsField = tempSet.repsField;
 							JLabel tempWeightLabel = tempSet.weightLabel;
 							JTextField tempWeightField = tempSet.weightField;
+							tempSetCount.setLocation(tempSetCount.getX(), tempY);
 							tempRepsLabel.setLocation(tempRepsLabel.getX(), tempY);
 							tempRepsField.setLocation(tempRepsField.getX(), tempY);
 							tempWeightLabel.setLocation(tempWeightLabel.getX(), tempY+20);
@@ -103,9 +102,11 @@ class Exercise{
 				}
 			}
 		});
-		
-		addSetButton.setBounds(200, weightField.getY()+weightField.getHeight(), 73, 13);
+		int centerWeight = weightField.getX()+weightField.getWidth()/2;
+		int addSetButton_width = 80;
+		addSetButton.setBounds(centerWeight-addSetButton_width/2, weightField.getY()+weightField.getHeight(), addSetButton_width, 13);
 		frame.getContentPane().add(addSetButton);
+//		newExerciseButton.setLocation(Y, newExerciseButton.getY());
 		
 	}
 	
@@ -122,16 +123,18 @@ class Exercise{
 }
 
 class Set{
-	
+	public JLabel setCount;
 	public JLabel repsLabel;
 	public JTextField repsField;
 	public JLabel weightLabel;
 	public JTextField weightField;
+	public int setNumber;
+	public JFrame frame;
 	
-	public Set(JFrame frame,int Y) {
-		
+	public Set(JFrame f,int Y) {
+		frame = f;
 		repsLabel = new JLabel("Reps:");
-		repsLabel.setBounds(145, Y, 26, 20);
+		repsLabel.setBounds(135, Y, 35, 20);
 		frame.getContentPane().add(repsLabel);
 		
 		repsField = new JTextField();
@@ -140,7 +143,7 @@ class Set{
 		frame.getContentPane().add(repsField);
 		
 		weightLabel = new JLabel("Weight:");
-		weightLabel.setBounds(135, Y+20, 36, 20);
+		weightLabel.setBounds(125, Y+20, 45, 20);
 		frame.getContentPane().add(weightLabel);
 		
 		weightField = new JTextField();
@@ -151,6 +154,15 @@ class Set{
 		frame.validate();
 		frame.repaint();
 		
+	}
+	public void setSetNumber(ArrayList<Set> s) {
+		setNumber = s.size()+1;
+		
+		setCount = new JLabel("Set: "+setNumber);
+		setCount.setBounds(80, repsLabel.getY(), 35, 20);
+		frame.getContentPane().add(setCount);
+		
+//		System.out.println(setNumber);
 	}
 }
 
@@ -188,9 +200,6 @@ public class Page3 {
 	 * Initialize the contents of the frame.
 	 */
 	
-	private void drawMoving() {
-		
-	}
 	
 	private void initialize() {
 		int Frame_Left = 100;
@@ -203,9 +212,9 @@ public class Page3 {
 		frame.setBounds(Frame_Left, Frame_Top, Frame_Width, Frame_Height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		JLabel pageLabel = new JLabel("PAGE 3");
-		pageLabel.setBounds(Frame_Center-50, 10, 100, 35);
+		int pageLabel_width = 200;
+		JLabel pageLabel = new JLabel("Track Workout");
+		pageLabel.setBounds(Frame_Center-pageLabel_width/2, 10, pageLabel_width, 35);
 		pageLabel.setFont(new Font("Berlin Sans FB", Font.PLAIN, 31));
 		frame.getContentPane().add(pageLabel);
 		
@@ -231,11 +240,11 @@ public class Page3 {
 		doneButton.setBounds(Frame_Width-100, 10, 75, 35);
 		frame.getContentPane().add(doneButton);
 		
-		int newExerciseButton_width = 100;
+		int newExerciseButton_width = 150;
 		int newExerciseButton_height = 35;	
 		int newExerciseButton_distanceFromTop = 50;
 		int moveDown = 10;
-		JButton newExerciseButton = new JButton("New exercise");
+		JButton newExerciseButton = new JButton("New Exercise");
 		newExerciseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int newY = 45;
