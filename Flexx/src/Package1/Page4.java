@@ -13,6 +13,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JProgressBar;
+import javax.swing.JCheckBox;
 
 public class Page4 {
 
@@ -66,6 +68,14 @@ public class Page4 {
 		});
 		btnNewButton.setBounds(10, 10, 77, 35);
 		frame.getContentPane().add(btnNewButton);
+		
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setStringPainted(true);
+		progressBar.setBounds(136, 191, 146, 20);
+		frame.getContentPane().add(progressBar);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("New check box");
+		chckbxNewCheckBox.setBounds(38, 72, 128, 23);
+		frame.getContentPane().add(chckbxNewCheckBox);
 	}
-
 }
