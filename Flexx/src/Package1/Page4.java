@@ -78,34 +78,34 @@ public class Page4 {
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setValue(50);
 		progressBar.setStringPainted(true);
-		progressBar.setBounds(166, 227, 146, 20);
+		progressBar.setBounds(166, 214, 146, 20);
 		frame.getContentPane().add(progressBar);
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Goal #1");
 		chckbxNewCheckBox.setSelected(true);
-		chckbxNewCheckBox.setBounds(38, 120, 106, 23);
+		chckbxNewCheckBox.setBounds(38, 103, 106, 23);
 		frame.getContentPane().add(chckbxNewCheckBox);
 		
 		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Goal #2");
 		chckbxNewCheckBox_1.setSelected(true);
-		chckbxNewCheckBox_1.setBounds(166, 120, 128, 23);
+		chckbxNewCheckBox_1.setBounds(166, 103, 128, 23);
 		frame.getContentPane().add(chckbxNewCheckBox_1);
 		
 		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("Goal #3");
 		chckbxNewCheckBox_2.setSelected(true);
-		chckbxNewCheckBox_2.setBounds(295, 120, 128, 23);
+		chckbxNewCheckBox_2.setBounds(295, 103, 128, 23);
 		frame.getContentPane().add(chckbxNewCheckBox_2);
 		
 		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("Goal #4");
-		chckbxNewCheckBox_3.setBounds(38, 166, 128, 23);
+		chckbxNewCheckBox_3.setBounds(38, 155, 128, 23);
 		frame.getContentPane().add(chckbxNewCheckBox_3);
 		
 		JCheckBox chckbxNewCheckBox_4 = new JCheckBox("Goal #5");
-		chckbxNewCheckBox_4.setBounds(166, 166, 128, 23);
+		chckbxNewCheckBox_4.setBounds(166, 155, 128, 23);
 		frame.getContentPane().add(chckbxNewCheckBox_4);
 		
 		JCheckBox chckbxNewCheckBox_5 = new JCheckBox("Goal #6");
-		chckbxNewCheckBox_5.setBounds(295, 166, 128, 23);
+		chckbxNewCheckBox_5.setBounds(295, 155, 128, 23);
 		frame.getContentPane().add(chckbxNewCheckBox_5);
 		
 		JComboBox comboBox = new JComboBox();
