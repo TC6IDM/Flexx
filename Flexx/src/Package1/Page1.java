@@ -48,7 +48,7 @@ public class Page1 {
 	 */
 	public Page1() {
 		initialize();
-	}
+	} 
 
 	/**
 	 * Initialize the contents of the frame.
@@ -116,15 +116,15 @@ public class Page1 {
 		            comboBox_1.setEnabled(true);
 		        } 
 		        else if(selected.equals("Legs")) {
-		            comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select"}));
+		            comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select", "Hack Squats", "Leg Extension", "Hamstrings"}));
 		            comboBox_1.setEnabled(true);
 		        }
 		        else if(selected.equals("Chest")) {
-		            comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select", "Incline dumbell - Chest","Pectoral flys - Chest","Cable chest flys - Chest"}));
+		            comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select", "Incline dumbell","Pectoral flys","Cable chest flys"}));
 		            comboBox_1.setEnabled(true);
 		        } 
 		        else if(selected.equals("Back")) {
-		            comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select", "Lat pulldowns - Back", "T-bar - Back", "Cable rows - Back"}));
+		            comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select", "Lat pulldowns", "T-bar", "Cable rows"}));
 		            comboBox_1.setEnabled(true);
 		        }
 		        else {
@@ -156,7 +156,7 @@ public class Page1 {
 		            // Proceed with action
 		        }
 		    }
-		});
+		}); 
 
 		btnNewButton_1.setToolTipText("Generates Routine");
 		btnNewButton_1.setBounds(138, 155, 156, 29);
