@@ -19,6 +19,8 @@ import java.awt.Checkbox;
 import javax.swing.JComboBox;
 import java.awt.List;
 import javax.swing.JEditorPane;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JToolBar;
 
 public class Page4 {
 
@@ -57,9 +59,9 @@ public class Page4 {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("PAGE 4");
-		lblNewLabel.setBounds(166, 10, 128, 35);
-		lblNewLabel.setFont(new Font("Berlin Sans FB", Font.PLAIN, 31));
+		JLabel lblNewLabel = new JLabel("Progress Tracker");
+		lblNewLabel.setBounds(140, 10, 187, 35);
+		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 23));
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Back");
@@ -78,10 +80,6 @@ public class Page4 {
 		progressBar.setStringPainted(true);
 		progressBar.setBounds(166, 227, 146, 20);
 		frame.getContentPane().add(progressBar);
-		
-		JLabel lblNewLabel_1 = new JLabel("Progress Tracker");
-		lblNewLabel_1.setBounds(166, 44, 106, 16);
-		frame.getContentPane().add(lblNewLabel_1);
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Goal #1");
 		chckbxNewCheckBox.setSelected(true);
@@ -109,5 +107,15 @@ public class Page4 {
 		JCheckBox chckbxNewCheckBox_5 = new JCheckBox("Goal #6");
 		chckbxNewCheckBox_5.setBounds(295, 166, 128, 23);
 		frame.getContentPane().add(chckbxNewCheckBox_5);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Add goal", "Edit goal", "Delete goal"}));
+		comboBox.setBounds(202, 57, 52, 27);
+		frame.getContentPane().add(comboBox);
+		
+		JToolBar toolBar = new JToolBar();
+		toolBar.setToolTipText("test");
+		toolBar.setBounds(38, 64, 110, 20);
+		frame.getContentPane().add(toolBar);
 	}
 }
