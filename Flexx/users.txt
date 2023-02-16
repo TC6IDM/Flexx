@@ -1,4 +1,2 @@
-ava,ava
-,
-sdfsdf,sdfsdf
+testuser,testpassword
 abc,123

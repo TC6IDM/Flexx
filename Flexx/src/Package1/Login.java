@@ -3,6 +3,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -70,7 +72,7 @@ public class Login implements ActionListener{
 		
 		JLabel lblNewLabel = new JLabel("PASSWORD");
 		lblNewLabel.setFont(new Font("Rockwell", Font.PLAIN, 20));
-		lblNewLabel.setBounds(51, 117, 140, 19);
+		lblNewLabel.setBounds(61, 109, 140, 43);
 		frame.getContentPane().add(lblNewLabel);
 		
 		passwordField = new JPasswordField();
@@ -79,7 +81,7 @@ public class Login implements ActionListener{
 		
 		JLabel lblUsername = new JLabel("USERNAME");
 		lblUsername.setFont(new Font("Rockwell", Font.PLAIN, 20));
-		lblUsername.setBounds(51, 62, 140, 19);
+		lblUsername.setBounds(51, 58, 140, 35);
 		frame.getContentPane().add(lblUsername);
 		
 		JButton btnNewBackButton = new JButton("Back");
@@ -127,11 +129,16 @@ public class Login implements ActionListener{
 				
  			}
 		});
-		
 		btnNewButton.setBounds(176, 189, 85, 21);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnClearButton = new JButton("Clear");
+		btnClearButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				usernameField.setText("");
+				passwordField.setText("");
+			}
+		});
 		btnClearButton.setBounds(47, 185, 117, 29);
 		frame.getContentPane().add(btnClearButton);
 		
@@ -167,10 +174,19 @@ public class Login implements ActionListener{
 		    }
 		});
 	}
+	
+	public JTextField getUsernameField() {
+	    return usernameField;
+	}
+	
+	public JTextField getPasswordField() {
+		return passwordField;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
+
 }
