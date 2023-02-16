@@ -110,12 +110,11 @@ public class Page4 {
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Add goal", "Edit goal", "Delete goal"}));
-		comboBox.setBounds(202, 57, 52, 27);
+		comboBox.setBounds(219, 57, 52, 27);
 		frame.getContentPane().add(comboBox);
 		
-		JToolBar toolBar = new JToolBar();
-		toolBar.setToolTipText("test");
-		toolBar.setBounds(38, 64, 110, 20);
-		frame.getContentPane().add(toolBar);
+		JLabel lblNewLabel_1 = new JLabel("Menu:");
+		lblNewLabel_1.setBounds(171, 61, 61, 16);
+		frame.getContentPane().add(lblNewLabel_1);
 	}
 }
