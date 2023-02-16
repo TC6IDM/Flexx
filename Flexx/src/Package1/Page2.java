@@ -33,7 +33,7 @@ public class Page2 {
 			}
 		});
 	}
-
+	
 	/**
 	 * Create the application.
 	 * @wbp.parser.entryPoint
