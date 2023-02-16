@@ -109,11 +109,25 @@ public class Page1 {
 		        String selected = comboBox.getSelectedItem().toString();
 		        if(selected.equals("Arms")) {
 		            comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select", "Hammer curls with rope-biceps", "Preacher curls-biceps", "Incline curls-biceps", "Tricep extensions-tricep", "Dips-tricep"}));
-		        } else {
+		            comboBox_1.setEnabled(true);
+		        } 
+		        else if(selected.equals("Legs")) {
 		            comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select"}));
+		            comboBox_1.setEnabled(true);
 		        }
-		    }
-		});
+		        else if(selected.equals("Chest")) {
+		            comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select", "Incline dumbell - Chest","Pectoral flys - Chest","Cable chest flys - Chest"}));
+		            comboBox_1.setEnabled(true);
+		        } 
+		        else if(selected.equals("Back")) {
+		            comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select", "Lat pulldowns - Back", "T-bar - Back", "Cable rows - Back"}));
+		            comboBox_1.setEnabled(true);
+		        }
+		        else {
+		            comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select"}));
+		            comboBox_1.setEnabled(false);
+		        }
+		}});
 		
 		JTextPane textPane = new JTextPane();
 		textPane.setBackground(new Color(138, 170, 229));
