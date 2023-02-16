@@ -65,6 +65,7 @@ public class Page1 {
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Home");
+		btnNewButton.setToolTipText("Redirects to home page");
 		btnNewButton.setBackground(new Color(255, 93, 88));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
