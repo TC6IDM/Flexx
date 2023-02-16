@@ -110,7 +110,7 @@ public class Page1 {
 		textPane.setBounds(0, 182, 448, 90);
 		frame.getContentPane().add(textPane);
 		
-		JButton btnNewButton_1 = new JButton("Get Resultss");
+		JButton btnNewButton_1 = new JButton("Get Results");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
