@@ -61,10 +61,11 @@ public class Page1 {
 		
 		JLabel lblNewLabel = new JLabel("Personalized For You");
 		lblNewLabel.setBounds(148, 8, 172, 35);
-		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblNewLabel.setFont(new Font("Kohinoor Telugu", Font.BOLD, 15));
 		frame.getContentPane().add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Back");
+		JButton btnNewButton = new JButton("Home");
+		btnNewButton.setBackground(new Color(255, 93, 88));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Home home = new Home();
@@ -72,10 +73,11 @@ public class Page1 {
 				frame.setVisible(false);
 			}
 		});
-		btnNewButton.setBounds(6, 6, 75, 21);
+		btnNewButton.setBounds(6, 8, 75, 16);
 		frame.getContentPane().add(btnNewButton);
 		
 		JTextArea txtrMuscleGroup = new JTextArea();
+		txtrMuscleGroup.setToolTipText("");
 		txtrMuscleGroup.setBackground(new Color(138, 170, 229));
 		txtrMuscleGroup.setEditable(false);
 		txtrMuscleGroup.setFont(new Font("Geneva", Font.BOLD, 13));
@@ -107,8 +109,9 @@ public class Page1 {
 		textPane.setBounds(0, 182, 448, 90);
 		frame.getContentPane().add(textPane);
 		
-		JButton btnNewButton_1 = new JButton("Apply");
-		btnNewButton_1.setBounds(159, 157, 117, 29);
+		JButton btnNewButton_1 = new JButton("Get Results");
+		btnNewButton_1.setToolTipText("Generates Routine");
+		btnNewButton_1.setBounds(138, 155, 156, 29);
 		frame.getContentPane().add(btnNewButton_1);
 	}
 }
