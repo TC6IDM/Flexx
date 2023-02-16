@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -103,6 +105,8 @@ public class Page1 {
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(252, 115, 145, 27);
 		frame.getContentPane().add(comboBox_1);
+		comboBox_1.setEnabled(false); // set it to be disabled
+		comboBox_1.setSelectedItem("Select"); 
 
 		comboBox.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
@@ -129,6 +133,15 @@ public class Page1 {
 		        }
 		}});
 		
+		comboBox_1.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        String selected = comboBox_1.getSelectedItem().toString();
+		        if(selected.equals("Select")) {
+		            JOptionPane.showMessageDialog(null, "Please choose a Workout Type");
+		        }
+		    }
+		});
+		
 		JTextPane textPane = new JTextPane();
 		textPane.setBackground(new Color(138, 170, 229));
 		textPane.setBounds(0, 182, 448, 90);
@@ -136,9 +149,15 @@ public class Page1 {
 		
 		JButton btnNewButton_1 = new JButton("Get Results");
 		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        if (comboBox_1.isEnabled() && comboBox_1.getSelectedIndex() == 0) {
+		            JOptionPane.showMessageDialog(frame, "Please choose a workout type");
+		        } else {
+		            // Proceed with action
+		        }
+		    }
 		});
+
 		btnNewButton_1.setToolTipText("Generates Routine");
 		btnNewButton_1.setBounds(138, 155, 156, 29);
 		frame.getContentPane().add(btnNewButton_1);
