@@ -118,5 +118,8 @@ public class Page4 {
 		JLabel lblNewLabel_1 = new JLabel("Menu:");
 		lblNewLabel_1.setBounds(171, 61, 61, 16);
 		frame.getContentPane().add(lblNewLabel_1);
+		
+		
+		
 	}
 }
