@@ -101,9 +101,19 @@ public class Page1 {
 		frame.getContentPane().add(comboBox);
 		
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select", "Incline dumbell - Chest", "Pectoral flys - Chest", "Cable chest flys - Chest", "Lat pulldowns - Back", "T-bar - Back", "Cable rows - Back", "Shoulder press- Shoulders", "Lateral raises with dumbbells - Shoulders", "Reverse flys-shoulders", "Hammer curls with rope-biceps", "Preacher curls-biceps", "Incline curls-biceps", "Tricep extensions-tricep", "Tricep extensions-tricep", "Dips-tricep"}));
 		comboBox_1.setBounds(252, 115, 145, 27);
 		frame.getContentPane().add(comboBox_1);
+
+		comboBox.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        String selected = comboBox.getSelectedItem().toString();
+		        if(selected.equals("Arms")) {
+		            comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select", "Hammer curls with rope-biceps", "Preacher curls-biceps", "Incline curls-biceps", "Tricep extensions-tricep", "Dips-tricep"}));
+		        } else {
+		            comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select"}));
+		        }
+		    }
+		});
 		
 		JTextPane textPane = new JTextPane();
 		textPane.setBackground(new Color(138, 170, 229));
