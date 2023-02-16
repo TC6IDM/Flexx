@@ -110,7 +110,11 @@ public class Page1 {
 		textPane.setBounds(0, 182, 448, 90);
 		frame.getContentPane().add(textPane);
 		
-		JButton btnNewButton_1 = new JButton("Get Results");
+		JButton btnNewButton_1 = new JButton("Get Resultss");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton_1.setToolTipText("Generates Routine");
 		btnNewButton_1.setBounds(138, 155, 156, 29);
 		frame.getContentPane().add(btnNewButton_1);
