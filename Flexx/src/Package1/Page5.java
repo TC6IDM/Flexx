@@ -95,6 +95,13 @@ public class Page5 {
 				JButton btnNewButton_2 = new JButton("+");
 				btnNewButton_2.setBounds(247, 57, 117, 29);
 				frame.getContentPane().add(btnNewButton_2);
+				btnNewButton_2.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						lunch lunch = new lunch();
+						lunch.frame.setVisible(true);
+						frame.setVisible(false);
+					}
+				});
 				
 				JLabel lblNewLabel_2 = new JLabel("Dinner");
 				lblNewLabel_2.setBounds(89, 108, 61, 16);
@@ -103,6 +110,13 @@ public class Page5 {
 				JButton btnNewButton_3 = new JButton("+");
 				btnNewButton_3.setBounds(247, 103, 117, 29);
 				frame.getContentPane().add(btnNewButton_3);
+				btnNewButton_3.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dinner dinner = new dinner();
+						dinner.frame.setVisible(true);
+						frame.setVisible(false);
+					}
+				});
 				
 				JLabel lblNewLabel_3 = new JLabel("Snacks/Other");
 				lblNewLabel_3.setBounds(89, 153, 104, 16);
@@ -111,7 +125,13 @@ public class Page5 {
 				JButton btnNewButton_4 = new JButton("+");
 				btnNewButton_4.setBounds(247, 148, 117, 29);
 				frame.getContentPane().add(btnNewButton_4);
-				
+				btnNewButton_4.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						snacks snacks = new snacks();
+						snacks.frame.setVisible(true);
+						frame.setVisible(false);
+					}
+				});
 				JLabel lblNewLabel_4 = new JLabel("Water Tracker");
 				lblNewLabel_4.setBounds(89, 199, 93, 16);
 				frame.getContentPane().add(lblNewLabel_4);
@@ -119,6 +139,9 @@ public class Page5 {
 				JButton btnNewButton_5 = new JButton("+");
 				btnNewButton_5.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						water water = new water();
+						water.frame.setVisible(true);
+						frame.setVisible(false);
 					}
 				});
 				btnNewButton_5.setBounds(247, 194, 117, 29);
@@ -139,6 +162,9 @@ public class Page5 {
 				JButton btnNewButton_6 = new JButton("+");
 				btnNewButton_6.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						calburned calburned = new calburned();
+						calburned.frame.setVisible(true);
+						frame.setVisible(false);
 					}
 				});
 				btnNewButton_6.setBounds(247, 235, 117, 29);
