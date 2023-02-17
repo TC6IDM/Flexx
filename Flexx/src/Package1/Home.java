@@ -55,7 +55,7 @@ public class Home {
 		lblNewLabel.setFont(new Font("Berlin Sans FB", Font.PLAIN, 31));
 		frame.getContentPane().add(lblNewLabel);
 				
-		JButton Page1Button = new JButton("Page1");
+		JButton Page1Button = new JButton("Personalized Workout");
 		Page1Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Page1 page1 = new Page1();
@@ -63,7 +63,7 @@ public class Home {
 				frame.setVisible(false);
 			}
 		});
-		Page1Button.setBounds(10, 180, 85, 21);
+		Page1Button.setBounds(11, 97, 145, 21);
 		frame.getContentPane().add(Page1Button);
 		
 		JButton Page2Button = new JButton("Page2");
@@ -74,10 +74,10 @@ public class Home {
 				frame.setVisible(false);
 			}
 		});
-		Page2Button.setBounds(105, 180, 85, 21);
+		Page2Button.setBounds(341, 232, 85, 21);
 		frame.getContentPane().add(Page2Button);
 		
-		JButton Page3Button = new JButton("Page3");
+		JButton Page3Button = new JButton("Track Workout");
 		Page3Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Page3 page3 = new Page3();
@@ -85,10 +85,10 @@ public class Home {
 				frame.setVisible(false);
 			}
 		});
-		Page3Button.setBounds(232, 180, 85, 21);
+		Page3Button.setBounds(261, 97, 145, 21);
 		frame.getContentPane().add(Page3Button);
 		
-		JButton Page4Button = new JButton("Page4");
+		JButton Page4Button = new JButton("Progress Tracker");
 		Page4Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Page4 page4 = new Page4();
@@ -96,10 +96,10 @@ public class Home {
 				frame.setVisible(false);
 			}
 		});
-		Page4Button.setBounds(341, 180, 85, 21);
+		Page4Button.setBounds(261, 141, 145, 21);
 		frame.getContentPane().add(Page4Button);
 		
-		JButton Page5Button = new JButton("Page5");
+		JButton Page5Button = new JButton("Food Tracker");
 		Page5Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Page5 page5 = new Page5();
@@ -107,7 +107,7 @@ public class Home {
 				frame.setVisible(false);
 			}
 		});
-		Page5Button.setBounds(166, 232, 85, 21);
+		Page5Button.setBounds(11, 141, 145, 21);
 		frame.getContentPane().add(Page5Button);
 		
 		JButton Page5Button_1 = new JButton("Login");
