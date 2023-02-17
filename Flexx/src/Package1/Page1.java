@@ -66,7 +66,7 @@ public class Page1 {
 		lblNewLabel.setFont(new Font("Kohinoor Telugu", Font.BOLD, 15));
 		frame.getContentPane().add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Home");
+		JButton btnNewButton = new JButton("Back");
 		btnNewButton.setToolTipText("Redirects to home page");
 		btnNewButton.setBackground(new Color(255, 93, 88));
 		btnNewButton.addActionListener(new ActionListener() {
