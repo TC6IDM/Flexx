@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -38,6 +39,7 @@ public class Home {
 		initialize();
 	}
 
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -48,11 +50,11 @@ public class Home {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("HOME PAGE");
+		JLabel lblNewLabel = new JLabel("HOME PAGE\n");
 		lblNewLabel.setBounds(132, 10, 172, 35);
 		lblNewLabel.setFont(new Font("Berlin Sans FB", Font.PLAIN, 31));
 		frame.getContentPane().add(lblNewLabel);
-		
+				
 		JButton Page1Button = new JButton("Page1");
 		Page1Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
