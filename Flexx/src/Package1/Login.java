@@ -3,9 +3,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
-import javax.swing.text.JTextComponent;
 
-import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
@@ -16,13 +14,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Map;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
-import javax.swing.JCheckBox;
 
 import java.awt.Font;
-import java.awt.Window;
 
 public class Login implements ActionListener{
 
