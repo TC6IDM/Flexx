@@ -14,6 +14,16 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JCheckBox;
+import javax.swing.JSeparator;
+import javax.swing.JComboBox;
+import javax.swing.JLayeredPane;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Page5 {
 
@@ -61,7 +71,97 @@ public class Page5 {
 				frame.setVisible(false);
 			}
 		});
-		btnNewButton.setBounds(6, 6, 77, 35);
+		btnNewButton.setBounds(0, 0, 77, 35);
 		frame.getContentPane().add(btnNewButton);
+		
+		JLabel lblNewLabel = new JLabel("Breakfast");
+		lblNewLabel.setBounds(89, 21, 93, 16);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JButton btnNewButton_1 = new JButton("+");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnNewButton_1.setBounds(247, 16, 117, 29);
+		frame.getContentPane().add(btnNewButton_1);
+		
+		JLabel lblNewLabel_1 = new JLabel("Lunch");
+		lblNewLabel_1.setBounds(89, 64, 61, 16);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		JButton btnNewButton_2 = new JButton("+");
+		btnNewButton_2.setBounds(247, 57, 117, 29);
+		frame.getContentPane().add(btnNewButton_2);
+		
+		JLabel lblNewLabel_2 = new JLabel("Dinner");
+		lblNewLabel_2.setBounds(89, 108, 61, 16);
+		frame.getContentPane().add(lblNewLabel_2);
+		
+		JButton btnNewButton_3 = new JButton("+");
+		btnNewButton_3.setBounds(247, 103, 117, 29);
+		frame.getContentPane().add(btnNewButton_3);
+		
+		JLabel lblNewLabel_3 = new JLabel("Snacks/Other");
+		lblNewLabel_3.setBounds(89, 153, 61, 16);
+		frame.getContentPane().add(lblNewLabel_3);
+		
+		JButton btnNewButton_4 = new JButton("+");
+		btnNewButton_4.setBounds(247, 148, 117, 29);
+		frame.getContentPane().add(btnNewButton_4);
+		
+		JLabel lblNewLabel_4 = new JLabel("Water Tracker");
+		lblNewLabel_4.setBounds(89, 199, 61, 16);
+		frame.getContentPane().add(lblNewLabel_4);
+		
+		JButton btnNewButton_5 = new JButton("+");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_5.setBounds(247, 194, 117, 29);
+		frame.getContentPane().add(btnNewButton_5);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(95, 108, 242, 1);
+		frame.getContentPane().add(separator_1);
+		
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setBounds(105, 191, 248, 1);
+		frame.getContentPane().add(separator_3);
+		
+		JLabel lblNewLabel_5 = new JLabel("Calories Burned");
+		lblNewLabel_5.setBounds(89, 238, 61, 16);
+		frame.getContentPane().add(lblNewLabel_5);
+		
+		JButton btnNewButton_6 = new JButton("+");
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_6.setBounds(247, 235, 117, 29);
+		frame.getContentPane().add(btnNewButton_6);
+		
+		JSeparator separator_6 = new JSeparator();
+		separator_6.setBounds(336, 216, -240, 12);
+		frame.getContentPane().add(separator_6);
+	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
 	}
 }
