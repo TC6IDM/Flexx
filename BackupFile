@@ -1,0 +1,425 @@
+/*
+* This is a backup file of changes made by Ava
+*/
+
+
+--------------------------------------------------------------------------------------------
+package Package1;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Home {
+
+	public JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Home window = new Home();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+
+--------------------------------------------------------------------------------------------
+
+	/**
+	 * Create the application.
+	 */
+	public Home() {
+		initialize();
+	}
+
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("HOME PAGE\n");
+		lblNewLabel.setBounds(132, 10, 172, 35);
+		lblNewLabel.setFont(new Font("Berlin Sans FB", Font.PLAIN, 31));
+		frame.getContentPane().add(lblNewLabel);
+				
+		JButton Page1Button = new JButton("Page1");
+		Page1Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Page1 page1 = new Page1();
+				page1.frame.setVisible(true);
+				frame.setVisible(false);
+			}
+		});
+		Page1Button.setBounds(10, 180, 85, 21);
+		frame.getContentPane().add(Page1Button);
+		
+		JButton Page2Button = new JButton("Page2");
+		Page2Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Page2 page2 = new Page2();
+				page2.frame.setVisible(true);
+				frame.setVisible(false);
+			}
+		});
+		Page2Button.setBounds(105, 180, 85, 21);
+		frame.getContentPane().add(Page2Button);
+		
+		JButton Page3Button = new JButton("Page3");
+		Page3Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Page3 page3 = new Page3();
+				page3.frame.setVisible(true);
+				frame.setVisible(false);
+			}
+		});
+		Page3Button.setBounds(232, 180, 85, 21);
+		frame.getContentPane().add(Page3Button);
+		
+		JButton Page4Button = new JButton("Page4");
+		Page4Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Page4 page4 = new Page4();
+				page4.frame.setVisible(true);
+				frame.setVisible(false);
+			}
+		});
+		Page4Button.setBounds(341, 180, 85, 21);
+		frame.getContentPane().add(Page4Button);
+		
+		JButton Page5Button = new JButton("Page5");
+		Page5Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Page5 page5 = new Page5();
+				page5.frame.setVisible(true);
+				frame.setVisible(false);
+			}
+		});
+		Page5Button.setBounds(166, 232, 85, 21);
+		frame.getContentPane().add(Page5Button);
+		
+		JButton Page5Button_1 = new JButton("Login");
+		Page5Button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login login = new Login();
+				login.frame.setVisible(true);
+				frame.setVisible(false);
+			}
+		});
+		Page5Button_1.setBounds(166, 97, 85, 21);
+		frame.getContentPane().add(Page5Button_1);
+		
+		
+	}
+
+}
+
+--------------------------------------------------------------------------------------------
+
+package Package1;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
+
+import java.awt.Font;
+
+public class Login implements ActionListener{
+
+	public JFrame frame;
+	private JTextField usernameField;
+	private JPasswordField passwordField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Login window = new Login();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Login() {
+		initialize();	
+	}
+
+	
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		usernameField = new JTextField();
+		usernameField.setBounds(188, 62, 159, 19);
+		frame.getContentPane().add(usernameField);
+		usernameField.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("PASSWORD");
+		lblNewLabel.setFont(new Font("Rockwell", Font.PLAIN, 20));
+		lblNewLabel.setBounds(61, 109, 140, 43);
+		frame.getContentPane().add(lblNewLabel);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(188, 117, 159, 19);
+		frame.getContentPane().add(passwordField);
+		
+		JLabel lblUsername = new JLabel("USERNAME");
+		lblUsername.setFont(new Font("Rockwell", Font.PLAIN, 20));
+		lblUsername.setBounds(51, 58, 140, 35);
+		frame.getContentPane().add(lblUsername);
+		
+		JButton btnNewBackButton = new JButton("Back");
+		btnNewBackButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Home home = new Home();
+				home.frame.setVisible(true);
+				frame.setVisible(false);
+			}
+		});
+		btnNewBackButton.setBounds(10, 10, 77, 35);
+		frame.getContentPane().add(btnNewBackButton);
+		
+		JButton btnNewButton = new JButton("Login");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String username = usernameField.getText();
+				String password = passwordField.getText();
+				boolean found = false;
+				
+		        try {
+		            BufferedReader reader = new BufferedReader(new FileReader("users.txt"));
+		            String line;
+		            while ((line = reader.readLine()) != null) {
+		                String[] parts = line.split(",");
+		                if (parts.length == 2 && parts[0].equals(username) && parts[1].equals(password)) {
+		                    found = true;
+		                    break;
+		                }
+		            }
+		            reader.close();
+		        } catch (IOException ex) {
+		            ex.printStackTrace();
+		        }
+		        
+		        if (found) {
+		        	JOptionPane.showMessageDialog(frame, "Welcome");
+		        	Home home = new Home();
+					home.frame.setVisible(true);
+					frame.setVisible(false);
+					
+		        } else {
+					JOptionPane.showMessageDialog(frame, "Invalid Login");
+				}
+				
+ 			}
+		});
+		btnNewButton.setBounds(176, 189, 85, 21);
+		frame.getContentPane().add(btnNewButton);
+		
+		JButton btnClearButton = new JButton("Clear");
+		btnClearButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				usernameField.setText("");
+				passwordField.setText("");
+			}
+		});
+		btnClearButton.setBounds(47, 185, 117, 29);
+		frame.getContentPane().add(btnClearButton);
+		
+		JButton btnNewButton_1 = new JButton("Sign up");
+		btnNewButton_1.setBounds(273, 185, 117, 29);
+		frame.getContentPane().add(btnNewButton_1);
+		btnNewButton_1.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        JTextField usernameField = new JTextField();
+		        JTextField passwordField = new JPasswordField();
+		        Object[] fields = {
+		            "Username:", usernameField,
+		            "Password:", passwordField
+		        };
+		        int option = JOptionPane.showConfirmDialog(frame, fields, "Sign up", JOptionPane.OK_CANCEL_OPTION);
+		        if (option == JOptionPane.OK_OPTION) {
+		            String username = usernameField.getText();
+		            String password = passwordField.getText();
+		            // save the username and password to a database or file
+		            try {
+		            	File file = new File("users.txt");
+		            	if(!file.exists()) {
+		            		file.createNewFile();
+		            	}
+		                BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
+		                writer.write(username + "," + password + "\n");
+		                writer.close();
+		            JOptionPane.showMessageDialog(frame, "You have successfully signed up!");
+		            } catch (IOException ex) {
+		                ex.printStackTrace();
+		            }
+		        }
+		    }
+		});
+	}
+	
+	public JTextField getUsernameField() {
+	    return usernameField;
+	}
+	
+	public JTextField getPasswordField() {
+		return passwordField;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+}
+
+
+
+————————————————]
+@@ -1,94 +0,0 @@
+package Package1;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import org.junit.jupiter.api.*;
+
+class LoginTest {
+	
+	    @Test
+	    public void testSignUp() {
+	        String username = "John";
+	        String password = "123";
+	        
+	        // sign-up with the given parameters
+	        performSignUp(username, password);
+
+	        // verify user was added to the txt file
+	        assertTrue(verifyUserExists(username, password));
+	    }
+
+	    private void performSignUp(String username, String password) {
+	        // TODO: Implement sign-up logic here
+	        // write the username and password to a txt file
+	        try {
+	            FileWriter writer = new FileWriter("TestCaseUsers.txt", true);
+	            writer.write(username + "," + password + "\n");
+	            writer.close();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    private boolean verifyUserExists(String username, String password) {
+	        try {
+	            BufferedReader reader = new BufferedReader(new FileReader("TestCaseUsers.txt"));
+	            String line;
+	            while ((line = reader.readLine()) != null) {
+	                String[] tokens = line.split(",");
+	                if (tokens.length == 2 && tokens[0].equals(username) && tokens[1].equals(password)) {
+	                    reader.close();
+	                    return true;
+	                }
+	            }
+	            reader.close();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	        return false;
+	    
+	}
+	    
+	    @Test
+	    public void testSignUpAndLogin() {
+	        // sign up a new user
+	        String username = "John";
+	        String password = "123";
+	        signUp(username, password);
+
+	        // attempt log in with credentials
+	        boolean success = login(username, password);
+	        assertTrue(success);
+	    }
+
+	    private void signUp(String username, String password) {
+	        // write new user to the file
+	        try (PrintWriter out = new PrintWriter(new FileWriter("TestCaseUsers.txt", true))) {
+	            out.println(username + "," + password);
+	        } catch (IOException e) {
+	            fail("Failed to write to file: " + e.getMessage());
+	        }
+	    }
+
+	    private boolean login(String username, String password) {
+	        // read the file and see if the username and password match
+	        try (BufferedReader in = new BufferedReader(new FileReader("TestCaseUsers.txt"))) {
+	            String line;
+	            while ((line = in.readLine()) != null) {
+	                String[] tokens = line.split(",");
+	                if (tokens.length == 2 && tokens[0].equals(username) && tokens[1].equals(password)) {
+	                    return true;
+	                }
+	            }
+	        } catch (IOException e) {
+	            fail("Failed to read from file: " + e.getMessage());
+	        }
+	        return false;
+	    }
+}
+
