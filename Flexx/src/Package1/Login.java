@@ -78,18 +78,7 @@ public class Login implements ActionListener{
 		lblUsername.setFont(new Font("Rockwell", Font.PLAIN, 20));
 		lblUsername.setBounds(51, 58, 140, 35);
 		frame.getContentPane().add(lblUsername);
-		
-		JButton btnNewBackButton = new JButton("Back");
-		btnNewBackButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Home home = new Home();
-				home.frame.setVisible(true);
-				frame.setVisible(false);
-			}
-		});
-		btnNewBackButton.setBounds(10, 10, 77, 35);
-		frame.getContentPane().add(btnNewBackButton);
-		
+				
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
