@@ -132,12 +132,6 @@ public class breakfast {
 		lblNewLabel_4.setBounds(347, 219, 61, 16);
 		frame.getContentPane().add(lblNewLabel_4);
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "1", "1"}));
-		comboBox.setBackground(Color.WHITE);
-		comboBox.setBounds(272, 7, 120, 39);
-		frame.getContentPane().add(comboBox);
-		
 		
 	}
 }
