@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
@@ -12,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JMenuBar;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import java.awt.Color;
 
 public class breakfast {
 
@@ -128,6 +131,13 @@ public class breakfast {
 		JLabel lblNewLabel_4 = new JLabel("total cal");
 		lblNewLabel_4.setBounds(347, 219, 61, 16);
 		frame.getContentPane().add(lblNewLabel_4);
+		
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "1", "1"}));
+		comboBox.setBackground(Color.WHITE);
+		comboBox.setBounds(272, 7, 120, 39);
+		frame.getContentPane().add(comboBox);
+		
 		
 	}
 }
