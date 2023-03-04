@@ -140,9 +140,6 @@ public class Page1 {
 		comboBox_1.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        String selected = comboBox_1.getSelectedItem().toString();
-		        if(selected.equals("Select")) {
-		            JOptionPane.showMessageDialog(null, "Please choose a Workout Type");
-		        }
 		    }
 		});
 		
