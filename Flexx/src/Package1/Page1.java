@@ -8,6 +8,10 @@ import javax.swing.JOptionPane;
 
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -143,6 +147,7 @@ public class Page1 {
 		});
 		
 		JTextPane textPane = new JTextPane();
+		textPane.setEditable(false);
 		textPane.setBackground(new Color(138, 170, 229));
 		textPane.setBounds(0, 182, 448, 90);
 		frame.getContentPane().add(textPane);
@@ -150,13 +155,60 @@ public class Page1 {
 		JButton btnNewButton_1 = new JButton("Get Results");
 		btnNewButton_1.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        if (comboBox_1.isEnabled() && comboBox_1.getSelectedIndex() == 0) {
-		            JOptionPane.showMessageDialog(frame, "Please choose a workout type");
-		        } else {
-		            // Proceed with action
+		        String muscleGroup = comboBox.getSelectedItem().toString();
+		        String workoutType = comboBox_1.getSelectedItem().toString();
+
+		        if (muscleGroup.equals("Legs") && workoutType.equals("Hack Squats")) {
+		        	StyledDocument doc = textPane.getStyledDocument();
+		            SimpleAttributeSet center = new SimpleAttributeSet();
+		            StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		            StyleConstants.setBold(center, true);
+		            doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		            textPane.setText("\n\n 3 sets of 8-12 reps");
+		        } 
+		        else if (muscleGroup.equals("Legs") && workoutType.equals("Leg Extension")) {
+		        	StyledDocument doc = textPane.getStyledDocument();
+		            SimpleAttributeSet center = new SimpleAttributeSet();
+		            StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		            StyleConstants.setBold(center, true);
+		            doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		            textPane.setText("\n\n 3 sets of 10-12 reps");	
+		        }
+		        else if (muscleGroup.equals("Legs") && workoutType.equals("Hamstrings")) {
+		        	StyledDocument doc = textPane.getStyledDocument();
+		            SimpleAttributeSet center = new SimpleAttributeSet();
+		            StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		            StyleConstants.setBold(center, true);
+		            doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		            textPane.setText("\n\n 3 sets of 6-12 reps");	
+		        }
+		        else if (muscleGroup.equals("Arms") && workoutType.equals("Hammer curls with rope-biceps")) {
+		        	StyledDocument doc = textPane.getStyledDocument();
+		            SimpleAttributeSet center = new SimpleAttributeSet();
+		            StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		            StyleConstants.setBold(center, true);
+		            doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		            textPane.setText("\n\n 3 sets of 8-12 reps");	
+		        }
+		        else if (muscleGroup.equals("Arms") && workoutType.equals("Hammer curls with rope-biceps")) {
+		        	
+		        }
+		        else if (muscleGroup.equals("Arms") && workoutType.equals("")) {
+		        	
+		        }
+		        else if (muscleGroup.equals("Arms") && workoutType.equals("")) {
+		        	
+		        }
+		        
+		        
+		        else {
+		            JOptionPane.showMessageDialog(frame, "Please select a valid muscle group and workout type.");
 		        }
 		    }
-		}); 
+		});
+		btnNewButton_1.setBounds(148, 297, 117, 29);
+		frame.getContentPane().add(btnNewButton_1);
+
 
 		btnNewButton_1.setToolTipText("Generates Routine");
 		btnNewButton_1.setBounds(138, 155, 156, 29);
