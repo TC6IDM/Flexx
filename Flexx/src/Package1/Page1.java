@@ -257,13 +257,30 @@ public class Page1 {
 		        
 		        // Outputs for the 'Back' Muscle Group
 		        
-		        else if (muscleGroup.equals("Back") && workoutType.equals("")) {
-		        	
+		        else if (muscleGroup.equals("Back") && workoutType.equals("Lat pulldowns")) {
+		        	StyledDocument doc = textPane.getStyledDocument();
+		            SimpleAttributeSet center = new SimpleAttributeSet();
+		            StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		            StyleConstants.setBold(center, true);
+		            doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		            textPane.setText("\n\n 3 sets of 8-12 reps");		
 		        }
-		        else if (muscleGroup.equals("Back") && workoutType.equals("")) {
-		        	
+		        else if (muscleGroup.equals("Back") && workoutType.equals("T-bar")) {
+		        	StyledDocument doc = textPane.getStyledDocument();
+		            SimpleAttributeSet center = new SimpleAttributeSet();
+		            StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		            StyleConstants.setBold(center, true);
+		            doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		            textPane.setText("\n\n 3 sets of 8-10 reps");		
 		        }
-		        
+		        else if(muscleGroup.equals("Back") && workoutType.equals("Cable rows")) {
+		        	StyledDocument doc = textPane.getStyledDocument();
+		            SimpleAttributeSet center = new SimpleAttributeSet();
+		            StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		            StyleConstants.setBold(center, true);
+		            doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		            textPane.setText("\n\n 3 sets of 6-12 reps");		
+		        }
 		        
 		        else {
 		            JOptionPane.showMessageDialog(frame, "Please select a valid muscle group and workout type.");
