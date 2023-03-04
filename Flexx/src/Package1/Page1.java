@@ -289,6 +289,21 @@ public class Page1 {
 		});
 		btnNewButton_1.setBounds(148, 297, 117, 29);
 		frame.getContentPane().add(btnNewButton_1);
+		
+		comboBox.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        // Clear the text pane when the combo box selection changes
+		        textPane.setText("");
+		    }
+		});
+
+		comboBox_1.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        // Clear the text pane when the combo box selection changes
+		        textPane.setText("");
+		    }
+		});
+
 
 
 		btnNewButton_1.setToolTipText("Generates Routine");
