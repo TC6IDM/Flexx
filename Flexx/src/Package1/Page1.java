@@ -157,6 +157,8 @@ public class Page1 {
 		    public void actionPerformed(ActionEvent e) {
 		        String muscleGroup = comboBox.getSelectedItem().toString();
 		        String workoutType = comboBox_1.getSelectedItem().toString();
+		        
+		        // Outputs for the 'Legs' Muscle group
 
 		        if (muscleGroup.equals("Legs") && workoutType.equals("Hack Squats")) {
 		        	StyledDocument doc = textPane.getStyledDocument();
@@ -182,6 +184,9 @@ public class Page1 {
 		            doc.setParagraphAttributes(0, doc.getLength(), center, false);
 		            textPane.setText("\n\n 3 sets of 6-12 reps");	
 		        }
+		        
+		        // Outputs for the 'Arms' Muscle Group
+		        
 		        else if (muscleGroup.equals("Arms") && workoutType.equals("Hammer curls with rope-biceps")) {
 		        	StyledDocument doc = textPane.getStyledDocument();
 		            SimpleAttributeSet center = new SimpleAttributeSet();
@@ -189,14 +194,73 @@ public class Page1 {
 		            StyleConstants.setBold(center, true);
 		            doc.setParagraphAttributes(0, doc.getLength(), center, false);
 		            textPane.setText("\n\n 3 sets of 8-12 reps");	
+		        } 
+		        else if (muscleGroup.equals("Arms") && workoutType.equals("Preacher curls-biceps")) {
+		        	StyledDocument doc = textPane.getStyledDocument();
+		            SimpleAttributeSet center = new SimpleAttributeSet();
+		            StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		            StyleConstants.setBold(center, true);
+		            doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		            textPane.setText("\n\n 3 sets of 8-10 reps");		
 		        }
-		        else if (muscleGroup.equals("Arms") && workoutType.equals("Hammer curls with rope-biceps")) {
+		        else if (muscleGroup.equals("Arms") && workoutType.equals("Incline curls-biceps")) {
+		        	StyledDocument doc = textPane.getStyledDocument();
+		            SimpleAttributeSet center = new SimpleAttributeSet();
+		            StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		            StyleConstants.setBold(center, true);
+		            doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		            textPane.setText("\n\n 3 sets of 8-12 reps");		
+		        }
+		        else if (muscleGroup.equals("Arms") && workoutType.equals("Tricep extensions-tricep")) {
+		        	StyledDocument doc = textPane.getStyledDocument();
+		            SimpleAttributeSet center = new SimpleAttributeSet();
+		            StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		            StyleConstants.setBold(center, true);
+		            doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		            textPane.setText("\n\n 3 sets of 8-14 reps");		
+		        }
+		        else if (muscleGroup.equals("Arms") && workoutType.equals("Dips-tricep")) {
+		        	StyledDocument doc = textPane.getStyledDocument();
+		            SimpleAttributeSet center = new SimpleAttributeSet();
+		            StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		            StyleConstants.setBold(center, true);
+		            doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		            textPane.setText("\n\n 3 sets of 6-12 reps");		
+		        }
+		        
+		        // Outputs for the 'Chest' Muscle Group
+		        
+		        else if (muscleGroup.equals("Chest") && workoutType.equals("Incline dumbell")) {
+		        	StyledDocument doc = textPane.getStyledDocument();
+		            SimpleAttributeSet center = new SimpleAttributeSet();
+		            StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		            StyleConstants.setBold(center, true);
+		            doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		            textPane.setText("\n\n 3 sets of 8-12 reps");	
+		        }
+		        else if (muscleGroup.equals("Chest") && workoutType.equals("Pectoral flys")) {
+		        	StyledDocument doc = textPane.getStyledDocument();
+		            SimpleAttributeSet center = new SimpleAttributeSet();
+		            StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		            StyleConstants.setBold(center, true);
+		            doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		            textPane.setText("\n\n 3 sets of 6-12 reps");	
+		        }
+		        else if (muscleGroup.equals("Chest") && workoutType.equals("Cable chest flys")) {
+		        	StyledDocument doc = textPane.getStyledDocument();
+		            SimpleAttributeSet center = new SimpleAttributeSet();
+		            StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		            StyleConstants.setBold(center, true);
+		            doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		            textPane.setText("\n\n 3 sets of 8-10 reps");	
+		        }
+		        
+		        // Outputs for the 'Back' Muscle Group
+		        
+		        else if (muscleGroup.equals("Back") && workoutType.equals("")) {
 		        	
 		        }
-		        else if (muscleGroup.equals("Arms") && workoutType.equals("")) {
-		        	
-		        }
-		        else if (muscleGroup.equals("Arms") && workoutType.equals("")) {
+		        else if (muscleGroup.equals("Back") && workoutType.equals("")) {
 		        	
 		        }
 		        
