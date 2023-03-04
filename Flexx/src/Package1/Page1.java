@@ -283,7 +283,7 @@ public class Page1 {
 		        }
 		        
 		        else {
-		            JOptionPane.showMessageDialog(frame, "Please select a valid muscle group and workout type.");
+		            JOptionPane.showMessageDialog(frame, "Please select a valid Muscle Group and Workout Type.");
 		        }
 		    }
 		});
