@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -60,7 +62,8 @@ public class Page5 {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-
+		frame.getContentPane().setBackground(Color.CYAN);
+		
 		JButton btnNewButton = new JButton("Back");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -78,9 +81,10 @@ public class Page5 {
 
 				JButton btnNewButton_1 = new JButton("+");
 				btnNewButton_1.setSize(10,20);
+				btnNewButton_1.setBackground(Color.red);
 				btnNewButton_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						breakfast bf = new breakfast();
+						Breakfast bf = new Breakfast();
 						bf.frame.setVisible(true);
 						frame.setVisible(false);
 					}
@@ -94,6 +98,7 @@ public class Page5 {
 				
 				JButton btnNewButton_2 = new JButton("+");
 				btnNewButton_2.setBounds(247, 57, 117, 29);
+				btnNewButton_2.setBackground(Color.red);
 				frame.getContentPane().add(btnNewButton_2);
 				btnNewButton_2.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -109,6 +114,7 @@ public class Page5 {
 				
 				JButton btnNewButton_3 = new JButton("+");
 				btnNewButton_3.setBounds(247, 103, 117, 29);
+				btnNewButton_3.setBackground(Color.red);
 				frame.getContentPane().add(btnNewButton_3);
 				btnNewButton_3.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -124,6 +130,7 @@ public class Page5 {
 				
 				JButton btnNewButton_4 = new JButton("+");
 				btnNewButton_4.setBounds(247, 148, 117, 29);
+				btnNewButton_4.setBackground(Color.red);
 				frame.getContentPane().add(btnNewButton_4);
 				btnNewButton_4.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -145,6 +152,7 @@ public class Page5 {
 					}
 				});
 				btnNewButton_5.setBounds(247, 194, 117, 29);
+				btnNewButton_5.setBackground(Color.red);
 				frame.getContentPane().add(btnNewButton_5);
 				
 				JSeparator separator_1 = new JSeparator();
@@ -168,6 +176,7 @@ public class Page5 {
 					}
 				});
 				btnNewButton_6.setBounds(247, 235, 117, 29);
+				btnNewButton_6.getRootPane().setBackground(Color.red);
 				frame.getContentPane().add(btnNewButton_6);
 				
 				JSeparator separator_6 = new JSeparator();
