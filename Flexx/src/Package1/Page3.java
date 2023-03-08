@@ -134,6 +134,58 @@ public class Page3 {
 				}
 				
 				if (valid) {
+					String url = "jdbc:mysql://localhost:3306/Flexx" ;
+					String user = "root" ;
+					String sizeQuery = "SELECT COUNT(*) FROM exerciselogs";
+					
+					int tableSize =0;
+					try {
+						// create connection
+						Connection con = DriverManager.getConnection (url,user,JDBC.password);
+//						System.out.println("hi");
+						 // create statement
+						Statement statement = con.createStatement();
+//						System.out.println("hi");
+						 // generate result set
+						ResultSet rs = statement.executeQuery(sizeQuery);
+						rs.next();
+						tableSize = rs.getInt(1);
+//					    System.out.println("hi");
+					    
+						
+
+					} catch (SQLException err) {
+//						err.printStackTrace();
+					}
+					
+					
+					
+					for (int i=0;i<exercises.size();i++) {
+						Exercise currentExercise = exercises.get(i);
+						String exerciseName = currentExercise.nameField.getText();
+						for (int k=0;k<currentExercise.sets.size();k++) {
+							Set currentSet = currentExercise.sets.get(k);
+							String reps = currentSet.repsField.getText();
+							String weight = currentSet.weightField.getText(); 
+							String insertQuery = "INSERT INTO exerciselogs VALUE(\""+exerciseName+"\", "+reps+", "+weight+", "+tableSize+");";
+							System.out.println(insertQuery);
+							try {
+								Connection con = DriverManager.getConnection (url,user,JDBC.password);
+//								System.out.println("hi2");
+								 // create statement
+								Statement statement = con.createStatement();
+//								System.out.println("hi2");
+								 // generate result set
+								statement.execute(insertQuery);
+//								System.out.println("hi2");
+							} catch (SQLException err) {
+//								err.printStackTrace();
+							}
+						}
+					}
+					
+					
+					System.out.println("Number of records in the table represented by the ResultSet object is: "+tableSize);
 					Home home = new Home();
 					home.frame.setVisible(true);
 					frame.setVisible(false);
