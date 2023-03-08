@@ -4,9 +4,18 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
@@ -66,9 +75,12 @@ public class Page3 {
 		JButton backButton = new JButton("Back");
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Home home = new Home();
-				home.frame.setVisible(true);
-				frame.setVisible(false);
+		        int option = JOptionPane.showConfirmDialog(frame, "Are you sure you would like to go back? This Current Workout will be Lost...", "Cancel?", JOptionPane.YES_NO_OPTION);
+		        if (option == JOptionPane.YES_OPTION) {
+		        	Home home = new Home();
+					home.frame.setVisible(true);
+					frame.setVisible(false);
+		        }
 			}
 		});
 		backButton.setBounds(10, 10, 75, 35);
@@ -80,6 +92,9 @@ public class Page3 {
 				Home home = new Home();
 				home.frame.setVisible(true);
 				frame.setVisible(false);
+				
+				
+				
 			}
 		});
 		doneButton.setBounds(Frame_Width-100, 10, 75, 35);
@@ -111,5 +126,4 @@ public class Page3 {
 		frame.getContentPane().add(newExerciseButton);
 		
 	}
-
 }

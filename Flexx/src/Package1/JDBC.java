@@ -1,7 +1,7 @@
 package Package1;
 import java.sql.*;
 public class JDBC{
-	private static String password = "MyN3wP4ssw0rd";// replace ... with your password
+	public static String password = "MyN3wP4ssw0rd";// replace ... with your password
 	public static void main(String[] args) {}
 	public static void createDB() {
 		String url = "jdbc:mysql://localhost:3306/" ;
@@ -46,5 +46,27 @@ public class JDBC{
 //			e.printStackTrace();
 		}
 		System.out.println("table 1 created");
+		
+		
+		
+		
+		
+		String query2 = "CREATE TABLE ExerciseLogs( ExerciseName VARCHAR(255) NOT NULL, Reps INT NOT NULL, Weight FLOAT(2) NOT NULL, WorkoutNumber INT NOT NULL);" ;
+		
+		try {
+			// create connection
+			Connection con = DriverManager.getConnection (url,user,password);
+			
+			 // create statement
+			Statement statement = con.createStatement();
+			
+			 // generate result set
+			statement.execute(query2);
+			
+
+		} catch (SQLException e) {
+//			e.printStackTrace();
+		}
+		System.out.println("table 2 created");
 	}
 }
