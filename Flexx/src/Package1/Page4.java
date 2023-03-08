@@ -1,125 +1,130 @@
 package Package1;
 
+import javax.swing.*;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.BorderLayout;
-import javax.swing.SwingConstants;
 import java.awt.Font;
-import javax.swing.JButton;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JProgressBar;
-import javax.swing.JCheckBox;
-import java.awt.Checkbox;
-import javax.swing.JComboBox;
-import java.awt.List;
-import javax.swing.JEditorPane;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JToolBar;
-import java.awt.Color;
+import java.awt.SystemColor;
 
 public class Page4 {
 
-	public JFrame frame;
+    public JFrame frame;
+    private JTextField goal1TextField;
+    private int numGoals = 1;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Page1 window = new Page1();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    Page4 window = new Page4();
+                    window.frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
-	/**
-	 * Create the application.
-	 * @wbp.parser.entryPoint
-	 */
-	public Page4() {
-		initialize();
-	}
+    /**
+     * Create the application.
+     * @wbp.parser.entryPoint
+     */
+    public Page4() {
+        initialize();
+    }
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(207, 225, 235));
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Progress Tracker");
-		lblNewLabel.setBounds(140, 10, 187, 35);
-		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 23));
-		frame.getContentPane().add(lblNewLabel);
-		
-		JButton btnNewButton = new JButton("Back");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Home home = new Home();
-				home.frame.setVisible(true);
-				frame.setVisible(false);
-			}
-		});
-		btnNewButton.setBounds(10, 10, 77, 35);
-		frame.getContentPane().add(btnNewButton);
-		
-		JProgressBar progressBar = new JProgressBar();
-		progressBar.setValue(50);
-		progressBar.setStringPainted(true);
-		progressBar.setBounds(166, 214, 146, 20);
-		frame.getContentPane().add(progressBar);
-		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Goal #1");
-		chckbxNewCheckBox.setSelected(true);
-		chckbxNewCheckBox.setBounds(38, 103, 106, 23);
-		frame.getContentPane().add(chckbxNewCheckBox);
-		
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Goal #2");
-		chckbxNewCheckBox_1.setSelected(true);
-		chckbxNewCheckBox_1.setBounds(166, 103, 128, 23);
-		frame.getContentPane().add(chckbxNewCheckBox_1);
-		
-		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("Goal #3");
-		chckbxNewCheckBox_2.setSelected(true);
-		chckbxNewCheckBox_2.setBounds(295, 103, 128, 23);
-		frame.getContentPane().add(chckbxNewCheckBox_2);
-		
-		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("Goal #4");
-		chckbxNewCheckBox_3.setBounds(38, 155, 128, 23);
-		frame.getContentPane().add(chckbxNewCheckBox_3);
-		
-		JCheckBox chckbxNewCheckBox_4 = new JCheckBox("Goal #5");
-		chckbxNewCheckBox_4.setBounds(166, 155, 128, 23);
-		frame.getContentPane().add(chckbxNewCheckBox_4);
-		
-		JCheckBox chckbxNewCheckBox_5 = new JCheckBox("Goal #6");
-		chckbxNewCheckBox_5.setBounds(295, 155, 128, 23);
-		frame.getContentPane().add(chckbxNewCheckBox_5);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Add goal", "Edit goal", "Delete goal"}));
-		comboBox.setBounds(219, 57, 52, 27);
-		frame.getContentPane().add(comboBox);
-		
-		JLabel lblNewLabel_1 = new JLabel("Menu:");
-		lblNewLabel_1.setBounds(171, 61, 61, 16);
-		frame.getContentPane().add(lblNewLabel_1);
-		
-		
-		
-	}
+    /**
+     * Initialize the contents of the frame.
+     */
+    private void initialize() {
+        frame = new JFrame();
+        frame.getContentPane().setBackground(new Color(207, 225, 235));
+        frame.setBounds(100, 100, 450, 300);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(null);
+
+        JLabel lblNewLabel = new JLabel("Progress Tracker");
+        lblNewLabel.setBounds(140, 10, 187, 35);
+        lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 23));
+        frame.getContentPane().add(lblNewLabel);
+
+        JButton btnNewButton = new JButton("Back");
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Home home = new Home();
+                home.frame.setVisible(true);
+                frame.setVisible(false);
+            }
+        });
+        btnNewButton.setBounds(10, 10, 77, 35);
+        frame.getContentPane().add(btnNewButton);
+
+        JProgressBar progressBar = new JProgressBar();
+        progressBar.setValue(50);
+        progressBar.setStringPainted(true);
+        progressBar.setBounds(166, 214, 146, 20);
+        frame.getContentPane().add(progressBar);
+
+        JCheckBox chckbxNewCheckBox = new JCheckBox("");
+        chckbxNewCheckBox.setSelected(true);
+        chckbxNewCheckBox.setBounds(108, 104, 28, 20);
+        frame.getContentPane().add(chckbxNewCheckBox);
+
+        goal1TextField = new JTextField();
+        goal1TextField.setText("Goal #1");
+        goal1TextField.setEnabled(false);
+        goal1TextField.setBounds(148, 104, 134, 20);
+        frame.getContentPane().add(goal1TextField);
+        goal1TextField.setColumns(10);
+        
+        JButton btnNewButton_1 = new JButton("Add");
+        btnNewButton_1.setBackground(new Color(238, 238, 238));
+        btnNewButton_1.setBounds(192, 130, 54, 16);
+        frame.getContentPane().add(btnNewButton_1);
+        
+        JButton btnNewButton_1_1 = new JButton("Delete");
+        btnNewButton_1_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        btnNewButton_1_1.setBackground(SystemColor.window);
+        btnNewButton_1_1.setBounds(294, 104, 54, 16);
+        frame.getContentPane().add(btnNewButton_1_1);
+
+        JComboBox<String> comboBox = new JComboBox<String>();
+        comboBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String selectedOption = (String) comboBox.getSelectedItem();
+                if (selectedOption.equals("Add goal")) {
+                    btnNewButton_1.setEnabled(true);
+                } else {
+                    btnNewButton_1.setEnabled(false);
+                }
+                if (selectedOption.equals("Delete goal")) {
+                	btnNewButton_1_1.setEnabled(true);
+                } else {
+                	btnNewButton_1_1.setEnabled(false);
+                }
+
+                if (selectedOption.equals("Edit goal")) {
+                    goal1TextField.setEnabled(true);
+                } else {
+                    goal1TextField.setEnabled(false);
+                }
+            }
+        });
+
+        comboBox.setModel(new DefaultComboBoxModel(new String[] {"Add goal", "Edit goal", "Delete goal"}));
+        comboBox.setBounds(206, 57, 106, 27);
+        frame.getContentPane().add(comboBox);
+
+        JLabel lblNewLabel_1 = new JLabel("Menu:");
+        lblNewLabel_1.setBounds(150, 61, 61, 16);
+        frame.getContentPane().add(lblNewLabel_1);
+    }
 }
