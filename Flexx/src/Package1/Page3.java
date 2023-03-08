@@ -89,11 +89,58 @@ public class Page3 {
 		JButton doneButton = new JButton("Done");
 		doneButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Home home = new Home();
-				home.frame.setVisible(true);
-				frame.setVisible(false);
+				boolean valid = true;
+				String invalidInfo ="\n";
+				if (exercises.size()==0) {
+					valid = false;
+					invalidInfo = "|No Exercises|";
+				}
+				for (int i=0;i<exercises.size();i++) {
+					Exercise currentExercise = exercises.get(i);
+					String exerciseName = currentExercise.nameField.getText();
+					if (exerciseName.equals("")) {
+						valid = false; 
+						invalidInfo = invalidInfo+ "|Exercise #"+currentExercise.exerciseNumber+" Name Invalid|\n";
+					}
+					for (int k=0;k<currentExercise.sets.size();k++) {
+						Set currentSet = currentExercise.sets.get(k);
+						String reps = currentSet.repsField.getText();
+						String weight = currentSet.weightField.getText();
+						if (reps.equals("")) {
+							valid = false; 
+							invalidInfo = invalidInfo+ "|Exercise #"+currentExercise.exerciseNumber+" Set #"+currentSet.setNumber+" Reps Invalid|\n";
+						}
+						if (weight.equals("")) {
+							valid = false; 
+							invalidInfo = invalidInfo+ "|Exercise #"+currentExercise.exerciseNumber+" Set #"+currentSet.setNumber+" Weight Invalid|\n";
+						}
+						try {
+					        int d = Integer.parseInt(reps);
+					    } catch (NumberFormatException nfe) {
+					    	if (!reps.equals("")) {
+					    		valid = false; 
+						    	invalidInfo = invalidInfo+ "|Exercise #"+currentExercise.exerciseNumber+" Set #"+currentSet.setNumber+" Reps must be an Integer|\n";
+					    	}
+					    }
+						try {
+					        double d = Double.parseDouble(weight);
+					    } catch (NumberFormatException nfe) {
+					    	if (!weight.equals("")) {
+					    		valid = false; 
+						    	invalidInfo = invalidInfo+ "|Exercise #"+currentExercise.exerciseNumber+" Set #"+currentSet.setNumber+" Weight must be a double|\n";
+					    	}
+					    }
+					}
+				}
 				
-				
+				if (valid) {
+					Home home = new Home();
+					home.frame.setVisible(true);
+					frame.setVisible(false);
+				}
+				else {
+					JOptionPane.showMessageDialog(frame, "Invalid Input:\n"+invalidInfo);
+				}
 				
 			}
 		});
