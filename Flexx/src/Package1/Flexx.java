@@ -7,5 +7,5 @@ public class Flexx{
 		Login login = new Login();
 		login.frame.setVisible(true);
 	}
-	
+
 }

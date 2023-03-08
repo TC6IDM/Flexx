@@ -126,6 +126,38 @@ public class Login implements ActionListener{
 		btnClearButton.setBounds(47, 185, 117, 29);
 		frame.getContentPane().add(btnClearButton);
 		
+//		JButton btnNewButton_1 = new JButton("Sign up");
+//		btnNewButton_1.setBounds(273, 185, 117, 29);
+//		frame.getContentPane().add(btnNewButton_1);
+//		btnNewButton_1.addActionListener(new ActionListener() {
+//		    public void actionPerformed(ActionEvent e) {
+//		        JTextField usernameField = new JTextField();
+//		        JTextField passwordField = new JPasswordField();
+//		        Object[] fields = {
+//		            "Username:", usernameField,
+//		            "Password:", passwordField
+//		        };
+//		        int option = JOptionPane.showConfirmDialog(frame, fields, "Sign up", JOptionPane.OK_CANCEL_OPTION);
+//		        if (option == JOptionPane.OK_OPTION) {
+//		            String username = usernameField.getText();
+//		            String password = passwordField.getText();
+//		            // save the username and password to a database or file
+//		            try {
+//		            	File file = new File("users.txt");
+//		            	if(!file.exists()) {
+//		            		file.createNewFile();
+//		            	}
+//		                BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
+//		                writer.write(username + "," + password + "\n");
+//		                writer.close();
+//		            JOptionPane.showMessageDialog(frame, "You have successfully signed up!");
+//		            } catch (IOException ex) {
+//		                ex.printStackTrace();
+//		            }
+//		        }
+//		    }
+//		});
+		
 		JButton btnNewButton_1 = new JButton("Sign up");
 		btnNewButton_1.setBounds(273, 185, 117, 29);
 		frame.getContentPane().add(btnNewButton_1);

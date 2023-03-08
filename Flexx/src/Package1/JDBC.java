@@ -28,7 +28,6 @@ public class JDBC{
 		String url = "jdbc:mysql://localhost:3306/Flexx" ;
 		String user = "root" ;
 		
-		
 		String query = "CREATE TABLE userInfo( username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL);" ;
 		
 		try {
