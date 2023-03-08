@@ -13,6 +13,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JComboBox;
 
 public class Page2 {
 
@@ -56,16 +58,29 @@ public class Page2 {
 		lblNewLabel.setFont(new Font("Berlin Sans FB", Font.PLAIN, 31));
 		frame.getContentPane().add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Back");
-		btnNewButton.addActionListener(new ActionListener() {
+//		JButton btnNewButton = new JButton("Back");
+//		btnNewButton.setBounds(10, 10, 77, 35);
+//		btnNewButton.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				Home home = new Home();
+//				home.frame.setVisible(true);
+//				frame.setVisible(false);
+//			}
+//		});
+//		frame.getContentPane().add(btnNewButton);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 50, 416, 203);
+		JButton btnNewButton2 = new JButton("Back");
+		btnNewButton2.setBounds(10, 10, 77, 35);
+		btnNewButton2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Home home = new Home();
 				home.frame.setVisible(true);
 				frame.setVisible(false);
 			}
 		});
-		btnNewButton.setBounds(10, 10, 77, 35);
-		frame.getContentPane().add(btnNewButton);
+		scrollPane.add(btnNewButton2);
+		frame.getContentPane().add(scrollPane);
 	}
-
 }

@@ -168,7 +168,7 @@ public class Page3 {
 							String reps = currentSet.repsField.getText();
 							String weight = currentSet.weightField.getText(); 
 							String insertQuery = "INSERT INTO exerciselogs VALUE(\""+exerciseName+"\", "+reps+", "+weight+", "+tableSize+");";
-							System.out.println(insertQuery);
+//							System.out.println(insertQuery);
 							try {
 								Connection con = DriverManager.getConnection (url,user,JDBC.password);
 //								System.out.println("hi2");
