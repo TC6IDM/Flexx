@@ -3,14 +3,16 @@ import java.sql.*;
 public class JDBC{
 	public static String password = "eLYse2979";// replace ... with your password
 	public static void main(String[] args) {}
+	public static String DB_url = "jdbc:mysql://localhost:3306/Flexx";
+	public static String my_url = "jdbc:mysql://localhost:3306/" ;
+	public static String user = "root" ;
 	public static void createDB() {
-		String url = "jdbc:mysql://localhost:3306/" ;
-		String user = "root" ;
+		
 		String query = "CREATE database Flexx" ;
 		
 		try {
 			// create connection
-			Connection con = DriverManager.getConnection (url,user,password);
+			Connection con = DriverManager.getConnection (my_url,user,password);
 			
 			 // create statement
 			Statement statement = con.createStatement();
@@ -25,15 +27,14 @@ public class JDBC{
 		System.out.println("database created");
 	}
 	public static void createTables() {
-		String url = "jdbc:mysql://localhost:3306/Flexx" ;
-		String user = "root" ;
 		
 		
-		String query = "CREATE TABLE userInfo( username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL);" ;
+		
+		String query = "INSERT INTO goals (goal, completed) VALUES (?, ?)";
 		
 		try {
 			// create connection
-			Connection con = DriverManager.getConnection (url,user,password);
+			Connection con = DriverManager.getConnection (DB_url,user,password);
 			
 			 // create statement
 			Statement statement = con.createStatement();

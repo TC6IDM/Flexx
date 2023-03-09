@@ -204,8 +204,7 @@ public class Page4 {
         	            String sql = "CREATE TABLE IF NOT EXISTS goals " +
         	                         "(id INT NOT NULL AUTO_INCREMENT, " +
         	                         " goal VARCHAR(255), " +
-        	                         " completed TINYINT(1), " +
-        	                         " PRIMARY KEY ( id ))";
+        	                         " completed TINYINT(1), ";
         	            stmt.executeUpdate(sql);
         	            
         	            // Insert the data into the table
