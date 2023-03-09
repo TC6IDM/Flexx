@@ -4,22 +4,48 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
-import javax.swing.SwingConstants;
-import java.awt.Font;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+
+import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.ActionEvent;
 
 public class Home {
 
 	public JFrame frame;
-
+	
+	
+	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		try {
+			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
+					UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
+			}
+		} catch (Exception e) {
+            // If Nimbus is not available, you can set the GUI to another look and feel.
+        }
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -44,29 +70,58 @@ public class Home {
 	 * Initialize the contents of the frame.
 	 */
 
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+	private void initialize() {	
 		
-		JLabel lblNewLabel = new JLabel("HOME PAGE\n");
-		lblNewLabel.setBounds(132, 10, 172, 35);
-		lblNewLabel.setFont(new Font("Berlin Sans FB", Font.PLAIN, 31));
-		frame.getContentPane().add(lblNewLabel);
-				
-		JButton Page1Button = new JButton("Personalized Workout");
-		Page1Button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Page1 page1 = new Page1();
-				page1.frame.setVisible(true);
-				frame.setVisible(false);
-			}
-		});
-		Page1Button.setBounds(11, 97, 145, 21);
-		frame.getContentPane().add(Page1Button);
+	    frame = new JFrame();
+	    frame.getContentPane().setBackground(new Color(77, 77, 77));
+	    frame.setBounds(100, 100, 456, 313);
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    frame.getContentPane().setLayout(null);
+	    
+	    JLabel lblNewLabel = new JLabel("");
+	    Image img = new ImageIcon(this.getClass().getResource("/Flexx_icon.png")).getImage();
+	    lblNewLabel.setIcon(new ImageIcon(img));
+	    lblNewLabel.setBounds(5, 5, 50, 50);
+	    frame.getContentPane().add(lblNewLabel);
+	    
+	   
+	    
+	    JLabel homeLabel = new JLabel("HOME");
+	    homeLabel.setFont(new Font("Helvetica", Font.BOLD, 30));
+	    homeLabel.setForeground(Color.WHITE);
+	    homeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+	    homeLabel.setVerticalAlignment(SwingConstants.CENTER);
+	    homeLabel.setBounds(-11, 0, 461, 61);
+	    homeLabel.setOpaque(true);
+	    homeLabel.setBackground(new Color(0x2B579A)); 
+	    frame.getContentPane().add(homeLabel);
+	    
+//	    // Add a ComponentListener to the JFrame
+//	    frame.addComponentListener(new ComponentAdapter() {
+//	        public void componentResized(ComponentEvent e) {
+//	            // Adjust the location of the JLabel to keep it centered horizontally
+//	            homeLabel.setLocation((frame.getWidth() - homeLabel.getWidth()) / 2, homeLabel.getY());
+//	        }
+//	    });
+
+	    JButton personalizedWorkoutButton = new JButton("Personalized Workout");
+	    personalizedWorkoutButton.setForeground(Color.WHITE);
+	    personalizedWorkoutButton.setBackground(new Color(0, 122, 255));
+	    personalizedWorkoutButton.setFont(new Font("San Francisco", Font.PLAIN, 14));
+	    personalizedWorkoutButton.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            Page1 page1 = new Page1();
+	            page1.frame.setVisible(true);
+	            frame.setVisible(false);
+	        }
+	    });
+	    personalizedWorkoutButton.setBounds(20, 96, 170, 32);
+	    frame.getContentPane().add(personalizedWorkoutButton);
+
 		
 		JButton Page2Button = new JButton("Page2");
+		Page2Button.setForeground(new Color(255, 255, 255));
+		Page2Button.setBackground(new Color(77, 77, 77));
 		Page2Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Page2 page2 = new Page2();
@@ -74,54 +129,64 @@ public class Home {
 				frame.setVisible(false);
 			}
 		});
-		Page2Button.setBounds(341, 232, 85, 21);
-		frame.getContentPane().add(Page2Button);
+		Page2Button.setBounds(350, 198, 74, 32);
+	    frame.getContentPane().add(Page2Button);
 		
-		JButton Page3Button = new JButton("Track Workout");
-		Page3Button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Page3 page3 = new Page3();
-				page3.frame.setVisible(true);
-				frame.setVisible(false);
-			}
-		});
-		Page3Button.setBounds(261, 97, 145, 21);
-		frame.getContentPane().add(Page3Button);
+	    JButton trackWorkoutButton = new JButton("Track Workout");
+	    trackWorkoutButton.setForeground(Color.WHITE);
+	    trackWorkoutButton.setBackground(new Color(0, 122, 255));
+	    trackWorkoutButton.setFont(new Font("San Francisco", Font.PLAIN, 14));
+	    trackWorkoutButton.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            Page3 page3 = new Page3();
+	            page3.frame.setVisible(true);
+	            frame.setVisible(false);
+	        }
+	    });
+	    trackWorkoutButton.setBounds(254, 96, 170, 32);
+	    frame.getContentPane().add(trackWorkoutButton);
+	    
+	    JButton progressTrackerButton = new JButton("Progress Tracker");
+	    progressTrackerButton.setForeground(Color.WHITE);
+	    progressTrackerButton.setBackground(new Color(0, 122, 255));
+	    progressTrackerButton.setFont(new Font("San Francisco", Font.PLAIN, 14));
+	    progressTrackerButton.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            Page4 page4 = new Page4();
+	            page4.frame.setVisible(true);
+	            frame.setVisible(false);
+	        }
+	    });
+	    progressTrackerButton.setBounds(254, 136, 170, 32);
+	    frame.getContentPane().add(progressTrackerButton);
 		
-		JButton Page4Button = new JButton("Progress Tracker");
-		Page4Button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Page4 page4 = new Page4();
-				page4.frame.setVisible(true);
-				frame.setVisible(false);
-			}
-		});
-		Page4Button.setBounds(261, 141, 145, 21);
-		frame.getContentPane().add(Page4Button);
-		
-		JButton Page5Button = new JButton("Food Tracker");
-		Page5Button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Page5 page5 = new Page5();
-				page5.frame.setVisible(true);
-				frame.setVisible(false);
-			}
-		});
-		Page5Button.setBounds(11, 141, 145, 21);
-		frame.getContentPane().add(Page5Button);
-		
-		JButton Page5Button_1 = new JButton("Login");
-		Page5Button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Login login = new Login();
-				login.frame.setVisible(true);
-				frame.setVisible(false);
-			}
-		});
-		Page5Button_1.setBounds(166, 97, 85, 21);
-		frame.getContentPane().add(Page5Button_1);
-		
+	    JButton foodTrackerButton = new JButton("Food Tracker");
+	    foodTrackerButton.setForeground(Color.WHITE);
+	    foodTrackerButton.setBackground(new Color(0, 122, 255));
+	    foodTrackerButton.setFont(new Font("San Francisco", Font.PLAIN, 14));
+	    foodTrackerButton.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            Page5 page5 = new Page5();
+	            page5.frame.setVisible(true);
+	            frame.setVisible(false);
+	        }
+	    });
+	    foodTrackerButton.setBounds(20, 139, 170, 32);
+	    frame.getContentPane().add(foodTrackerButton);
+	    
+	    JButton loginButton = new JButton("Login");
+	    loginButton.setForeground(Color.WHITE);
+	    loginButton.setBackground(new Color(0, 122, 255));
+	    loginButton.setFont(new Font("San Francisco", Font.PLAIN, 14));
+	    loginButton.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            Login login = new Login();
+	            login.frame.setVisible(true);
+	            frame.setVisible(false);
+	        }
+	    });
+	    loginButton.setBounds(139, 196, 170, 32);
+	    frame.getContentPane().add(loginButton);
 		
 	}
-
 }

@@ -1,4 +1,5 @@
 package Package1;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -6,6 +7,7 @@ import javax.swing.JTextField;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.*;
@@ -13,6 +15,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 
 import java.awt.Font;
+import java.awt.Image;
 
 public class Login implements ActionListener{
 
@@ -43,75 +46,44 @@ public class Login implements ActionListener{
 		initialize();	
 	}
 
-	
-
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
 		
 		frame = new JFrame();
+		frame.getContentPane().setForeground(new Color(77, 77, 77));
+		frame.getContentPane().setBackground(new Color(77, 77, 77));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		usernameField = new JTextField();
-		usernameField.setBounds(188, 62, 159, 19);
+		usernameField.setBounds(188, 101, 159, 19);
 		frame.getContentPane().add(usernameField);
 		usernameField.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("PASSWORD");
-		lblNewLabel.setFont(new Font("Rockwell", Font.PLAIN, 20));
-		lblNewLabel.setBounds(61, 109, 140, 43);
+		JLabel lblNewLabel = new JLabel("PASSWORD:");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("San Francisco", Font.PLAIN, 18));
+		lblNewLabel.setBounds(61, 119, 140, 43);
 		frame.getContentPane().add(lblNewLabel);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(188, 117, 159, 19);
+		passwordField.setBounds(188, 131, 159, 19);
 		frame.getContentPane().add(passwordField);
 		
-		JLabel lblUsername = new JLabel("USERNAME");
-		lblUsername.setFont(new Font("Rockwell", Font.PLAIN, 20));
-		lblUsername.setBounds(51, 58, 140, 35);
+		JLabel lblUsername = new JLabel("USERNAME:");
+		lblUsername.setForeground(new Color(255, 255, 255));
+		lblUsername.setFont(new Font("San Francisco", Font.PLAIN, 18));
+		lblUsername.setBounds(63, 93, 140, 35);
 		frame.getContentPane().add(lblUsername);
-				
-//		JButton btnNewButton = new JButton("Login");
-//		btnNewButton.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				String username = usernameField.getText();
-//				String password = passwordField.getText();
-//				boolean found = false;
-//				
-//		        try {
-//		            BufferedReader reader = new BufferedReader(new FileReader("users.txt"));
-//		            String line;
-//		            while ((line = reader.readLine()) != null) {
-//		                String[] parts = line.split(",");
-//		                if (parts.length == 2 && parts[0].equals(username) && parts[1].equals(password)) {
-//		                    found = true;
-//		                    break;
-//		                }
-//		            }
-//		            reader.close();
-//		        } catch (IOException ex) {
-//		            ex.printStackTrace();
-//		        }
-//		        
-//		        if (found) {
-//		        	JOptionPane.showMessageDialog(frame, "Welcome");
-//		        	Home home = new Home();
-//					home.frame.setVisible(true);
-//					frame.setVisible(false);
-//					
-//		        } else {
-//					JOptionPane.showMessageDialog(frame, "Invalid Login");
-//				}
-//				
-// 			}
-//		});
-//		btnNewButton.setBounds(176, 189, 85, 21);
-//		frame.getContentPane().add(btnNewButton);
 		
+						
 		JButton btnNewButton = new JButton("Login");
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setBackground(new Color(0, 122, 255));
+		btnNewButton.setFont(new Font("San Francisco", Font.BOLD, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        String username = usernameField.getText();
@@ -135,22 +107,26 @@ public class Login implements ActionListener{
 		        }
 		    }
 		});
-		btnNewButton.setBounds(176, 189, 85, 21);
+		btnNewButton.setBounds(160, 183, 115, 30);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnClearButton = new JButton("Clear");
+		btnClearButton.setForeground(Color.WHITE);
+		btnClearButton.setBackground(new Color(0, 122, 255));
+		btnClearButton.setFont(new Font("San Francisco", Font.BOLD, 14));
 		btnClearButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				usernameField.setText("");
 				passwordField.setText("");
 			}
 		});
-		btnClearButton.setBounds(47, 185, 117, 29);
+		btnClearButton.setBounds(35, 183, 115, 30);
 		frame.getContentPane().add(btnClearButton);
 		
 		JButton btnNewButton_1 = new JButton("Sign up");
-		btnNewButton_1.setBounds(273, 185, 117, 29);
-		frame.getContentPane().add(btnNewButton_1);
+		btnNewButton_1.setForeground(Color.WHITE);
+		btnNewButton_1.setBackground(new Color(0, 122, 255));
+		btnNewButton_1.setFont(new Font("San Francisco", Font.BOLD, 14));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
 			    JTextField usernameField = new JTextField();
@@ -175,6 +151,14 @@ public class Login implements ActionListener{
 			    }
 			  }
 			});
+		btnNewButton_1.setBounds(285, 183, 115, 30);
+		frame.getContentPane().add(btnNewButton_1);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		Image img = new ImageIcon(this.getClass().getResource("/Flexx_icon.png")).getImage();
+		lblNewLabel_1.setIcon(new ImageIcon(img));
+		lblNewLabel_1.setBounds(184, 11, 70, 70);
+		frame.getContentPane().add(lblNewLabel_1);
 	
 	}
 	
