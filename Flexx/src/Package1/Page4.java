@@ -6,6 +6,10 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -17,7 +21,6 @@ public class Page4 {
 
     public JFrame frame;
     private JTextField goal1TextField;
-    private int numGoals = 1;
     private boolean isEditSelected = false;
 
     /**
@@ -71,46 +74,45 @@ public class Page4 {
         frame.getContentPane().add(btnNewButton);
 
         JProgressBar progressBar = new JProgressBar();
+        progressBar.setValue(0);
         progressBar.setStringPainted(true);
         progressBar.setBounds(160, 89, 146, 20);
         frame.getContentPane().add(progressBar);
 
         JButton btnNewButton_1 = new JButton("Add");
         btnNewButton_1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                int lastTextFieldY = frame.getContentPane().getComponentCount() > 10 ?
-                	frame.getContentPane().getComponent(frame.getContentPane().getComponentCount()-1).getY() : 122;
-                JTextField newGoal = new JTextField();
-                newGoal.setBounds(170, lastTextFieldY + 30, 134, 20);
-                newGoal.setEnabled(isEditSelected);
-                frame.getContentPane().add(newGoal);
-                frame.validate();
-                frame.repaint();
-                
-                JCheckBox newCheckBox = new JCheckBox("");
-                newCheckBox.setSelected(false);
-                newCheckBox.setBounds(130, lastTextFieldY + 30, 28, 20);
-                newCheckBox.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                    	int numSelected = 0;
-                        for (Component comp : frame.getContentPane().getComponents()) {
-                            if (comp instanceof JCheckBox && ((JCheckBox) comp).isSelected()) {
-                                numSelected++;
-                            }
-                        }
-                        int progress = 0;
-                        int totalGoals =frame.getContentPane().getComponentCount() - 2; // exclude progress bar and add button
-                       
-                        	progress = (int) Math.round((double) numSelected / (double) totalGoals *100);
-                        
-                        progressBar.setValue(progress);
-                    }
-                });
-                frame.getContentPane().add(newCheckBox);
-            
-                frame.validate();
-                frame.repaint();
-            }
+        	public void actionPerformed(ActionEvent e) {
+        	    int lastTextFieldY = frame.getContentPane().getComponentCount() > 10 ?
+        	        frame.getContentPane().getComponent(frame.getContentPane().getComponentCount()-1).getY() : 122;
+        	    JTextField newGoal = new JTextField();
+        	    newGoal.setBounds(170, lastTextFieldY + 30, 134, 20);
+        	    newGoal.setEnabled(true);
+        	    newGoal.addFocusListener(new FocusAdapter() {
+        	        @Override
+        	        public void focusLost(FocusEvent e) {
+        	            newGoal.setEnabled(false);
+        	        }
+        	    });
+        	    frame.getContentPane().add(newGoal);
+        	    frame.validate();
+        	    frame.repaint();
+        	    
+        	    JCheckBox newCheckBox = new JCheckBox("");
+        	    newCheckBox.setSelected(false);
+        	    newCheckBox.setBounds(130, lastTextFieldY + 30, 28, 20);
+        	    newCheckBox.addItemListener(new ItemListener() {
+        	        @Override
+        	        public void itemStateChanged(ItemEvent e) {
+        	            updateProgressBar(progressBar);
+        	        }
+        	    });
+        	    frame.getContentPane().add(newCheckBox);
+
+        	    frame.validate();
+        	    frame.repaint();
+        	    updateProgressBar(progressBar);
+        	}
+
         });
         btnNewButton_1.setBackground(new Color(238, 238, 238));
         btnNewButton_1.setEnabled(false);
@@ -120,7 +122,7 @@ public class Page4 {
         
         JButton btnNewButton_1_1 = new JButton("Delete");
         btnNewButton_1_1.setBackground(SystemColor.window);
-        btnNewButton_1_1.setBounds(223, 117, 54, 16);
+        btnNewButton_1_1.setBounds(252, 117, 54, 16);
         btnNewButton_1_1.setEnabled(false);
         frame.getContentPane().add(btnNewButton_1_1);
 
@@ -140,11 +142,11 @@ public class Page4 {
                     }
                 }
                 componentsToRemove.forEach(component -> frame.getContentPane().remove(component));
+                updateProgressBar(progressBar);
                 frame.validate();
                 frame.repaint();
             }
         });
-
 
         JComboBox<String> comboBox = new JComboBox<String>();
         comboBox.addActionListener(new ActionListener() {
@@ -184,4 +186,27 @@ public class Page4 {
         lblNewLabel_1.setBounds(163, 61, 61, 16);
         frame.getContentPane().add(lblNewLabel_1);
     }
+
+    private void updateProgressBar(JProgressBar progressBar) {
+        Component[] components = frame.getContentPane().getComponents();
+        int totalGoals = 0;
+        int completedGoals = 0;
+        for (Component component : components) {
+            if (component instanceof JCheckBox) {
+                totalGoals++;
+                if (((JCheckBox) component).isSelected()) {
+                    completedGoals++;
+                }
+            }
+        }
+        int percentage = 0;
+        if (totalGoals > 0) {
+            percentage = (int) (((double) completedGoals / totalGoals) * 100);
+        }
+        progressBar.setValue(percentage);
+    }
 }
+
+
+
+
