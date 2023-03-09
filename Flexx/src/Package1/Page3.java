@@ -60,6 +60,7 @@ public class Page3 {
 		int CUTOFF = 50;
 		if (exercises.size()==0) return;
 		if (exercises.get(0).newExerciseButton.getY()+move < CUTOFF) move = -1*(exercises.get(0).newExerciseButton.getY() - CUTOFF);
+		if (exercises.get(0).nameField.getY()+move > CUTOFF) move = CUTOFF - exercises.get(0).nameField.getY();
 		height+= move;
 		exercises.get(0).newExerciseButton.setLocation(exercises.get(0).newExerciseButton.getX(),exercises.get(0).newExerciseButton.getY()+move);
 		for (int i=0;i<exercises.size();i++) {
@@ -175,7 +176,7 @@ public class Page3 {
 					int tableSize =0;
 					try {
 						// create connection
-						Connection con = DriverManager.getConnection (url,user,JDBC.password);
+						Connection con = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
 //						System.out.println("hi");
 						 // create statement
 						Statement statement = con.createStatement();
@@ -204,7 +205,7 @@ public class Page3 {
 							String insertQuery = "INSERT INTO exerciselogs VALUE(\""+exerciseName+"\", "+reps+", "+weight+", "+tableSize+");";
 //							System.out.println(insertQuery);
 							try {
-								Connection con = DriverManager.getConnection (url,user,JDBC.password);
+								Connection con = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
 //								System.out.println("hi2");
 								 // create statement
 								Statement statement = con.createStatement();
@@ -240,7 +241,7 @@ public class Page3 {
 		JButton newExerciseButton = new JButton("New Exercise");
 		newExerciseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int newY = 45;
+				int newY = 50;
 				if (exercises.size() != 0){
 					JButton oldAddSetButton = exercises.get(exercises.size()-1).addSetButton;
 					newY = oldAddSetButton.getY()+oldAddSetButton.getHeight()+moveDown;
@@ -260,17 +261,17 @@ public class Page3 {
 		
 		
 		textField = new JTextField();
-		textField.setBounds(329, 140, 85, 19);
+		textField.setBounds(340, 140, 85, 19);
 		textField.setText("20");
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JLabel scrollByLabel = new JLabel("Scroll By:");
-		scrollByLabel.setBounds(329, 127, 85, 13);
+		scrollByLabel.setBounds(340, 127, 85, 13);
 		frame.getContentPane().add(scrollByLabel);
 		
 		JLabel invalidInputLabel = new JLabel("Invalid Input");
-		invalidInputLabel.setBounds(329, 159, 85, 13);
+		invalidInputLabel.setBounds(340, 159, 85, 13);
 		invalidInputLabel.setVisible(false);
 		frame.getContentPane().add(invalidInputLabel);
 		
@@ -287,7 +288,7 @@ public class Page3 {
 				}
 			}
 		});
-		moveUpButton.setBounds(327, 55, 85, 21);
+		moveUpButton.setBounds(338, 55, 85, 21);
 		frame.getContentPane().add(moveUpButton);
 		
 		JButton moveDownButton = new JButton("Down");
@@ -303,7 +304,7 @@ public class Page3 {
 				}
 			}
 		});
-		moveDownButton.setBounds(327, 232, 85, 21);
+		moveDownButton.setBounds(338, 232, 85, 21);
 		frame.getContentPane().add(moveDownButton);
 		
 		
