@@ -31,7 +31,11 @@ public class JDBC{
 		
 		
 		
-	String query = "INSERT INTO goals (goal, completed) VALUES (?, ?)";
+	String query = "CREATE TABLE IF NOT EXISTS goals " +
+            "(id INT NOT NULL AUTO_INCREMENT, " +
+            " goal VARCHAR(255), " +
+            " completed TINYINT(1), " +
+            " PRIMARY KEY ( id ))";
 		
 	try {
 			// create connection

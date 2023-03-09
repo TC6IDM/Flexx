@@ -201,8 +201,7 @@ public class Page4 {
         	public void actionPerformed(ActionEvent e) {
         		 try {
         	            // Establish a connection to the database
-        				String user = "root" ;
-        	            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Flexx",user, JDBC.password);
+        	            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Flexx",JDBC.user, JDBC.password);
 
         	            // Create a table to store the data
         	            Statement stmt = conn.createStatement();
@@ -252,10 +251,7 @@ public class Page4 {
     }
         
      
-    	
-  
-
-
+   
 
     
 
