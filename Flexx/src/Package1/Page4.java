@@ -6,8 +6,12 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class Page4 {
 
@@ -72,17 +76,6 @@ public class Page4 {
         progressBar.setBounds(160, 89, 146, 20);
         frame.getContentPane().add(progressBar);
 
-//        JCheckBox chckbxNewCheckBox = new JCheckBox("");
-//        chckbxNewCheckBox.setSelected(false);
-//        chckbxNewCheckBox.setBounds(130, 121, 28, 20);
-//        frame.getContentPane().add(chckbxNewCheckBox);
-////
-//        goal1TextField = new JTextField();
-//        goal1TextField.setText("Goal #1");
-//        goal1TextField.setBounds(170, 121, 134, 20);
-//        frame.getContentPane().add(goal1TextField);
-//        goal1TextField.setColumns(10);
-
         JButton btnNewButton_1 = new JButton("Add");
         btnNewButton_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -111,13 +104,32 @@ public class Page4 {
         frame.getContentPane().add(btnNewButton_1);
         
         JButton btnNewButton_1_1 = new JButton("Delete");
-        btnNewButton_1_1.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
         btnNewButton_1_1.setBackground(SystemColor.window);
         btnNewButton_1_1.setBounds(223, 117, 54, 16);
+        btnNewButton_1_1.setEnabled(false);
         frame.getContentPane().add(btnNewButton_1_1);
+
+        btnNewButton_1_1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Component[] components = frame.getContentPane().getComponents();
+                List<Component> componentsToRemove = new ArrayList<>();
+                for (Component component : components) {
+                    if (component instanceof JCheckBox && ((JCheckBox) component).isSelected()) {
+                        Component[] componentsAbove = Arrays.copyOfRange(components, 0, Arrays.asList(components).indexOf(component));
+                        List<Component> correspondingTextFields = Arrays.stream(componentsAbove)
+                                .filter(c -> c instanceof JTextField)
+                                .filter(c -> c.getY() == component.getY())
+                                .collect(Collectors.toList());
+                        componentsToRemove.addAll(correspondingTextFields);
+                        componentsToRemove.add(component);
+                    }
+                }
+                componentsToRemove.forEach(component -> frame.getContentPane().remove(component));
+                frame.validate();
+                frame.repaint();
+            }
+        });
+
 
         JComboBox<String> comboBox = new JComboBox<String>();
         comboBox.addActionListener(new ActionListener() {
@@ -135,14 +147,12 @@ public class Page4 {
                 }
 
                 if (selectedOption.equals("Edit goal")) {
-                    goal1TextField.setEnabled(true);
                     isEditSelected = true;
                 } else {
-                    goal1TextField.setEnabled(false);
                     isEditSelected = false;
                 }
                 
-                // Disable all text fields except the first one
+             
                 for (Component comp : frame.getContentPane().getComponents()) {
                     if (comp instanceof JTextField && comp != goal1TextField) {
                         comp.setEnabled(isEditSelected);
