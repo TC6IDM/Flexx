@@ -26,7 +26,9 @@ public class Page4 {
 
     public JFrame frame;
     private JTextField goal1TextField;
+    private int numGoals = 1;
     private boolean isEditSelected = false;
+    private int numComponentsAdded = 0;
 
     /**
      * Launch the application.
@@ -86,9 +88,14 @@ public class Page4 {
 
         JButton btnNewButton_1 = new JButton("Add");
         btnNewButton_1.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	    int lastTextFieldY = frame.getContentPane().getComponentCount() > 10 ?
-        	        frame.getContentPane().getComponent(frame.getContentPane().getComponentCount()-1).getY() : 122;
+            public void actionPerformed(ActionEvent e) {
+                int lastTextFieldY = 122;
+                Component[] components = frame.getContentPane().getComponents();
+                for (Component component : components) {
+                    if (component instanceof JTextField) {
+                        lastTextFieldY = component.getY();
+                    }
+                }
         	    JTextField newGoal = new JTextField();
         	    newGoal.setBounds(170, lastTextFieldY + 30, 134, 20);
         	    newGoal.setEnabled(true);
@@ -99,9 +106,7 @@ public class Page4 {
         	        }
         	    });
         	    frame.getContentPane().add(newGoal);
-        	    frame.validate();
-        	    frame.repaint();
-        	    
+
         	    JCheckBox newCheckBox = new JCheckBox("");
         	    newCheckBox.setSelected(false);
         	    newCheckBox.setBounds(130, lastTextFieldY + 30, 28, 20);
@@ -113,9 +118,10 @@ public class Page4 {
         	    });
         	    frame.getContentPane().add(newCheckBox);
 
+        	    updateProgressBar(progressBar);
+
         	    frame.validate();
         	    frame.repaint();
-        	    updateProgressBar(progressBar);
         	}
 
         });
@@ -190,7 +196,6 @@ public class Page4 {
         JLabel lblNewLabel_1 = new JLabel("Menu:");
         lblNewLabel_1.setBounds(163, 61, 61, 16);
         frame.getContentPane().add(lblNewLabel_1);
-        
         JButton btnNewButton_2 = new JButton("Save");
         btnNewButton_2.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -198,15 +203,16 @@ public class Page4 {
         	            // Establish a connection to the database
         				String user = "root" ;
         	            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Flexx",user, JDBC.password);
-        	            
+
         	            // Create a table to store the data
         	            Statement stmt = conn.createStatement();
         	            String sql = "CREATE TABLE IF NOT EXISTS goals " +
         	                         "(id INT NOT NULL AUTO_INCREMENT, " +
         	                         " goal VARCHAR(255), " +
-        	                         " completed TINYINT(1), ";
+        	                         " completed TINYINT(1), " +
+        	                         " PRIMARY KEY ( id ))";
         	            stmt.executeUpdate(sql);
-        	            
+
         	            // Insert the data into the table
         	            String insertSql = "INSERT INTO goals (goal, completed) VALUES (?, ?)";
         	            PreparedStatement pstmt = conn.prepareStatement(insertSql);
@@ -226,24 +232,31 @@ public class Page4 {
         	                    pstmt.executeUpdate();
         	                }
         	            }
-        	            
+
         	            // Close the connection
         	            pstmt.close();
         	            stmt.close();
         	            conn.close();
-        	            
+
         	            // Show a message to indicate the data has been saved
         	            JOptionPane.showMessageDialog(frame, "Data has been saved to the database.");
         	        } catch (SQLException ex) {
         	            JOptionPane.showMessageDialog(frame, "Error: " + ex.getMessage());
         	        }
         	    }
-        
-        	
+
+
         });
         btnNewButton_2.setBounds(396, 243, 54, 29);
         frame.getContentPane().add(btnNewButton_2);
     }
+        
+     
+    	
+  
+
+
+
     
 
     private void updateProgressBar(JProgressBar progressBar) {
@@ -264,10 +277,7 @@ public class Page4 {
         }
         progressBar.setValue(percentage);
     }
-    
-    
 }
-
 
 
 

@@ -26,25 +26,25 @@ public class JDBC{
 		}
 		System.out.println("database created");
 	}
+
 	public static void createTables() {
 		
 		
 		
-		String query = "INSERT INTO goals (goal, completed) VALUES (?, ?)";
+	String query = "INSERT INTO goals (goal, completed) VALUES (?, ?)";
 		
-		try {
+	try {
 			// create connection
-			Connection con = DriverManager.getConnection (DB_url,user,password);
+		Connection con = DriverManager.getConnection (DB_url,user,password);
 			
 			 // create statement
-			Statement statement = con.createStatement();
+		Statement statement = con.createStatement();
 			
 			 // generate result set
-			statement.execute(query);
-			
+		statement.execute(query);
 
 		} catch (SQLException e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 		}
 		System.out.println("table 1 created");
 	}
