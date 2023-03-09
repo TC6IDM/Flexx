@@ -1,7 +1,7 @@
 package Package1;
 import java.sql.*;
 public class JDBC{
-	private static String password = "eLYse2979";// replace ... with your password
+	public static String password = "eLYse2979";// replace ... with your password
 	public static void main(String[] args) {}
 	public static void createDB() {
 		String url = "jdbc:mysql://localhost:3306/" ;
