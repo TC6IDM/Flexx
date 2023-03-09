@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
@@ -13,6 +14,7 @@ public class Page4 {
     public JFrame frame;
     private JTextField goal1TextField;
     private int numGoals = 1;
+    private boolean isEditSelected = false;
 
     /**
      * Launch the application.
@@ -65,7 +67,7 @@ public class Page4 {
         frame.getContentPane().add(btnNewButton);
 
         JProgressBar progressBar = new JProgressBar();
-        progressBar.setValue(50);
+        progressBar.setValue(0);
         progressBar.setStringPainted(true);
         progressBar.setBounds(160, 89, 146, 20);
         frame.getContentPane().add(progressBar);
@@ -77,19 +79,18 @@ public class Page4 {
 
         goal1TextField = new JTextField();
         goal1TextField.setText("Goal #1");
-        goal1TextField.setEnabled(false);
         goal1TextField.setBounds(170, 121, 134, 20);
         frame.getContentPane().add(goal1TextField);
         goal1TextField.setColumns(10);
-        
+
         JButton btnNewButton_1 = new JButton("Add");
         btnNewButton_1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 int lastTextFieldY = frame.getContentPane().getComponentCount() > 10 ?
                 	frame.getContentPane().getComponent(frame.getContentPane().getComponentCount()-1).getY() : 122;
                 JTextField newGoal = new JTextField();
                 newGoal.setBounds(170, lastTextFieldY + 30, 134, 20);
+                newGoal.setEnabled(isEditSelected);
                 frame.getContentPane().add(newGoal);
                 frame.validate();
                 frame.repaint();
@@ -105,7 +106,9 @@ public class Page4 {
             }
         });
         btnNewButton_1.setBackground(new Color(238, 238, 238));
+        btnNewButton_1.setEnabled(false);
         btnNewButton_1.setBounds(206, 153, 54, 16);
+        btnNewButton_1.setEnabled(true);
         frame.getContentPane().add(btnNewButton_1);
         
         JButton btnNewButton_1_1 = new JButton("Delete");
@@ -123,7 +126,6 @@ public class Page4 {
                 String selectedOption = (String) comboBox.getSelectedItem();
                 if (selectedOption.equals("Add goal")) {
                     btnNewButton_1.setEnabled(true);
-                    
                 } else {
                     btnNewButton_1.setEnabled(false);
                 }
@@ -135,8 +137,17 @@ public class Page4 {
 
                 if (selectedOption.equals("Edit goal")) {
                     goal1TextField.setEnabled(true);
+                    isEditSelected = true;
                 } else {
                     goal1TextField.setEnabled(false);
+                    isEditSelected = false;
+                }
+                
+                // Disable all text fields except the first one
+                for (Component comp : frame.getContentPane().getComponents()) {
+                    if (comp instanceof JTextField && comp != goal1TextField) {
+                        comp.setEnabled(isEditSelected);
+                    }
                 }
             }
         });
