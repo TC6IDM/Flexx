@@ -71,7 +71,7 @@ public class Page4 {
         frame.getContentPane().add(progressBar);
 
         JCheckBox chckbxNewCheckBox = new JCheckBox("");
-        chckbxNewCheckBox.setSelected(true);
+        chckbxNewCheckBox.setSelected(false);
         chckbxNewCheckBox.setBounds(130, 121, 28, 20);
         frame.getContentPane().add(chckbxNewCheckBox);
 
