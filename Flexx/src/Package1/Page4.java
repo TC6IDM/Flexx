@@ -67,24 +67,36 @@ public class Page4 {
         JProgressBar progressBar = new JProgressBar();
         progressBar.setValue(50);
         progressBar.setStringPainted(true);
-        progressBar.setBounds(166, 214, 146, 20);
+        progressBar.setBounds(160, 89, 146, 20);
         frame.getContentPane().add(progressBar);
 
         JCheckBox chckbxNewCheckBox = new JCheckBox("");
         chckbxNewCheckBox.setSelected(true);
-        chckbxNewCheckBox.setBounds(108, 104, 28, 20);
+        chckbxNewCheckBox.setBounds(130, 121, 28, 20);
         frame.getContentPane().add(chckbxNewCheckBox);
 
         goal1TextField = new JTextField();
         goal1TextField.setText("Goal #1");
         goal1TextField.setEnabled(false);
-        goal1TextField.setBounds(148, 104, 134, 20);
+        goal1TextField.setBounds(170, 121, 134, 20);
         frame.getContentPane().add(goal1TextField);
         goal1TextField.setColumns(10);
         
         JButton btnNewButton_1 = new JButton("Add");
+        btnNewButton_1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                int lastTextFieldY = frame.getContentPane().getComponentCount() > 10 ?
+                	frame.getContentPane().getComponent(frame.getContentPane().getComponentCount()-1).getY() : 122;
+                JTextField newGoal = new JTextField();
+                newGoal.setBounds(170, lastTextFieldY + 30, 134, 20);
+                frame.getContentPane().add(newGoal);
+                frame.validate();
+                frame.repaint();
+            }
+        });
         btnNewButton_1.setBackground(new Color(238, 238, 238));
-        btnNewButton_1.setBounds(192, 130, 54, 16);
+        btnNewButton_1.setBounds(206, 153, 54, 16);
         frame.getContentPane().add(btnNewButton_1);
         
         JButton btnNewButton_1_1 = new JButton("Delete");
@@ -93,7 +105,7 @@ public class Page4 {
         	}
         });
         btnNewButton_1_1.setBackground(SystemColor.window);
-        btnNewButton_1_1.setBounds(294, 104, 54, 16);
+        btnNewButton_1_1.setBounds(316, 121, 54, 16);
         frame.getContentPane().add(btnNewButton_1_1);
 
         JComboBox<String> comboBox = new JComboBox<String>();
@@ -102,6 +114,7 @@ public class Page4 {
                 String selectedOption = (String) comboBox.getSelectedItem();
                 if (selectedOption.equals("Add goal")) {
                     btnNewButton_1.setEnabled(true);
+                    
                 } else {
                     btnNewButton_1.setEnabled(false);
                 }
