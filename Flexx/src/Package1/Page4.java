@@ -93,6 +93,15 @@ public class Page4 {
                 frame.getContentPane().add(newGoal);
                 frame.validate();
                 frame.repaint();
+                
+                JCheckBox newCheckBox = new JCheckBox("");
+                newCheckBox.setSelected(false);
+                newCheckBox.setBounds(130, lastTextFieldY + 30, 28, 20);
+                frame.getContentPane().add(newCheckBox);
+                
+                frame.validate();
+                frame.repaint();
+                btnNewButton_1.setBounds(206, btnNewButton_1.getY() + 30, 54, 16);
             }
         });
         btnNewButton_1.setBackground(new Color(238, 238, 238));
