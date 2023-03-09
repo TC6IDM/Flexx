@@ -71,7 +71,6 @@ public class Page4 {
         frame.getContentPane().add(btnNewButton);
 
         JProgressBar progressBar = new JProgressBar();
-        progressBar.setValue(0);
         progressBar.setStringPainted(true);
         progressBar.setBounds(160, 89, 146, 20);
         frame.getContentPane().add(progressBar);
@@ -91,8 +90,24 @@ public class Page4 {
                 JCheckBox newCheckBox = new JCheckBox("");
                 newCheckBox.setSelected(false);
                 newCheckBox.setBounds(130, lastTextFieldY + 30, 28, 20);
+                newCheckBox.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                    	int numSelected = 0;
+                        for (Component comp : frame.getContentPane().getComponents()) {
+                            if (comp instanceof JCheckBox && ((JCheckBox) comp).isSelected()) {
+                                numSelected++;
+                            }
+                        }
+                        int progress = 0;
+                        int totalGoals =frame.getContentPane().getComponentCount() - 2; // exclude progress bar and add button
+                       
+                        	progress = (int) Math.round((double) numSelected / (double) totalGoals *100);
+                        
+                        progressBar.setValue(progress);
+                    }
+                });
                 frame.getContentPane().add(newCheckBox);
-                
+            
                 frame.validate();
                 frame.repaint();
             }
