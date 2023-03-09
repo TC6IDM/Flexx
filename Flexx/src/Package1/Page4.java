@@ -72,16 +72,16 @@ public class Page4 {
         progressBar.setBounds(160, 89, 146, 20);
         frame.getContentPane().add(progressBar);
 
-        JCheckBox chckbxNewCheckBox = new JCheckBox("");
-        chckbxNewCheckBox.setSelected(false);
-        chckbxNewCheckBox.setBounds(130, 121, 28, 20);
-        frame.getContentPane().add(chckbxNewCheckBox);
-
-        goal1TextField = new JTextField();
-        goal1TextField.setText("Goal #1");
-        goal1TextField.setBounds(170, 121, 134, 20);
-        frame.getContentPane().add(goal1TextField);
-        goal1TextField.setColumns(10);
+//        JCheckBox chckbxNewCheckBox = new JCheckBox("");
+//        chckbxNewCheckBox.setSelected(false);
+//        chckbxNewCheckBox.setBounds(130, 121, 28, 20);
+//        frame.getContentPane().add(chckbxNewCheckBox);
+////
+//        goal1TextField = new JTextField();
+//        goal1TextField.setText("Goal #1");
+//        goal1TextField.setBounds(170, 121, 134, 20);
+//        frame.getContentPane().add(goal1TextField);
+//        goal1TextField.setColumns(10);
 
         JButton btnNewButton_1 = new JButton("Add");
         btnNewButton_1.addActionListener(new ActionListener() {
@@ -102,12 +102,11 @@ public class Page4 {
                 
                 frame.validate();
                 frame.repaint();
-                btnNewButton_1.setBounds(206, btnNewButton_1.getY() + 30, 54, 16);
             }
         });
         btnNewButton_1.setBackground(new Color(238, 238, 238));
         btnNewButton_1.setEnabled(false);
-        btnNewButton_1.setBounds(206, 153, 54, 16);
+        btnNewButton_1.setBounds(162, 117, 54, 16);
         btnNewButton_1.setEnabled(true);
         frame.getContentPane().add(btnNewButton_1);
         
@@ -117,7 +116,7 @@ public class Page4 {
         	}
         });
         btnNewButton_1_1.setBackground(SystemColor.window);
-        btnNewButton_1_1.setBounds(316, 121, 54, 16);
+        btnNewButton_1_1.setBounds(223, 117, 54, 16);
         frame.getContentPane().add(btnNewButton_1_1);
 
         JComboBox<String> comboBox = new JComboBox<String>();
@@ -157,7 +156,7 @@ public class Page4 {
         frame.getContentPane().add(comboBox);
 
         JLabel lblNewLabel_1 = new JLabel("Menu:");
-        lblNewLabel_1.setBounds(150, 61, 61, 16);
+        lblNewLabel_1.setBounds(163, 61, 61, 16);
         frame.getContentPane().add(lblNewLabel_1);
     }
 }
