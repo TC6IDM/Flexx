@@ -18,13 +18,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollBar;
 
 /* Andrew Tissi */
 
 public class Page3 {
-
+	public int height = 0;
 	public JFrame frame;
 	public ArrayList<Exercise> exercises = new ArrayList<Exercise>();
+	private JTextField textField;
 
 	/** 
 	 * Launch the application.
@@ -54,7 +56,39 @@ public class Page3 {
 	 * Initialize the contents of the frame.
 	 */
 	
-	
+	public void move(int move) {
+		int CUTOFF = 50;
+		if (exercises.size()==0) return;
+		if (exercises.get(0).newExerciseButton.getY()+move < CUTOFF) move = -1*(exercises.get(0).newExerciseButton.getY() - CUTOFF);
+		height+= move;
+		exercises.get(0).newExerciseButton.setLocation(exercises.get(0).newExerciseButton.getX(),exercises.get(0).newExerciseButton.getY()+move);
+		for (int i=0;i<exercises.size();i++) {
+			Exercise currentExercise = exercises.get(i);
+			currentExercise.nameLabel.setLocation(currentExercise.nameLabel.getX(),currentExercise.nameLabel.getY()+move);
+			currentExercise.nameField.setLocation(currentExercise.nameField.getX(),currentExercise.nameField.getY()+move);
+			currentExercise.addSetButton.setLocation(currentExercise.addSetButton.getX(),currentExercise.addSetButton.getY()+move);
+			if (currentExercise.nameLabel.getY()<CUTOFF) currentExercise.nameLabel.setVisible(false); else currentExercise.nameLabel.setVisible(true);
+			if (currentExercise.nameField.getY()<CUTOFF) currentExercise.nameField.setVisible(false); else currentExercise.nameField.setVisible(true);
+			if (currentExercise.addSetButton.getY()<CUTOFF) currentExercise.addSetButton.setVisible(false); else currentExercise.addSetButton.setVisible(true);
+			
+			for (int k=0;k<currentExercise.sets.size();k++) {
+				Set currentSet = currentExercise.sets.get(k);
+				currentSet.setCount.setLocation(currentSet.setCount.getX(),currentSet.setCount.getY()+move);
+				currentSet.repsLabel.setLocation(currentSet.repsLabel.getX(),currentSet.repsLabel.getY()+move);
+				currentSet.repsField.setLocation(currentSet.repsField.getX(),currentSet.repsField.getY()+move);
+				currentSet.weightLabel.setLocation(currentSet.weightLabel.getX(),currentSet.weightLabel.getY()+move);
+				currentSet.weightField.setLocation(currentSet.weightField.getX(),currentSet.weightField.getY()+move);
+				if (currentSet.setCount.getY()<CUTOFF) currentSet.setCount.setVisible(false); else currentSet.setCount.setVisible(true);
+				if (currentSet.repsLabel.getY()<CUTOFF) currentSet.repsLabel.setVisible(false); else currentSet.repsLabel.setVisible(true);
+				if (currentSet.repsField.getY()<CUTOFF) currentSet.repsField.setVisible(false); else currentSet.repsField.setVisible(true);
+				if (currentSet.weightLabel.getY()<CUTOFF) currentSet.weightLabel.setVisible(false); else currentSet.weightLabel.setVisible(true);
+				if (currentSet.weightField.getY()<CUTOFF) currentSet.weightField.setVisible(false); else currentSet.weightField.setVisible(true);
+				frame.validate();
+				frame.repaint();
+			}
+		}
+		
+	}
 	private void initialize() {
 		int Frame_Left = 100;
 		int Frame_Width = 450;
@@ -223,6 +257,59 @@ public class Page3 {
 		});
 		newExerciseButton.setBounds(Frame_Center-newExerciseButton_width/2, newExerciseButton_distanceFromTop, newExerciseButton_width, newExerciseButton_height);
 		frame.getContentPane().add(newExerciseButton);
+		
+		
+		textField = new JTextField();
+		textField.setBounds(329, 140, 85, 19);
+		textField.setText("20");
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JLabel scrollByLabel = new JLabel("Scroll By:");
+		scrollByLabel.setBounds(329, 127, 85, 13);
+		frame.getContentPane().add(scrollByLabel);
+		
+		JLabel invalidInputLabel = new JLabel("Invalid Input");
+		invalidInputLabel.setBounds(329, 159, 85, 13);
+		invalidInputLabel.setVisible(false);
+		frame.getContentPane().add(invalidInputLabel);
+		
+		JButton moveUpButton = new JButton("Up");
+		moveUpButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int moveBy = Integer.parseInt(textField.getText());
+					move(-moveBy);
+					invalidInputLabel.setVisible(false);
+				}catch (NumberFormatException ek) {
+//					ek.printStackTrace();
+					invalidInputLabel.setVisible(true);
+				}
+			}
+		});
+		moveUpButton.setBounds(327, 55, 85, 21);
+		frame.getContentPane().add(moveUpButton);
+		
+		JButton moveDownButton = new JButton("Down");
+		moveDownButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int moveBy = Integer.parseInt(textField.getText());
+					move(moveBy);
+					invalidInputLabel.setVisible(false);
+				}catch (NumberFormatException ek) {
+//					ek.printStackTrace();
+					invalidInputLabel.setVisible(true);
+				}
+			}
+		});
+		moveDownButton.setBounds(327, 232, 85, 21);
+		frame.getContentPane().add(moveDownButton);
+		
+		
+		
+		
+		
 		
 	}
 }

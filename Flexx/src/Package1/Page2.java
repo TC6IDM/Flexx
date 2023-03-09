@@ -4,7 +4,11 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -52,6 +56,7 @@ public class Page2 {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("PAGE 2");
 		lblNewLabel.setBounds(132, 10, 172, 35);
@@ -69,18 +74,20 @@ public class Page2 {
 //		});
 //		frame.getContentPane().add(btnNewButton);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 50, 416, 203);
-		JButton btnNewButton2 = new JButton("Back");
-		btnNewButton2.setBounds(10, 10, 77, 35);
-		btnNewButton2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Home home = new Home();
-				home.frame.setVisible(true);
-				frame.setVisible(false);
-			}
-		});
-		scrollPane.add(btnNewButton2);
-		frame.getContentPane().add(scrollPane);
+		
+		 JPanel panel = new JPanel();
+		 for (int i = 0; i < 50; i++) {
+			 JButton newButton = new JButton(""+i);
+			 newButton.setBounds(10, 10, 25, i);
+		     panel.add(newButton);
+		 }
+		 JScrollPane scrollPane = new JScrollPane(panel);
+		 panel.setLayout(null);
+		 scrollPane.setBounds(0, 50, 350, 200);
+		 frame.getContentPane().add(scrollPane);
+		 frame.setPreferredSize(new Dimension(450, 300));
+		 frame.pack();
+		 frame.setVisible(true);
+
 	}
 }
