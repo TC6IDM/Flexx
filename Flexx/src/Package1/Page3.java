@@ -27,6 +27,10 @@ public class Page3 {
 	public JFrame frame;
 	public ArrayList<Exercise> exercises = new ArrayList<Exercise>();
 	private JTextField textField;
+	private JLabel invalidInputLabel;
+	private JLabel canNotScrollHigherLabel;
+	private JLabel canNotScrollLowerLabel;
+
 
 	/** 
 	 * Launch the application.
@@ -56,11 +60,12 @@ public class Page3 {
 	 * Initialize the contents of the frame.
 	 */
 	
-	public void move(int move) {
+	public boolean move(int move) {
 		int CUTOFF = 50;
-		if (exercises.size()==0) return;
-		if (exercises.get(0).newExerciseButton.getY()+move < CUTOFF) move = -1*(exercises.get(0).newExerciseButton.getY() - CUTOFF);
-		if (exercises.get(0).nameField.getY()+move > CUTOFF) move = CUTOFF - exercises.get(0).nameField.getY();
+		boolean canMove = true;
+		if (exercises.size()==0) return false;
+		if (exercises.get(0).newExerciseButton.getY()+move < CUTOFF) {move = -1*(exercises.get(0).newExerciseButton.getY() - CUTOFF); canMove = false;}
+		if (exercises.get(0).nameField.getY()+move > CUTOFF) {move = CUTOFF - exercises.get(0).nameField.getY(); canMove = false;}
 		height+= move;
 		exercises.get(0).newExerciseButton.setLocation(exercises.get(0).newExerciseButton.getX(),exercises.get(0).newExerciseButton.getY()+move);
 		for (int i=0;i<exercises.size();i++) {
@@ -88,13 +93,14 @@ public class Page3 {
 				frame.repaint();
 			}
 		}
+		return canMove;
 		
 	}
 	private void initialize() {
 		int Frame_Left = 100;
 		int Frame_Width = 450;
 		int Frame_Top = 100;
-		int Frame_Height = 300;
+		int Frame_Height = 600;
 		int Frame_Center = Frame_Width/2;
 		
 		frame = new JFrame();
@@ -241,12 +247,14 @@ public class Page3 {
 		JButton newExerciseButton = new JButton("New Exercise");
 		newExerciseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				canNotScrollHigherLabel.setVisible(false);
+				canNotScrollLowerLabel.setVisible(false);
 				int newY = 50;
 				if (exercises.size() != 0){
 					JButton oldAddSetButton = exercises.get(exercises.size()-1).addSetButton;
 					newY = oldAddSetButton.getY()+oldAddSetButton.getHeight()+moveDown;
 				}
-				Exercise thisExercise = new Exercise(frame,newY);
+				Exercise thisExercise = new Exercise(frame,newY, canNotScrollHigherLabel, canNotScrollLowerLabel);
 				exercises.add(thisExercise);
 				JButton addSetButton = thisExercise.addSetButton;
 				newExerciseButton.setLocation(newExerciseButton.getX(), addSetButton.getY()+addSetButton.getHeight()+moveDown);	
@@ -261,34 +269,45 @@ public class Page3 {
 		
 		
 		textField = new JTextField();
-		textField.setBounds(340, 140, 85, 19);
+		textField.setBounds(340, 292, 85, 19);
 		textField.setText("20");
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JLabel scrollByLabel = new JLabel("Scroll By:");
-		scrollByLabel.setBounds(340, 127, 85, 13);
+		scrollByLabel.setBounds(340, 279, 85, 13);
 		frame.getContentPane().add(scrollByLabel);
 		
-		JLabel invalidInputLabel = new JLabel("Invalid Input");
-		invalidInputLabel.setBounds(340, 159, 85, 13);
+		invalidInputLabel = new JLabel("Invalid Input");
+		invalidInputLabel.setBounds(340, 311, 85, 13);
 		invalidInputLabel.setVisible(false);
 		frame.getContentPane().add(invalidInputLabel);
+		
+		canNotScrollHigherLabel = new JLabel("Can Not Scroll Higher");
+		canNotScrollHigherLabel.setBounds(318, 233, 117, 13);
+		canNotScrollHigherLabel.setVisible(false);
+		frame.getContentPane().add(canNotScrollHigherLabel);
+		
+		canNotScrollLowerLabel = new JLabel("Can Not Scroll Lower");
+		canNotScrollLowerLabel.setBounds(318, 360, 117, 13);
+		canNotScrollLowerLabel.setVisible(false);
+		frame.getContentPane().add(canNotScrollLowerLabel);
 		
 		JButton moveUpButton = new JButton("Up");
 		moveUpButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int moveBy = Integer.parseInt(textField.getText());
-					move(-moveBy);
+					if (!move(-moveBy)) canNotScrollHigherLabel.setVisible(true); else canNotScrollHigherLabel.setVisible(false);
+					canNotScrollLowerLabel.setVisible(false);
 					invalidInputLabel.setVisible(false);
-				}catch (NumberFormatException ek) {
+					}catch (NumberFormatException ek) {
 //					ek.printStackTrace();
 					invalidInputLabel.setVisible(true);
 				}
 			}
 		});
-		moveUpButton.setBounds(338, 55, 85, 21);
+		moveUpButton.setBounds(340, 248, 85, 21);
 		frame.getContentPane().add(moveUpButton);
 		
 		JButton moveDownButton = new JButton("Down");
@@ -296,7 +315,8 @@ public class Page3 {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int moveBy = Integer.parseInt(textField.getText());
-					move(moveBy);
+					if (!move(moveBy)) canNotScrollLowerLabel.setVisible(true); else canNotScrollLowerLabel.setVisible(false);
+					canNotScrollHigherLabel.setVisible(false);
 					invalidInputLabel.setVisible(false);
 				}catch (NumberFormatException ek) {
 //					ek.printStackTrace();
@@ -304,7 +324,7 @@ public class Page3 {
 				}
 			}
 		});
-		moveDownButton.setBounds(338, 232, 85, 21);
+		moveDownButton.setBounds(340, 334, 85, 21);
 		frame.getContentPane().add(moveDownButton);
 		
 		

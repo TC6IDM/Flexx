@@ -17,7 +17,7 @@ public class Exercise{
 	public int exerciseNumber;
 	public ArrayList<Exercise> exercises = new ArrayList<Exercise>();
 	
-	public Exercise(JFrame frame,int Y){
+	public Exercise(JFrame frame,int Y,JLabel H,JLabel L){
 		int distanceBetweenExerciseAndReps = 25;
 //		int moveDown = 10;
 		nameLabel = new JLabel("Exercise Name:");
@@ -43,7 +43,8 @@ public class Exercise{
 		addSetButton = new JButton("Add set");
 		addSetButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				H.setVisible(false);
+				L.setVisible(false);
 				Set newSet = new Set (frame,addSetButton.getY());	
 				newSet.setSetNumber(sets);
 				JTextField newWeightField = newSet.weightField;
