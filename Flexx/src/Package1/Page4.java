@@ -62,6 +62,7 @@ public class Page4 {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
+        //Create progress tracker
         JLabel lblNewLabel = new JLabel("Progress Tracker");
         lblNewLabel.setBounds(140, 10, 187, 35);
         lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 23));
@@ -78,12 +79,14 @@ public class Page4 {
         btnNewButton.setBounds(10, 10, 77, 35);
         frame.getContentPane().add(btnNewButton);
 
+        //Create progress bar
         JProgressBar progressBar = new JProgressBar();
         progressBar.setValue(0);
         progressBar.setStringPainted(true);
         progressBar.setBounds(160, 89, 146, 20);
         frame.getContentPane().add(progressBar);
 
+        //Add button to implement new goals and add checkboxes alongside
         JButton btnNewButton_1 = new JButton("Add");
         btnNewButton_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -108,6 +111,7 @@ public class Page4 {
                         }
                     }
                 }
+                //once clicked off textbox it locks
         	    newGoal.addFocusListener(new FocusAdapter() {
         	        @Override
         	        public void focusLost(FocusEvent e) {
@@ -140,13 +144,14 @@ public class Page4 {
         btnNewButton_1.setEnabled(true);
         frame.getContentPane().add(btnNewButton_1);
         
-       
+       // Delete button where you are able to select goals to delete
         JButton btnNewButton_1_1 = new JButton("Delete");
         btnNewButton_1_1.setBackground(SystemColor.window);
         btnNewButton_1_1.setBounds(252, 117, 54, 16);
         btnNewButton_1_1.setEnabled(false);
         frame.getContentPane().add(btnNewButton_1_1);
 
+        //getting components to delete when checkboxes are selected
         btnNewButton_1_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Component[] components = frame.getContentPane().getComponents();
@@ -169,9 +174,11 @@ public class Page4 {
             }
         });
 
+        //Combo box with all features
         JComboBox<String> comboBox = new JComboBox<String>();
         comboBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	//If statements to enable the feature selected
                 String selectedOption = (String) comboBox.getSelectedItem();
                 if (selectedOption.equals("Add goal")) {
                     btnNewButton_1.setEnabled(true);
@@ -183,7 +190,7 @@ public class Page4 {
                 } else {
                 	btnNewButton_1_1.setEnabled(false);
                 }
-
+                // Goals become editable
                 if (selectedOption.equals("Edit goal")) {
                     isEditSelected = true;
                 } else {
@@ -203,10 +210,12 @@ public class Page4 {
         comboBox.setBounds(206, 57, 106, 27);
         frame.getContentPane().add(comboBox);
 
+        //Menu label
         JLabel lblNewLabel_1 = new JLabel("Menu:");
         lblNewLabel_1.setBounds(163, 61, 61, 16);
         frame.getContentPane().add(lblNewLabel_1);
         
+        //Button to save all goals which should be saved into database, had a few issues with that
         JButton btnNewButton_2 = new JButton("Save");
         btnNewButton_2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -259,7 +268,7 @@ public class Page4 {
    
     }
    
-
+//	Method to update progress bar as checkboxes are selected true
     private void updateProgressBar(JProgressBar progressBar) {
         Component[] components = frame.getContentPane().getComponents();
         int totalGoals = 0;
