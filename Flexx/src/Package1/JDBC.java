@@ -67,5 +67,31 @@ public class JDBC{
 //			e.printStackTrace();
 		}
 		System.out.println("table 2 created");
+		
+		String query3 = "CREATE TABLE IF NOT EXISTS goals (" +
+                "id INT NOT NULL AUTO_INCREMENT," +
+                "goal VARCHAR(255)," +
+                "PRIMARY KEY (id)" +
+                ")";
+
+        try {
+            // create connection
+            Connection con = DriverManager.getConnection(databaseURL, user, password);
+
+            // create statement
+            Statement statement = con.createStatement();
+
+            // execute query
+            statement.executeUpdate(query3);
+
+            // close statement and connection
+            statement.close();
+            con.close();
+
+            System.out.println("Table created successfully!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
 	}
 }

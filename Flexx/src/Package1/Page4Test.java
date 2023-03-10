@@ -20,7 +20,7 @@ class Page4Test {
 		
 		try {
 			
-				Connection con = DriverManager.getConnection(JDBC.DB_url, JDBC.user, JDBC.password);
+				Connection con = DriverManager.getConnection(JDBC.databaseURL, JDBC.user, JDBC.password);
 				
 				Statement statement = con.createStatement();
 				
@@ -42,7 +42,7 @@ class Page4Test {
 		
 		try {
 			
-			Connection con = DriverManager.getConnection(JDBC.DB_url, JDBC.user, JDBC.password);
+			Connection con = DriverManager.getConnection(JDBC.databaseURL, JDBC.user, JDBC.password);
 			
 			Statement statement = con.createStatement();
 			
@@ -64,7 +64,7 @@ class Page4Test {
 		
 		try {
 			
-			Connection con = DriverManager.getConnection(JDBC.DB_url, JDBC.user, JDBC.password);
+			Connection con = DriverManager.getConnection(JDBC.databaseURL, JDBC.user, JDBC.password);
 			
 			Statement statement = con.createStatement();
 			
