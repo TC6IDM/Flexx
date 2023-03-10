@@ -87,7 +87,7 @@ public class Page5 {
 				btnNewButton_1.setSize(10,20);
 				btnNewButton_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Breakfast bf = new Breakfast();
+						breakfast bf = new breakfast();
 						bf.frame.setVisible(true);
 						frame.setVisible(false);
 					}
