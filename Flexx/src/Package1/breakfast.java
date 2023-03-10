@@ -59,7 +59,7 @@ public class breakfast {
 	 * @return 
 	 * @wbp.parser.entryPoint
 	 */
-	public void Breakfast() {
+	public breakfast() {
 		initialize();
 	}
 
@@ -87,11 +87,11 @@ public class breakfast {
 		});
 		btnNewButton.setBounds(0, 1, 89, 29);
 		frame.getContentPane().add(btnNewButton);
-//
-//		setTextField(new JTextField());
-//		getTextField().setBounds(10, 53, 130, 26);
-//		frame.getContentPane().add(getTextField());
-//		getTextField().setColumns(10);
+
+		setTextField(new JTextField());
+		getTextField().setBounds(10, 53, 130, 26);
+		frame.getContentPane().add(getTextField());
+		getTextField().setColumns(10);
 
 		textField_1 = new JTextField();
 		textField_1.setBounds(10, 105, 130, 26);
@@ -173,6 +173,7 @@ public class breakfast {
                  }
              }
          });
+		
 		btnNewButton_1.setBounds(385, 241, 60, 29);
 		frame.getContentPane().add(btnNewButton_1);
 
@@ -267,25 +268,25 @@ public class breakfast {
 
 	
 	private void updateTextField_1Value() {
-	    textFieldValue = textField.getText();
+	    textFieldValue = textField_1.getText();
 	}
 	private void updateTextField_2Value() {
-	    textFieldValue = textField.getText();
+	    textFieldValue = textField_2.getText();
 	}
 	private void updateTextField_3Value() {
-	    textFieldValue = textField.getText();
+	    textFieldValue = textField_3.getText();
 	}
 	private void updateTextField_4Value() {
-	    textFieldValue = textField.getText();
+	    textFieldValue = textField_4.getText();
 	}
 	private void updateTextField_5Value() {
-	    textFieldValue = textField.getText();
+	    textFieldValue = textField_5.getText();
 	}
 	private void updateTextField_6Value() {
-	    textFieldValue = textField.getText();
+	    textFieldValue = textField_6.getText();
 	}
 	private void updateTextField_7Value() {
-	    textFieldValue = textField.getText();
+	    textFieldValue = textField_7.getText();
 	}
 
 	public JTextField getTextField() {
