@@ -28,7 +28,9 @@ public class JDBC{
 		System.out.println("database created");
 	}
 	
-	
+	/* Creates a table called "userInfo" in Flexx database, 
+	 * if it does not already exist.
+	 */
 	public static void createTables() {
 		String url = "jdbc:mysql://localhost:3306/Flexx" ;
 		String user = "root" ;
@@ -52,7 +54,9 @@ public class JDBC{
 		System.out.println("table 1 created");
 	}
 	
-	
+	/* Inserts a new user into the userInfo table with
+	 * the provided username and password.
+	 */
 	public static void insertUser(String Uname, String Upassword) {
 		String url = "jdbc:mysql://localhost:3306/Flexx" ;
 		String user = "root" ;
@@ -77,6 +81,9 @@ public class JDBC{
 		}
 	}
 	
+	/* Checks if a user exists in the "userInfo" 
+	 * table with the provided username and password.
+	 */
 	public static boolean checkUser(String Uname, String Upassword) throws SQLException {
 	    String url = "jdbc:mysql://localhost:3306/Flexx";
 	    String user = "root";
