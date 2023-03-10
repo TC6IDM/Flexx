@@ -59,12 +59,14 @@ public class Page5 {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setForeground(Color.RED);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().setBackground(Color.CYAN);
 		
 		JButton btnNewButton = new JButton("Back");
+		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Home home = new Home();
@@ -80,8 +82,9 @@ public class Page5 {
 		frame.getContentPane().add(lblNewLabel);
 
 				JButton btnNewButton_1 = new JButton("+");
+				btnNewButton_1.setForeground(Color.RED);
+				btnNewButton_1.setBackground(Color.WHITE);
 				btnNewButton_1.setSize(10,20);
-				btnNewButton_1.setBackground(Color.red);
 				btnNewButton_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						Breakfast bf = new Breakfast();
@@ -97,8 +100,8 @@ public class Page5 {
 				frame.getContentPane().add(lblNewLabel_1);
 				
 				JButton btnNewButton_2 = new JButton("+");
+				btnNewButton_2.setForeground(Color.RED);
 				btnNewButton_2.setBounds(247, 57, 117, 29);
-				btnNewButton_2.setBackground(Color.red);
 				frame.getContentPane().add(btnNewButton_2);
 				btnNewButton_2.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -113,8 +116,8 @@ public class Page5 {
 				frame.getContentPane().add(lblNewLabel_2);
 				
 				JButton btnNewButton_3 = new JButton("+");
+				btnNewButton_3.setForeground(Color.RED);
 				btnNewButton_3.setBounds(247, 103, 117, 29);
-				btnNewButton_3.setBackground(Color.red);
 				frame.getContentPane().add(btnNewButton_3);
 				btnNewButton_3.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -129,8 +132,8 @@ public class Page5 {
 				frame.getContentPane().add(lblNewLabel_3);
 				
 				JButton btnNewButton_4 = new JButton("+");
+				btnNewButton_4.setForeground(Color.RED);
 				btnNewButton_4.setBounds(247, 148, 117, 29);
-				btnNewButton_4.setBackground(Color.red);
 				frame.getContentPane().add(btnNewButton_4);
 				btnNewButton_4.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -144,6 +147,7 @@ public class Page5 {
 				frame.getContentPane().add(lblNewLabel_4);
 				
 				JButton btnNewButton_5 = new JButton("+");
+				btnNewButton_5.setForeground(Color.RED);
 				btnNewButton_5.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						water water = new water();
@@ -152,7 +156,6 @@ public class Page5 {
 					}
 				});
 				btnNewButton_5.setBounds(247, 194, 117, 29);
-				btnNewButton_5.setBackground(Color.red);
 				frame.getContentPane().add(btnNewButton_5);
 				
 				JSeparator separator_1 = new JSeparator();
@@ -168,6 +171,7 @@ public class Page5 {
 				frame.getContentPane().add(lblNewLabel_5);
 				
 				JButton btnNewButton_6 = new JButton("+");
+				btnNewButton_6.setForeground(Color.RED);
 				btnNewButton_6.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						calburned calburned = new calburned();
@@ -176,7 +180,6 @@ public class Page5 {
 					}
 				});
 				btnNewButton_6.setBounds(247, 235, 117, 29);
-				btnNewButton_6.getRootPane().setBackground(Color.red);
 				frame.getContentPane().add(btnNewButton_6);
 				
 				JSeparator separator_6 = new JSeparator();
