@@ -1,5 +1,7 @@
 package Package1;
 import java.sql.*;
+import java.sql.SQLException;
+
 
 public class JDBC{
 	private static String password = "MyN3wP4ssw0rd";// replace ... with your password
