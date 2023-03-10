@@ -22,6 +22,7 @@ import java.awt.Image;
 public class Login implements ActionListener{
 
 	// Declare variables
+	public static String USERID;
 	public JFrame frame;
 	private JTextField usernameField;
 	private JPasswordField passwordField;
@@ -109,6 +110,7 @@ public class Login implements ActionListener{
 		            
 		        // Opening Home window if user credentials are valid
 		        if (found) {
+		        	USERID = username;
 		            JOptionPane.showMessageDialog(frame, "Welcome");
 		            Home home = new Home();
 		            home.frame.setVisible(true);
@@ -167,7 +169,11 @@ public class Login implements ActionListener{
 			      
 			      try {
 			    	  JDBC.insertUser(username, password);
-			    	  JOptionPane.showMessageDialog(frame,  "You have successfully signed up!"); 
+			    	  JOptionPane.showMessageDialog(frame,  "You have successfully signed up!");
+			    	  USERID = username;
+			          Home home = new Home();
+			          home.frame.setVisible(true);
+			          frame.setVisible(false);
 			      } catch (Exception ex) {
 			    	  JOptionPane.showMessageDialog(frame, "An error occurred while signing up.");
 			          ex.printStackTrace();

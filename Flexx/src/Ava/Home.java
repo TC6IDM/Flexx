@@ -67,6 +67,7 @@ public class Home {
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @wbp.parser.entryPoint
 	 */
 
 	private void initialize() {	
@@ -85,15 +86,17 @@ public class Home {
 	    
 	   
 	    
-	    JLabel homeLabel = new JLabel("HOME");
-	    homeLabel.setFont(new Font("Helvetica", Font.BOLD, 30));
+	    JLabel homeLabel = new JLabel(Login.USERID);
+	    homeLabel.setFont(new Font("Helvetica", Font.BOLD, 15));
 	    homeLabel.setForeground(Color.WHITE);
 	    homeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 	    homeLabel.setVerticalAlignment(SwingConstants.CENTER);
-	    homeLabel.setBounds(-11, 0, 461, 61);
+	    homeLabel.setBounds(308, 10, 100, 18);
 	    homeLabel.setOpaque(true);
 	    homeLabel.setBackground(new Color(0x2B579A)); 
 	    frame.getContentPane().add(homeLabel);
+	    
+	    
 	    
 //	    // Add a ComponentListener to the JFrame
 //	    frame.addComponentListener(new ComponentAdapter() {
@@ -173,9 +176,9 @@ public class Home {
 	    foodTrackerButton.setBounds(20, 139, 170, 32);
 	    frame.getContentPane().add(foodTrackerButton);
 	    
-	    JButton loginButton = new JButton("Login");
+	    JButton loginButton = new JButton("logout");
 	    loginButton.setForeground(Color.WHITE);
-	    loginButton.setBackground(new Color(0, 122, 255));
+	    loginButton.setBackground(new Color(255, 74, 74));
 	    loginButton.setFont(new Font("San Francisco", Font.PLAIN, 14));
 	    loginButton.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
@@ -184,8 +187,18 @@ public class Home {
 	            frame.setVisible(false);
 	        }
 	    });
-	    loginButton.setBounds(139, 196, 170, 32);
+	    loginButton.setBounds(308, 32, 100, 23);
 	    frame.getContentPane().add(loginButton);
+	    
+	    JLabel usernameLabel = new JLabel("Home");
+	    usernameLabel.setFont(new Font("Helvetica", Font.BOLD, 30));
+	    usernameLabel.setForeground(Color.WHITE);
+	    usernameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+	    usernameLabel.setVerticalAlignment(SwingConstants.CENTER);
+	    usernameLabel.setBounds(0, 0, 442, 61);
+	    usernameLabel.setOpaque(true);
+	    usernameLabel.setBackground(new Color(0x2B579A)); 
+	    frame.getContentPane().add(usernameLabel);
 		
 	}
 }
