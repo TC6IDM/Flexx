@@ -1,0 +1,115 @@
+Log file (including meetings minutes, rationale behind changes on plan and big design decisions, any concern with the project or group members, task assignments, the development tasks per user story and the times originally allocated per development task and the actual time spent on each task)
+
+Development Tasks: 
+
+Andrew - 
+Task : Exercise tracker
+Estimated time: 2 weeks
+Actual time: 1 week
+
+
+Elyse -
+Task: Progress Tracker
+Estimated time: 8 days
+Actual time: 4 days
+
+Timi -
+Task: Nutrition Tracker
+Estimated time: 1 week
+Actual time: 4 days
+
+Ava -
+Task: Login/Sign up Functionality using MySql
+Estimated time: 5 Days
+Actual time: 4 Days
+
+Gurkirat -
+Task: personalised workout maker
+Estimated time: 6 days
+Actual time:  5 days
+
+ITERATION 1
+
+Team Meetings:
+**Throughout Iteration 1, group members would actively touch base with one another through a group chat, where we would periodically check-in on progress, concerns, tasks etc. 
+
+Meeting #1:
+Date: February 9th, 2023
+Minutes: 1 hour and 30 minutes
+Notes:
+Task allocation for each group member.
+Page 1: Gurkirat
+Page 2: Ava
+Page 3: Andrew
+Page 4: Elyse
+Page 5: Timi
+Started creating a GUI using windowbuilder
+Had some issues with the setup on mac laptops, which caused a few delays for implementation
+
+Meeting #2:
+Date: February 12th, 2023
+Minutes: N/A 
+Notes:
+Finalised each group members topic for the pages
+Page 1: Personalised workouts - Gurkirat
+Page 2: Sign-in & Log-in system - Ava
+Page 3: exercise tracking - Andrew
+Page 4: Progress Tracker - Elyse
+Page 5: Calorie Intake Tracker/Log - Timi
+
+Meeting #3:
+Date: February 15th, 2023
+Minutes: 1 hour and 30 minutes
+Notes:
+Updates on everyone's progress
+A few concerns about business logic test cases
+Updating Wiki to ensure end result would have 
+User guide
+Architecture sketches
+Modified planning doc etc
+
+ITERATION 2
+
+Team Meetings:
+**Throughout Iteration 2, group members would actively touch base with one another through a group chat, where we would periodically check-in on progress, concerns, tasks etc. 
+
+Meeting #1:
+Date: February 22nd, 2023
+Minutes: 1 hour and 30 minutes
+Notes:
+Tasks allocated for each group member to continue working on their allocated page and implement any detailed user stories that were needed. 
+Page 1: Personalised workouts - Gurkirat
+Page 2: Sign-in & Log-in system - Ava
+Page 3: exercise tracking - Andrew
+Page 4: Progress Tracker - Elyse
+Page 5: Calorie Intake Tracker/Log - Timi
+Started creating a SQL database that would be used through eclipse 
+
+Meeting #2:
+Date: February 26th, 2023
+Minutes: N/A 
+Notes:
+Update on everyone’s progress
+Discussed a few issues some group members were having with their code
+Page 4: Progress Tracker - Elyse
+Had a few issues that required a layout change of her page which has been updated into the architecture sketch document on the Github Wiki.
+Discussion about database creation and testing.
+
+Meeting #3:
+Date: March 1st, 2023
+Minutes: 1 hour and 30 minutes
+Notes:
+Updates on everyone's progress
+Discussions & assembly on databases and testing
+Fixing up documentation for submission
+Page 3 Workout Tracker - Andrew
+Issues implementing a “scrolling” feature to the page, exercises will just go off the page and will not be accessible
+
+Meeting #4:
+Date: March 8th, 2023
+Minutes: 1 hour and 30 minutes
+Notes:
+Touch-ups on certain pages
+Database and testing assembly
+Page 3 Workout Tracker - Andrew
+Created a new way to scroll instead of a built-in scroll bar, Andrew made a move up and down button to control where the exercises are 
