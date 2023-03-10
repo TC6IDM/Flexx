@@ -27,8 +27,7 @@ public class JDBC{
 		System.out.println("database created");
 	}
 	public static void createTables() {
-		
-		String query = "CREATE TABLE userInfo( username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL);" ;
+		String query = "CREATE TABLE IF NOT EXISTS userInfo( Uname VARCHAR(255) NOT NULL, Upassword VARCHAR(255) NOT NULL);" ;
 		
 		try {
 			// create connection
@@ -50,7 +49,7 @@ public class JDBC{
 		
 		
 		
-		String query2 = "CREATE TABLE ExerciseLogs( ExerciseName VARCHAR(255) NOT NULL, Reps INT NOT NULL, Weight FLOAT(2) NOT NULL, WorkoutNumber INT NOT NULL);" ;
+		String query2 = "CREATE TABLE IF NOT EXISTS ExerciseLogs( ExerciseName VARCHAR(255) NOT NULL, Reps INT NOT NULL, Weight FLOAT(2) NOT NULL, WorkoutNumber INT NOT NULL);" ;
 		
 		try {
 			// create connection
@@ -93,5 +92,55 @@ public class JDBC{
             e.printStackTrace();
         }
         
+        
+	}
+	
+	public static void insertUser(String Uname, String Upassword) {
+		String query = "INSERT INTO userInfo (username, password) VALUES (?, ?)";
+		
+		try {
+			// create connection
+			Connection con = DriverManager.getConnection (databaseURL,user,password);
+			
+			 // create statement
+			PreparedStatement pstmt = con.prepareStatement(query);
+			pstmt.setString(1, Uname);
+			pstmt.setString(2, Upassword);
+			
+			 // execute statement
+			pstmt.executeUpdate();
+			
+			 // close resources
+		    pstmt.close();
+		    con.close();
+		} catch (SQLException e) {
+		}
+	}
+	
+	/* Checks if a user exists in the "userInfo" 
+	 * table with the provided username and password.
+	 */
+	public static boolean checkUser(String Uname, String Upassword) throws SQLException {
+	    String query = "SELECT * FROM userinfo WHERE username = ? AND password = ?";
+	    boolean found = false;
+
+	    // create connection
+	    Connection conn = DriverManager.getConnection(databaseURL, user, password);
+
+	    // create prepared statement
+	    PreparedStatement stmt = conn.prepareStatement(query);
+	    stmt.setString(1, Uname);
+	    stmt.setString(2, Upassword);
+
+	    // execute query and check result
+	    ResultSet rs = stmt.executeQuery();
+	    found = rs.next();
+
+	    // close resources
+	    rs.close();
+	    stmt.close();
+	    conn.close();
+
+	    return found;
 	}
 }
