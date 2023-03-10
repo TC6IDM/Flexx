@@ -92,6 +92,25 @@ public class JDBC{
             e.printStackTrace();
         }
         
+        try {
+			String query4 = "CREATE TABLE IF NOT EXISTS breakfast (" +
+					"id INT NOT NULL AUTO_INCREMENT," +
+					"calories VARCHAR(255)," +
+					"PRIMARY KEY (id)" +
+					")";
+			// create connection
+			Connection con = DriverManager.getConnection(databaseURL, user, password) ;
+			// create statement
+			Statement statement = con. createStatement ();
+			// execute query
+			statement.executeUpdate (query4) ;
+			// close statement and connection 
+			statement.close();
+			con.close();
+			System.out.println("Table created successfully!");
+		} catch (SQLException e) {
+			e.printStackTrace () ;
+		}
         
 	}
 	

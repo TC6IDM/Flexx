@@ -130,7 +130,7 @@ public class breakfast {
 				
 				try {
                     // Establish a connection to the database
-                    Connection con = DriverManager.getConnection(JDBC.url, JDBC.user, JDBC.password);
+                    Connection con = DriverManager.getConnection(JDBC.databaseURL, JDBC.user, JDBC.password);
 
                     // Create a table to store the data
             		String query = "INSERT INTO BREAKFAST (calories) VALUES ('" + textFieldValue + "')";
