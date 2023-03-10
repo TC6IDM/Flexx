@@ -26,9 +26,7 @@ public class Page4 {
 
     public JFrame frame;
     private JTextField goal1TextField;
-    private int numGoals = 1;
     private boolean isEditSelected = false;
-    private int numComponentsAdded = 0;
 
     /**
      * Launch the application.
@@ -99,6 +97,17 @@ public class Page4 {
         	    JTextField newGoal = new JTextField();
         	    newGoal.setBounds(170, lastTextFieldY + 30, 134, 20);
         	    newGoal.setEnabled(true);
+        	    List<String> goals = new ArrayList<>();
+                Component[] components1 = frame.getContentPane().getComponents();
+                for (Component component : components1) {
+                    if (component instanceof JTextField) {
+                        JTextField textField = (JTextField) component;
+                        String goal = textField.getText().trim();
+                        if (!goal.isEmpty()) {
+                            goals.add(goal);
+                        }
+                    }
+                }
         	    newGoal.addFocusListener(new FocusAdapter() {
         	        @Override
         	        public void focusLost(FocusEvent e) {
@@ -131,6 +140,7 @@ public class Page4 {
         btnNewButton_1.setEnabled(true);
         frame.getContentPane().add(btnNewButton_1);
         
+       
         JButton btnNewButton_1_1 = new JButton("Delete");
         btnNewButton_1_1.setBackground(SystemColor.window);
         btnNewButton_1_1.setBounds(252, 117, 54, 16);
@@ -196,64 +206,59 @@ public class Page4 {
         JLabel lblNewLabel_1 = new JLabel("Menu:");
         lblNewLabel_1.setBounds(163, 61, 61, 16);
         frame.getContentPane().add(lblNewLabel_1);
+        
         JButton btnNewButton_2 = new JButton("Save");
         btnNewButton_2.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		 try {
-        	            // Establish a connection to the database
-        	            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Flexx",JDBC.user, JDBC.password);
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    // Establish a connection to the database
+                    Connection con = DriverManager.getConnection(JDBC.DB_url, JDBC.user, JDBC.password);
 
-        	            // Create a table to store the data
-        	            Statement stmt = conn.createStatement();
-        	            String sql = "CREATE TABLE IF NOT EXISTS goals " +
-        	                         "(id INT NOT NULL AUTO_INCREMENT, " +
-        	                         " goal VARCHAR(255), " +
-        	                         " completed TINYINT(1), " +
-        	                         " PRIMARY KEY ( id ))";
-        	            stmt.executeUpdate(sql);
+                    // Create a table to store the data
+            		String query = "INSERT INTO goals (goal) VALUES ('" + goal1TextField + "')";
 
-        	            // Insert the data into the table
-        	            String insertSql = "INSERT INTO goals (goal, completed) VALUES (?, ?)";
-        	            PreparedStatement pstmt = conn.prepareStatement(insertSql);
-        	            Component[] components = frame.getContentPane().getComponents();
-        	            for (Component component : components) {
-        	                if (component instanceof JTextField) {
-        	                    String goal = ((JTextField) component).getText();
-        	                    boolean completed = false;
-        	                    for (Component comp : components) {
-        	                        if (comp instanceof JCheckBox && comp.getY() == component.getY()) {
-        	                            completed = ((JCheckBox) comp).isSelected();
-        	                            break;
-        	                        }
-        	                    }
-        	                    pstmt.setString(1, goal);
-        	                    pstmt.setBoolean(2, completed);
-        	                    pstmt.executeUpdate();
-        	                }
-        	            }
+                    Statement stmt = con.createStatement();
+                    stmt.executeUpdate(query);
 
-        	            // Close the connection
-        	            pstmt.close();
-        	            stmt.close();
-        	            conn.close();
+                    // Insert the data into the table
+                    String insertSql = "INSERT INTO goals (goal) VALUES (?)";
+                    PreparedStatement pstmt = con.prepareStatement(insertSql);
+                    Component[] components = frame.getContentPane().getComponents();
+                    boolean dataInserted = false;
+                    for (Component component : components) {
+                        if (component instanceof JTextField) {
+                            String goal = ((JTextField) component).getText();
+                            pstmt.setString(1, goal);
+                            int rows = pstmt.executeUpdate();
+                            if (rows > 0) {
+                                dataInserted = true;
+                            }
+                        }
+                    }
 
-        	            // Show a message to indicate the data has been saved
-        	            JOptionPane.showMessageDialog(frame, "Data has been saved to the database.");
-        	        } catch (SQLException ex) {
-        	            JOptionPane.showMessageDialog(frame, "Error: " + ex.getMessage());
-        	        }
-        	    }
+                    // Close the connection
+                    pstmt.close();
+                    stmt.close();
+                    con.close();
 
-
+                    // Show a message to indicate whether the data has been saved
+                    if (dataInserted) {
+                        JOptionPane.showMessageDialog(frame, "Data has been saved to the database.");
+                    } else {
+                        JOptionPane.showMessageDialog(frame, "No data was inserted into the database.");
+                    }
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(frame, "Error: " + ex.getMessage());
+                }
+            }
         });
         btnNewButton_2.setBounds(396, 243, 54, 29);
         frame.getContentPane().add(btnNewButton_2);
-    }
-        
+   
      
    
-
-    
+    }
+   
 
     private void updateProgressBar(JProgressBar progressBar) {
         Component[] components = frame.getContentPane().getComponents();
@@ -273,6 +278,8 @@ public class Page4 {
         }
         progressBar.setValue(percentage);
     }
+    
+    
 }
 
 

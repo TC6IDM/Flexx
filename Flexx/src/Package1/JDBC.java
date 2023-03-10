@@ -22,34 +22,37 @@ public class JDBC{
 			
 
 		} catch (SQLException e) {
+		
 //			e.printStackTrace();
 		}
 		System.out.println("database created");
 	}
 
 	public static void createTables() {
-		
-		
-		
-	String query = "CREATE TABLE IF NOT EXISTS goals " +
-            "(id INT NOT NULL AUTO_INCREMENT, " +
-            " goal VARCHAR(255), " +
-            " completed TINYINT(1), " +
-            " PRIMARY KEY ( id ))";
-		
-	try {
-			// create connection
-		Connection con = DriverManager.getConnection (DB_url,user,password);
-			
-			 // create statement
-		Statement statement = con.createStatement();
-			
-			 // generate result set
-		statement.execute(query);
+        String query = "CREATE TABLE IF NOT EXISTS goals (" +
+                "id INT NOT NULL AUTO_INCREMENT," +
+                "goal VARCHAR(255)," +
+                "PRIMARY KEY (id)" +
+                ")";
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		System.out.println("table 1 created");
-	}
+        try {
+            // create connection
+            Connection con = DriverManager.getConnection(DB_url, user, password);
+
+            // create statement
+            Statement statement = con.createStatement();
+
+            // execute query
+            statement.executeUpdate(query);
+
+            // close statement and connection
+            statement.close();
+            con.close();
+
+            System.out.println("Table created successfully!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+	
 }
