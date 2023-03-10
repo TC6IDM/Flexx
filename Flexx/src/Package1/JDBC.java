@@ -96,7 +96,7 @@ public class JDBC{
 	}
 	
 	public static void insertUser(String Uname, String Upassword) {
-		String query = "INSERT INTO userInfo (username, password) VALUES (?, ?)";
+		String query = "INSERT INTO userInfo (Uname, Upassword) VALUES (?, ?)";
 		
 		try {
 			// create connection
@@ -114,6 +114,7 @@ public class JDBC{
 		    pstmt.close();
 		    con.close();
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -121,7 +122,7 @@ public class JDBC{
 	 * table with the provided username and password.
 	 */
 	public static boolean checkUser(String Uname, String Upassword) throws SQLException {
-	    String query = "SELECT * FROM userinfo WHERE username = ? AND password = ?";
+	    String query = "SELECT * FROM userinfo WHERE Uname = ? AND Upassword = ?";
 	    boolean found = false;
 
 	    // create connection
