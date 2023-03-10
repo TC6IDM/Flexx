@@ -145,7 +145,10 @@ public class Page3 {
 		
 	}
 	
-	//start of the program
+	/**
+	 * start of the program
+	 * @wbp.parser.entryPoint
+	 */
 	private void initialize() {
 		//sets the bounds of the frame
 		int Frame_Left = 100;

@@ -33,7 +33,6 @@ public class Page2 {
 	
 	/**
 	 * Create the application.
-	 * @wbp.parser.entryPoint
 	 */
 	public Page2() {
 		initialize();
@@ -41,6 +40,7 @@ public class Page2 {
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @wbp.parser.entryPoint
 	 */
 	private void initialize() {
 		frame = new JFrame();
