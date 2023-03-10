@@ -88,11 +88,7 @@ public class breakfast {
 		btnNewButton.setBounds(0, 1, 89, 29);
 		frame.getContentPane().add(btnNewButton);
 
-		setTextField(new JTextField());
-		getTextField().setBounds(10, 53, 130, 26);
-		frame.getContentPane().add(getTextField());
-		getTextField().setColumns(10);
-
+		
 		textField_1 = new JTextField();
 		textField_1.setBounds(10, 105, 130, 26);
 		frame.getContentPane().add(textField_1);

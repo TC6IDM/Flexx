@@ -28,14 +28,14 @@ public class JDBC{
 	}
 
 	public static void createTables() { 
-		String query = "CREATE TABLE IF NOT EXISTS goals (" +
-				"id INT NOT NULL UTO_INCREMENT,"+
-				"goal VARCHAR(255),"+
-				"PRIMARY KAY (id)" +
-				")";
 		try {
+			String query = "CREATE TABLE IF NOT EXISTS breakfast (" +
+					"id INT NOT NULL AUTO_INCREMENT," +
+					"calories VARCHAR(255)," +
+					"PRIMARY KEY (id)" +
+					")";
 			// create connection
-			Connection con = DriverManager.getConnection(url, user, password) ;
+			Connection con = DriverManager.getConnection(DB_url, user, password) ;
 			// create statement
 			Statement statement = con. createStatement ();
 			// execute query
@@ -46,6 +46,6 @@ public class JDBC{
 			System.out.println("Table created successfully!");
 		} catch (SQLException e) {
 			e.printStackTrace () ;
-		}
-	}
-}
+		}}}
+
+
