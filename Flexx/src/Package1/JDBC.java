@@ -3,6 +3,7 @@ import java.sql.*;
 public class JDBC{
 	public static String password = "Oromidayo01";// replace ... with your password
 	public static void main(String[] args) {}
+	public static String DB_url = "jdbc:mysal://localhost:3306/Flexx";
 	public static String url = "jdbc:mysql://localhost:3306/" ;
 	public static String user = "root" ;
 	public static String query = "CREATE database Flexx" ;
@@ -47,3 +48,4 @@ public class JDBC{
 			e.printStackTrace () ;
 		}
 	}
+}
