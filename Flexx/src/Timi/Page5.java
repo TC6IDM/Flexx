@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
 
 import Ava.*;
+import otherUtil.*;
 
 public class Page5 {
 
@@ -26,8 +27,7 @@ public class Page5 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Page5 window = new Page5();
-					window.frame.setVisible(true);
+					Flexx.main(args);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

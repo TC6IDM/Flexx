@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import otherUtil.*;
+
 public class snacks {
 
 	public JFrame frame;
@@ -29,8 +31,7 @@ public class snacks {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					snacks window = new snacks();
-					window.frame.setVisible(true);
+					Flexx.main(args);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

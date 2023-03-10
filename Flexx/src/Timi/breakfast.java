@@ -42,8 +42,7 @@ public class breakfast {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					breakfast window = new breakfast();
-					window.frame.setVisible(true);
+					Flexx.main(args);
 				} 
 				catch (Exception e) {
 					e.printStackTrace();

@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import otherUtil.*;
+
 public class calburned {
  JFrame frame;
 	private JTextField textField;
@@ -38,8 +40,7 @@ public class calburned {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					calburned window = new calburned();
-					window.frame.setVisible(true);
+					Flexx.main(args);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import otherUtil.*;
+
 public class water {
  JFrame frame;
 	private JTextField textField;
@@ -38,8 +40,7 @@ public class water {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					water window = new water();
-					window.frame.setVisible(true);
+					Flexx.main(args);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

@@ -23,8 +23,7 @@ public class Page2 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Page2 window = new Page2();
-					window.frame.setVisible(true);
+					Flexx.main(args);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

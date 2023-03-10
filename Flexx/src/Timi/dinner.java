@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import otherUtil.*;
+
 public class dinner {
 
 	public JFrame frame;
@@ -29,8 +31,7 @@ public class dinner {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					dinner window = new dinner();
-					window.frame.setVisible(true);
+					Flexx.main(args);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

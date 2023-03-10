@@ -11,6 +11,8 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 import Ava.*;
+import otherUtil.*;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -33,8 +35,7 @@ public class Page1 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Page1 window = new Page1();
-					window.frame.setVisible(true);
+					Flexx.main(args);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
