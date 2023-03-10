@@ -59,23 +59,34 @@ public class Page3 {
 	 * Initialize the contents of the frame.
 	 */
 	
+	//checks all text fields to make sure that all the values are appropriate
 	public String isValid() {
-		String invalidInfo ="\n";
-		if (exercises.size()==0) return "|No Exercises|";
+		String invalidInfo ="\n";//Initializes the string
+		if (exercises.size()==0) return "|No Exercises|"; // if there are no exercises then the error code is that there are no exercises
+		
+		//loops through all exercises
 		for (int i=0;i<exercises.size();i++) {
-			Exercise currentExercise = exercises.get(i);
-			String exerciseName = currentExercise.nameField.getText();
-			if (exerciseName.equals("")) invalidInfo = invalidInfo+ "|Exercise #"+currentExercise.exerciseNumber+" Name Invalid|\n";
+			Exercise currentExercise = exercises.get(i);//gets the current exercise
+			String exerciseName = currentExercise.nameField.getText(); //find the user input exercise name
+			if (exerciseName.equals("")) invalidInfo = invalidInfo+ "|Exercise #"+currentExercise.exerciseNumber+" Name Invalid|\n"; //if the field is empty, add to the string that it is invalid
+			
+			//loops through all sets
 			for (int k=0;k<currentExercise.sets.size();k++) {
-				Set currentSet = currentExercise.sets.get(k);
+				Set currentSet = currentExercise.sets.get(k);//gets the current set
+				
+				//gets the text for the reps and weight field
 				String reps = currentSet.repsField.getText();
 				String weight = currentSet.weightField.getText();
+				
+				//checks if either of these fields are empty, if they are, add to the string that it is invalid
 				if (reps.equals("")) invalidInfo = invalidInfo+ "|Exercise #"+currentExercise.exerciseNumber+" Set #"+currentSet.setNumber+" Reps Invalid|\n";
 				if (weight.equals(""))invalidInfo = invalidInfo+ "|Exercise #"+currentExercise.exerciseNumber+" Set #"+currentSet.setNumber+" Weight Invalid|\n";
 				
+				//checks if the reps are an integer
 				try {
 					Integer.parseInt(reps);
 			    } catch (NumberFormatException nfe) {
+			    	//if the amount of reps are not 
 			    	if (!reps.equals("")) invalidInfo = invalidInfo+ "|Exercise #"+currentExercise.exerciseNumber+" Set #"+currentSet.setNumber+" Reps must be an Integer|\n";
 			    }
 				
@@ -133,6 +144,8 @@ public class Page3 {
 		return canMove; //returns whether the items can move
 		
 	}
+	
+	//start of the program
 	private void initialize() {
 		//sets the bounds of the frame
 		int Frame_Left = 100;
@@ -176,71 +189,60 @@ public class Page3 {
 		doneButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				//gets a string of the invalid information given by the user
 				String invalidInfo = isValid();
-				if (!invalidInfo.equals("\n")) JOptionPane.showMessageDialog(frame, "Invalid Input:\n"+invalidInfo);
-				else {
-					String url = "jdbc:mysql://localhost:3306/Flexx" ;
-					String user = "root" ;
-					String sizeQuery = "SELECT COUNT(*) FROM exerciselogs";
+				if (!invalidInfo.equals("\n")) {JOptionPane.showMessageDialog(frame, "Invalid Input:\n"+invalidInfo);return;} //makes a pop up message with the invalid information if there is any
+				
+				//Searches the database for how many previous exercises there are
+				String sizeQuery = "SELECT COUNT(*) FROM exerciselogs";
+				int tableSize =0;
+				try {
+					Connection con = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
+					Statement statement = con.createStatement();
+					ResultSet rs = statement.executeQuery(sizeQuery);
+					rs.next();
+					tableSize = rs.getInt(1); //stores the size of the table
+				} catch (SQLException err) {
+					err.printStackTrace();
+				}
 					
-					int tableSize =0;
-					try {
-						// create connection
-						Connection con = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
-//						System.out.println("hi");
-						 // create statement
-						Statement statement = con.createStatement();
-//						System.out.println("hi");
-						 // generate result set
-						ResultSet rs = statement.executeQuery(sizeQuery);
-						rs.next();
-						tableSize = rs.getInt(1);
-//					    System.out.println("hi");
-					    
+					
+				//loops through all exercises
+				for (int i=0;i<exercises.size();i++) {
+					Exercise currentExercise = exercises.get(i);//gets the current exercise
+					String exerciseName = currentExercise.nameField.getText();//find the user input of the exercise
+					
+					//loops through all sets
+					for (int k=0;k<currentExercise.sets.size();k++) {
+						Set currentSet = currentExercise.sets.get(k);//gets the current set
+						//finds the user input of sets and reps
+						String reps = currentSet.repsField.getText();
+						String weight = currentSet.weightField.getText(); 
 						
-
-					} catch (SQLException err) {
-//						err.printStackTrace();
-					}
-					
-					
-					
-					for (int i=0;i<exercises.size();i++) {
-						Exercise currentExercise = exercises.get(i);
-						String exerciseName = currentExercise.nameField.getText();
-						for (int k=0;k<currentExercise.sets.size();k++) {
-							Set currentSet = currentExercise.sets.get(k);
-							String reps = currentSet.repsField.getText();
-							String weight = currentSet.weightField.getText(); 
-							String insertQuery = "INSERT INTO exerciselogs VALUE(\""+exerciseName+"\", "+reps+", "+weight+", "+tableSize+");";
-//							System.out.println(insertQuery);
-							try {
-								Connection con = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
-//								System.out.println("hi2");
-								 // create statement
-								Statement statement = con.createStatement();
-//								System.out.println("hi2");
-								 // generate result set
-								statement.execute(insertQuery);
-//								System.out.println("hi2");
-							} catch (SQLException err) {
-//								err.printStackTrace();
-							}
+						//query to insert all information into the table
+						String insertQuery = "INSERT INTO exerciselogs VALUE(\""+exerciseName+"\", "+reps+", "+weight+", "+tableSize+");";
+						try {
+							Connection con = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
+							Statement statement = con.createStatement();
+							statement.execute(insertQuery);
+						} catch (SQLException err) {
+							err.printStackTrace();
 						}
 					}
-					
-					
-					System.out.println("Number of records in the table represented by the ResultSet object is: "+tableSize);
-					Home home = new Home();
-					home.frame.setVisible(true);
-					frame.setVisible(false);
 				}
+
+				//returns to the home page
+				Home home = new Home();
+				home.frame.setVisible(true);
+				frame.setVisible(false);
 				
 			}
 		});
 		doneButton.setBounds(Frame_Width-100, 10, 75, 35);
 		frame.getContentPane().add(doneButton);
 		
+		
+		//sets the bounds of the new exercise button and creates the button
 		int newExerciseButton_width = 150;
 		int newExerciseButton_height = 35;	
 		int newExerciseButton_distanceFromTop = 50;
@@ -304,6 +306,8 @@ public class Page3 {
 					invalidInputLabel.setVisible(false);
 					}catch (NumberFormatException ek) {
 //					ek.printStackTrace();
+					canNotScrollHigherLabel.setVisible(false);
+					canNotScrollLowerLabel.setVisible(false);
 					invalidInputLabel.setVisible(true);
 				}
 			}
@@ -321,6 +325,8 @@ public class Page3 {
 					invalidInputLabel.setVisible(false);
 				}catch (NumberFormatException ek) {
 //					ek.printStackTrace();
+					canNotScrollHigherLabel.setVisible(false);
+					canNotScrollLowerLabel.setVisible(false);
 					invalidInputLabel.setVisible(true);
 				}
 			}
