@@ -6,5 +6,6 @@ public class Flexx{
 		JDBC.createTables();
 		Login login = new Login();
 		login.frame.setVisible(true);
+	
 	}
 }
