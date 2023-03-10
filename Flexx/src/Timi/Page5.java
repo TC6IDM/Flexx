@@ -1,30 +1,19 @@
-package Package1;
+package Timi;
+
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
 import java.awt.Color;
 
-import javax.swing.SwingConstants;
-import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import javax.swing.JPanel;
-import javax.swing.JCheckBox;
 import javax.swing.JSeparator;
-import javax.swing.JTabbedPane;
-import javax.swing.JComboBox;
-import javax.swing.JLayeredPane;
-import javax.swing.JTextField;
-import javax.swing.JToggleButton;
-import javax.swing.JPopupMenu;
-import java.awt.Component;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
+import Ava.*;
 
 public class Page5 {
 
@@ -37,7 +26,7 @@ public class Page5 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Page1 window = new Page1();
+					Page5 window = new Page5();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

@@ -1,4 +1,6 @@
-package Package1;
+package otherUtil;
+
+import Ava.*;
 
 public class Flexx{
 	public static void main(String[] args) {

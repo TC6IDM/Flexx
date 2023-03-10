@@ -1,4 +1,4 @@
-package Package1;
+package otherUtil;
 import java.sql.*;
 public class JDBC{
 	public static String password = "MyN3wP4ssw0rd";// replace ... with your password

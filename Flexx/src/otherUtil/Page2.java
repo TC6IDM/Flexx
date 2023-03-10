@@ -1,4 +1,4 @@
-package Package1;
+package otherUtil;
 
 import java.awt.EventQueue;
 
@@ -6,19 +6,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JScrollPane;
-import javax.swing.JComboBox;
 
 public class Page2 {
 
@@ -31,7 +23,7 @@ public class Page2 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Page1 window = new Page1();
+					Page2 window = new Page2();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

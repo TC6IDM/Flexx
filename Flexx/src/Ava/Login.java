@@ -1,9 +1,11 @@
-package Package1;
+package Ava;
 import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
+import otherUtil.*;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

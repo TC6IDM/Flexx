@@ -1,10 +1,12 @@
-package Package1;
+package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.SQLException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import otherUtil.*;
 
 class JDBCTest {
 
@@ -30,7 +32,6 @@ class JDBCTest {
     public void testCheckUserInvalidLogin() throws Exception {
         String username = "testuser";
         String password = "wrongpassword";
-        boolean expected = false;
         boolean actual = JDBC.checkUser(username, password);
         assertFalse(actual);
     }
@@ -39,7 +40,6 @@ class JDBCTest {
     public void testCheckUserNonexistentUser() throws Exception {
         String username = "nonexistentuser";
         String password = "rdmpassword";
-        boolean expected = false;
         boolean actual = JDBC.checkUser(username, password);
         assertFalse(actual);
     }

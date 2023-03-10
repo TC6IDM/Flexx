@@ -1,13 +1,15 @@
-package Package1;
+package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+
+import otherUtil.*;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 class Page4Test {
 
 	@Test
@@ -26,7 +28,7 @@ class Page4Test {
 				
 				statement.execute(testQuery);
 		}catch(SQLException err) {
-			//err.printStackTrace();
+			err.printStackTrace();
 		}
 		
 		assertEquals("go on 3 walks this week", goal);

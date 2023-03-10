@@ -1,13 +1,9 @@
-package Package1;
+package Ava;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
-import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.SwingConstants;
@@ -20,9 +16,13 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.ActionEvent;
+
+import Andrew.*;
+import Elyse.*;
+import Gurkirat.*;
+import Timi.*;
+import otherUtil.*;
 
 public class Home {
 

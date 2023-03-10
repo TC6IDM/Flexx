@@ -1,4 +1,5 @@
-package Package1;
+package Timi;
+
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -6,14 +7,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
-import java.awt.BorderLayout;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JMenuBar;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class water {
+public class calburned {
  JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -41,7 +38,7 @@ public class water {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					water window = new water();
+					calburned window = new calburned();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +50,7 @@ public class water {
 	/**
 	 * Create the application.
 	 */
-	public water() {
+	public calburned() {
 		initialize();
 	}
 
@@ -67,8 +64,8 @@ public class water {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("WATER LOG");
-		lblNewLabel.setBounds(190, 6, 81, 16);
+		JLabel lblNewLabel = new JLabel("CALORIES BURNED");
+		lblNewLabel.setBounds(171, 6, 130, 16);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("BACK");
@@ -167,8 +164,8 @@ public class water {
 		frame.getContentPane().add(textField_16);
 		textField_16.setColumns(10);
 		
-		lblNewLabel_1 = new JLabel("total water (l): --");
-		lblNewLabel_1.setBounds(313, 237, 131, 16);
+		lblNewLabel_1 = new JLabel("total cal: --");
+		lblNewLabel_1.setBounds(324, 237, 131, 16);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 	}

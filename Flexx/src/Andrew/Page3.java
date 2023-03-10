@@ -1,12 +1,14 @@
-package Package1;
+package Andrew;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import Ava.*;
+import otherUtil.*;
 
 import java.awt.Font;
 import javax.swing.JButton;
@@ -18,9 +20,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-import javax.swing.JScrollBar;
-import java.awt.Canvas;
-import java.awt.Color;
 
 /* Andrew Tissi */
 
@@ -40,7 +39,7 @@ public class Page3 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Page1 window = new Page1();
+					Page3 window = new Page3();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

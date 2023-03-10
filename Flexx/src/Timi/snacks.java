@@ -1,4 +1,5 @@
-package Package1;
+package Timi;
+
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
