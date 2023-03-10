@@ -19,6 +19,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollBar;
+import java.awt.Canvas;
+import java.awt.Color;
 
 /* Andrew Tissi */
 
@@ -348,6 +350,7 @@ public class Page3 {
 		});
 		moveDownButton.setBounds(340, 334, 85, 21);
 		frame.getContentPane().add(moveDownButton);
+		
 		
 		
 	}
