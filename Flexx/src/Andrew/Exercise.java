@@ -42,7 +42,7 @@ public class Exercise{
 		nameLabel = new JLabel("Exercise Name:");
 		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		nameLabel.setForeground(new Color(255, 255, 255));
-		nameLabel.setBounds(nameField.getX()-nameLabelWidth, Y, nameLabelWidth, fieldHeight);
+		nameLabel.setBounds(Frame_Width/4 - nameLabelWidth/2, Y, nameLabelWidth, fieldHeight);
 		frame.getContentPane().add(nameLabel);
 		
 		int numberLabelWidth = 18;
@@ -155,6 +155,10 @@ public class Exercise{
 				}
 			}
 		});
+		addSetButton.setForeground(Color.ORANGE);
+		addSetButton.setOpaque(false);
+		addSetButton.setContentAreaFilled(false);
+		addSetButton.setBorderPainted(false);
 		addSetButton.setBounds(Frame_ActualWidth/2 - addSetButton_width/2, addSetButtonY, addSetButton_width, addSetButton_height);
 		frame.getContentPane().add(addSetButton);		
 	}

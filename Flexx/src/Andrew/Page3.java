@@ -267,6 +267,7 @@ public class Page3 {
 		int moveDown = 10;
 		int NewExerciseButtonY = 55;
 		JButton newExerciseButton = new JButton("New Exercise");
+		newExerciseButton.setForeground(Color.ORANGE);
 		newExerciseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//removes any error labels
@@ -292,35 +293,41 @@ public class Page3 {
 			}
 		});
 		newExerciseButton.setBounds(Frame_ActualWidth/2 - newExerciseButton_width/2, NewExerciseButtonY, newExerciseButton_width, newExerciseButton_height);
+		newExerciseButton.setOpaque(false);
+		newExerciseButton.setContentAreaFilled(false);
+		newExerciseButton.setBorderPainted(false);
 		frame.getContentPane().add(newExerciseButton);
+		
+//		ImageIcon myImage = new ImageIcon("images/myImage.jpg");
+//		JButton button = new JButton(myImage);
 		
 		//creates the text field for the amount the user wants to scroll down
 		scrollByField = new JTextField();
-		scrollByField.setBounds(372, 292, 53, 19);
+		scrollByField.setBounds(Frame_ActualWidth - 53 -10, 292, 53, 19);
 		scrollByField.setText("20");
 		frame.getContentPane().add(scrollByField);
 		scrollByField.setColumns(10);
 		
 		//creates a label to go above the scroll by field
 		JLabel scrollByLabel = new JLabel("Scroll By:");
-		scrollByLabel.setBounds(372, 279, 53, 13);
+		scrollByLabel.setBounds(Frame_ActualWidth - 53 -10, 279, 53, 13);
 		frame.getContentPane().add(scrollByLabel);
 		
 		//creates a label which will appear when the user inputs an invalid input for the scroll field
 		invalidInputLabel = new JLabel("Invalid Input");
-		invalidInputLabel.setBounds(372, 311, 53, 13);
+		invalidInputLabel.setBounds(Frame_ActualWidth - 53 -10, 311, 53, 13);
 		invalidInputLabel.setVisible(false);
 		frame.getContentPane().add(invalidInputLabel);
 		
 		//creates a label which will appear when the user can not scroll higher
 		canNotScrollHigherLabel = new JLabel("Can Not Scroll Higher");
-		canNotScrollHigherLabel.setBounds(372, 233, 63, 13);
+		canNotScrollHigherLabel.setBounds(Frame_ActualWidth- 63 -10, 233, 63, 13);
 		canNotScrollHigherLabel.setVisible(false);
 		frame.getContentPane().add(canNotScrollHigherLabel);
 		
 		//creates a label which will appear when the user can not scroll lower
 		canNotScrollLowerLabel = new JLabel("Can Not Scroll Lower");
-		canNotScrollLowerLabel.setBounds(372, 360, 63, 13);
+		canNotScrollLowerLabel.setBounds(Frame_ActualWidth - 63 -10, 360, 63, 13);
 		canNotScrollLowerLabel.setVisible(false);
 		frame.getContentPane().add(canNotScrollLowerLabel);
 		
@@ -344,7 +351,7 @@ public class Page3 {
 				}
 			}
 		});
-		moveUpButton.setBounds(372, 248, 53, 21);
+		moveUpButton.setBounds(Frame_ActualWidth - 53 -10, 248, 53, 21);
 		frame.getContentPane().add(moveUpButton);
 		
 		//creates the scroll down button
@@ -366,8 +373,9 @@ public class Page3 {
 				}
 			}
 		});
-		moveDownButton.setBounds(372, 334, 53, 21);
+		moveDownButton.setBounds(Frame_ActualWidth - 53 -10, 334, 53, 21);
 		frame.getContentPane().add(moveDownButton);
+		
 		
 		
 		
