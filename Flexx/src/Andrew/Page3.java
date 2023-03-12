@@ -103,7 +103,7 @@ public class Page3 {
 	}
 	//moves all elements of the work-outs up or down by x 
 	public boolean move(int move) {
-		int CUTOFF = 50; //height cutoff, the exercise button can not go above this point, and the first exercise can not be below this point
+		int CUTOFF = 55; //height cutoff, the exercise button can not go above this point, and the first exercise can not be below this point
 		boolean canMove = true;//keeps track if the exercises can move
 		if (exercises.size()==0) return false; //no exercises and therefore return false, nothing will move
 		if (exercises.get(0).newExerciseButton.getY()+move < CUTOFF) {move = -1*(exercises.get(0).newExerciseButton.getY() - CUTOFF); canMove = false;} //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
@@ -116,26 +116,30 @@ public class Page3 {
 			currentExercise.nameLabel.setLocation(currentExercise.nameLabel.getX(),currentExercise.nameLabel.getY()+move);
 			currentExercise.nameField.setLocation(currentExercise.nameField.getX(),currentExercise.nameField.getY()+move);
 			currentExercise.addSetButton.setLocation(currentExercise.addSetButton.getX(),currentExercise.addSetButton.getY()+move); 
+			currentExercise.exerciseNumberLabel.setLocation(currentExercise.exerciseNumberLabel.getX(),currentExercise.exerciseNumberLabel.getY()+move); 
+			currentExercise.setLabel.setLocation(currentExercise.setLabel.getX(),currentExercise.setLabel.getY()+move); 
+			currentExercise.repsLabel.setLocation(currentExercise.repsLabel.getX(),currentExercise.repsLabel.getY()+move); 
+			currentExercise.weightLabel.setLocation(currentExercise.weightLabel.getX(),currentExercise.weightLabel.getY()+move); 
 			
 			//for each element of exercise, it will turn invisible if it is beyond the cutoff and it will be visible if not beyond the cutoff
 			if (currentExercise.nameLabel.getY()<CUTOFF) currentExercise.nameLabel.setVisible(false); else currentExercise.nameLabel.setVisible(true); 
 			if (currentExercise.nameField.getY()<CUTOFF) currentExercise.nameField.setVisible(false); else currentExercise.nameField.setVisible(true);
 			if (currentExercise.addSetButton.getY()<CUTOFF) currentExercise.addSetButton.setVisible(false); else currentExercise.addSetButton.setVisible(true);
+			if (currentExercise.exerciseNumberLabel.getY()<CUTOFF) currentExercise.exerciseNumberLabel.setVisible(false); else currentExercise.exerciseNumberLabel.setVisible(true);
+			if (currentExercise.setLabel.getY()<CUTOFF) currentExercise.setLabel.setVisible(false); else currentExercise.setLabel.setVisible(true);
+			if (currentExercise.repsLabel.getY()<CUTOFF) currentExercise.repsLabel.setVisible(false); else currentExercise.repsLabel.setVisible(true);
+			if (currentExercise.weightLabel.getY()<CUTOFF) currentExercise.weightLabel.setVisible(false); else currentExercise.weightLabel.setVisible(true);
 			
 			for (int k=0;k<currentExercise.sets.size();k++) { //loops through all sets
 				Set currentSet = currentExercise.sets.get(k); //finds the current set
 				//moves the five elements of exercise
 				currentSet.setCount.setLocation(currentSet.setCount.getX(),currentSet.setCount.getY()+move); 
-				currentSet.repsLabel.setLocation(currentSet.repsLabel.getX(),currentSet.repsLabel.getY()+move); 
 				currentSet.repsField.setLocation(currentSet.repsField.getX(),currentSet.repsField.getY()+move);
-				currentSet.weightLabel.setLocation(currentSet.weightLabel.getX(),currentSet.weightLabel.getY()+move);
 				currentSet.weightField.setLocation(currentSet.weightField.getX(),currentSet.weightField.getY()+move);
 				
 				//for each element of the set, it will turn invisible if it is beyond the cutoff and it will be visible if not beyond the cutoff
 				if (currentSet.setCount.getY()<CUTOFF) currentSet.setCount.setVisible(false); else currentSet.setCount.setVisible(true);
-				if (currentSet.repsLabel.getY()<CUTOFF) currentSet.repsLabel.setVisible(false); else currentSet.repsLabel.setVisible(true);
 				if (currentSet.repsField.getY()<CUTOFF) currentSet.repsField.setVisible(false); else currentSet.repsField.setVisible(true);
-				if (currentSet.weightLabel.getY()<CUTOFF) currentSet.weightLabel.setVisible(false); else currentSet.weightLabel.setVisible(true);
 				if (currentSet.weightField.getY()<CUTOFF) currentSet.weightField.setVisible(false); else currentSet.weightField.setVisible(true);
 				
 				//updates the frame
@@ -271,7 +275,8 @@ public class Page3 {
 				int newY = NewExerciseButtonY;
 				if (exercises.size() != 0){ // not the first exercise button to be added
 					JButton oldAddSetButton = exercises.get(exercises.size()-1).addSetButton; //keeps track of the old set button
-					newY = oldAddSetButton.getY()+oldAddSetButton.getHeight()+moveDown; //finds the position where the new exercise will start
+					int distanceBetweenExercises =20;
+					newY = oldAddSetButton.getY()+oldAddSetButton.getHeight()+distanceBetweenExercises; //finds the position where the new exercise will start
 				}
 				Exercise thisExercise = new Exercise(frame,newY, canNotScrollHigherLabel, canNotScrollLowerLabel);//creates a new exercise to put at the given Y value
 				exercises.add(thisExercise);//adds the exercise to the exercise list
@@ -291,31 +296,31 @@ public class Page3 {
 		
 		//creates the text field for the amount the user wants to scroll down
 		scrollByField = new JTextField();
-		scrollByField.setBounds(340, 292, 85, 19);
+		scrollByField.setBounds(372, 292, 53, 19);
 		scrollByField.setText("20");
 		frame.getContentPane().add(scrollByField);
 		scrollByField.setColumns(10);
 		
 		//creates a label to go above the scroll by field
 		JLabel scrollByLabel = new JLabel("Scroll By:");
-		scrollByLabel.setBounds(340, 279, 85, 13);
+		scrollByLabel.setBounds(372, 279, 53, 13);
 		frame.getContentPane().add(scrollByLabel);
 		
 		//creates a label which will appear when the user inputs an invalid input for the scroll field
 		invalidInputLabel = new JLabel("Invalid Input");
-		invalidInputLabel.setBounds(340, 311, 85, 13);
+		invalidInputLabel.setBounds(372, 311, 53, 13);
 		invalidInputLabel.setVisible(false);
 		frame.getContentPane().add(invalidInputLabel);
 		
 		//creates a label which will appear when the user can not scroll higher
 		canNotScrollHigherLabel = new JLabel("Can Not Scroll Higher");
-		canNotScrollHigherLabel.setBounds(318, 233, 117, 13);
+		canNotScrollHigherLabel.setBounds(372, 233, 63, 13);
 		canNotScrollHigherLabel.setVisible(false);
 		frame.getContentPane().add(canNotScrollHigherLabel);
 		
 		//creates a label which will appear when the user can not scroll lower
 		canNotScrollLowerLabel = new JLabel("Can Not Scroll Lower");
-		canNotScrollLowerLabel.setBounds(318, 360, 117, 13);
+		canNotScrollLowerLabel.setBounds(372, 360, 63, 13);
 		canNotScrollLowerLabel.setVisible(false);
 		frame.getContentPane().add(canNotScrollLowerLabel);
 		
@@ -339,7 +344,7 @@ public class Page3 {
 				}
 			}
 		});
-		moveUpButton.setBounds(340, 248, 85, 21);
+		moveUpButton.setBounds(372, 248, 53, 21);
 		frame.getContentPane().add(moveUpButton);
 		
 		//creates the scroll down button
@@ -361,7 +366,7 @@ public class Page3 {
 				}
 			}
 		});
-		moveDownButton.setBounds(340, 334, 85, 21);
+		moveDownButton.setBounds(372, 334, 53, 21);
 		frame.getContentPane().add(moveDownButton);
 		
 		

@@ -19,16 +19,15 @@ public class Exercise{
 	public JButton newExerciseButton;
 	public int exerciseNumber;
 	public ArrayList<Exercise> exercises = new ArrayList<Exercise>();
+	public JLabel exerciseNumberLabel;
+	public JLabel setLabel;
+	public JLabel repsLabel;
+	public JLabel weightLabel;
 	
 	public Exercise(JFrame frame,int Y,JLabel H,JLabel L){
 		int Frame_Width = 450;
 		int Frame_ActualWidth = Frame_Width - 14;
 		int distanceBetweenExerciseAndReps = 25;
-		//creates the exercise name label
-		nameLabel = new JLabel("Exercise Name:");
-		nameLabel.setBounds(80, Y, 90, 20);
-		frame.getContentPane().add(nameLabel);
-		
 		int fieldHeight = 20;
 		int nameFieldLength =125;
 		
@@ -38,53 +37,58 @@ public class Exercise{
 		frame.getContentPane().add(nameField);
 		nameField.setColumns(10);
 		
+		//creates the exercise name label
 		int nameLabelWidth = 90;
-		JLabel nameLabel = new JLabel("Exercise Name:");
+		nameLabel = new JLabel("Exercise Name:");
 		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		nameLabel.setForeground(new Color(255, 255, 255));
 		nameLabel.setBounds(nameField.getX()-nameLabelWidth, Y, nameLabelWidth, fieldHeight);
 		frame.getContentPane().add(nameLabel);
 		
 		int numberLabelWidth = 18;
-		JLabel exerciseNumberLabel = new JLabel("1");
+		exerciseNumberLabel = new JLabel("1");
 		exerciseNumberLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		exerciseNumberLabel.setForeground(Color.WHITE);
 		exerciseNumberLabel.setBounds(nameLabel.getX()-numberLabelWidth, Y, numberLabelWidth, fieldHeight);
 		frame.getContentPane().add(exerciseNumberLabel);
 		
 		int setRepWeightLabelHeight = exerciseNumberLabel.getY() + exerciseNumberLabel.getHeight()+5;
-		int setRepWeightLabelWidth = 35;
+		int setRepWeightLabelWidth = 45;
 		
-		JLabel setCount = new JLabel("Set");
-		setCount.setHorizontalAlignment(SwingConstants.CENTER);
-		setCount.setForeground(new Color(255, 255, 255));
-		setCount.setBounds(Frame_ActualWidth/4 - setRepWeightLabelWidth/2, setRepWeightLabelHeight, setRepWeightLabelWidth, fieldHeight);
-		frame.getContentPane().add(setCount);
+		setLabel = new JLabel("Set");
+		setLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		setLabel.setForeground(new Color(255, 255, 255));
+		setLabel.setBounds(Frame_ActualWidth/4 - setRepWeightLabelWidth/2, setRepWeightLabelHeight, setRepWeightLabelWidth, fieldHeight);
+		frame.getContentPane().add(setLabel);
 		
-		JLabel repsLabel = new JLabel("Reps");
+		repsLabel = new JLabel("Reps");
 		repsLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		repsLabel.setForeground(new Color(255, 255, 255));
 		repsLabel.setBounds(Frame_ActualWidth/2 - setRepWeightLabelWidth/2, setRepWeightLabelHeight, setRepWeightLabelWidth, fieldHeight);
 		frame.getContentPane().add(repsLabel);
 		
-		JLabel weightLabel = new JLabel("Weight");
+		weightLabel = new JLabel("Weight");
 		weightLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		weightLabel.setForeground(new Color(255, 255, 255));
 		weightLabel.setBounds(Frame_ActualWidth*3/4 - setRepWeightLabelWidth/2, setRepWeightLabelHeight, setRepWeightLabelWidth, fieldHeight);
 		frame.getContentPane().add(weightLabel);
+		
 		//reprints the frame
 		frame.validate();
 		frame.repaint();
 		
 		//creates a new set with a certain distance below the exercise
-		Set thisSet = new Set (frame,Y+distanceBetweenExerciseAndReps);	
+		Set thisSet = new Set (frame,setRepWeightLabelHeight+distanceBetweenExerciseAndReps);	
 		thisSet.setSetNumber(sets);
 		
 		sets.add(thisSet);//adds the set to the 
 		
-		JTextField weightField = thisSet.weightField;//keeps track of the weight field as it is the lowest in the set
+		JTextField repsField = thisSet.repsField;//keeps track of the weight field as it is the lowest in the set
 		
 		//adds the addset button
+		int addSetButton_width = 80;
+		int addSetButton_height = 13;
+		int addSetButtonY = repsField.getY()+repsField.getHeight()+5;
 		addSetButton = new JButton("Add set");
 		addSetButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -93,9 +97,9 @@ public class Exercise{
 				L.setVisible(false);
 				Set newSet = new Set (frame,addSetButton.getY());//creates a new set with the last set button's Y value
 				newSet.setSetNumber(sets); //sets the number of sets
-				JTextField newWeightField = newSet.weightField;//gets the new weight field
+				JTextField newRepsField = newSet.repsField;//gets the new weight field
 				sets.add(newSet);//adds the set to the list
-				addSetButton.setLocation(addSetButton.getX(), newWeightField.getY()+newWeightField.getHeight());//sets the location of the add set button
+				addSetButton.setLocation(addSetButton.getX(), newRepsField.getY()+newRepsField.getHeight()+5);//sets the location of the add set button
 				
 				if (exerciseNumber == exercises.size()) newExerciseButton.setLocation(newExerciseButton.getX(), addSetButton.getY()+addSetButton.getHeight()+10); // if this is the last exercise, only the exercise button needs to be moved down
 				else{
@@ -109,13 +113,23 @@ public class Exercise{
 						JLabel tempNameLabel = tempExercise.nameLabel;
 						JTextField tempNameField = tempExercise.nameField;
 						JButton tempAddSetButton = tempExercise.addSetButton;		
-						
-						int tempY = prevExercise.addSetButton.getY()+prevExercise.addSetButton.getHeight()+10; //the new starting Y level based on the prevoius exercise
+						JLabel tempExerciseNumberLabel = tempExercise.exerciseNumberLabel;
+						JLabel tempSetLabel = tempExercise.setLabel;
+						JLabel tempRepsLabel = tempExercise.repsLabel;
+						JLabel tempWeightLabel = tempExercise.weightLabel;
+						int distanceBetweenExercises =20;
+						int tempY = prevExercise.addSetButton.getY()+prevExercise.addSetButton.getHeight()+distanceBetweenExercises; //the new starting Y level based on the prevoius exercise
 						
 						//move the name field and name label down
 						tempNameLabel.setLocation(tempNameLabel.getX(),	tempY);
 						tempNameField.setLocation(tempNameField.getX(),	tempY);
-						tempY+=distanceBetweenExerciseAndReps; //move the Y down
+						tempExerciseNumberLabel.setLocation(tempExerciseNumberLabel.getX(),	tempY);
+						int newSetRepWeightLabelHeight = tempExerciseNumberLabel.getY() + tempExerciseNumberLabel.getHeight()+5;
+						tempSetLabel.setLocation(tempSetLabel.getX(),newSetRepWeightLabelHeight);
+						tempRepsLabel.setLocation(tempRepsLabel.getX(),newSetRepWeightLabelHeight);
+						tempWeightLabel.setLocation(tempWeightLabel.getX(),newSetRepWeightLabelHeight);
+						
+						tempY = tempRepsLabel.getY()+tempRepsLabel.getHeight()+5; //move the Y down
 						
 						//loop through all the sets
 						for (int k=0;k<tempExercise.sets.size();k++) {
@@ -123,18 +137,14 @@ public class Exercise{
 							
 							//all the elements of the set
 							JLabel tempSetCount = tempSet.setCount;
-							JLabel tempRepsLabel = tempSet.repsLabel;
 							JTextField tempRepsField = tempSet.repsField;
-							JLabel tempWeightLabel = tempSet.weightLabel;
 							JTextField tempWeightField = tempSet.weightField;
 							
 							//move all the elements down to where they need to be
 							tempSetCount.setLocation(tempSetCount.getX(), tempY);
-							tempRepsLabel.setLocation(tempRepsLabel.getX(), tempY);
 							tempRepsField.setLocation(tempRepsField.getX(), tempY);
-							tempWeightLabel.setLocation(tempWeightLabel.getX(), tempY+20);
-							tempWeightField.setLocation(tempWeightField.getX(), tempY+20);
-							tempAddSetButton.setLocation(tempAddSetButton.getX(),tempWeightField.getY()+tempWeightField.getHeight());
+							tempWeightField.setLocation(tempWeightField.getX(), tempY);
+							tempAddSetButton.setLocation(tempAddSetButton.getX(),tempRepsField.getY()+tempRepsField.getHeight()+5);
 							tempY = tempAddSetButton.getY();
 							
 						}
@@ -145,9 +155,7 @@ public class Exercise{
 				}
 			}
 		});
-		int centerWeight = weightField.getX()+weightField.getWidth()/2;
-		int addSetButton_width = 80;
-		addSetButton.setBounds(centerWeight-addSetButton_width/2, weightField.getY()+weightField.getHeight(), addSetButton_width, 13);
+		addSetButton.setBounds(Frame_ActualWidth/2 - addSetButton_width/2, addSetButtonY, addSetButton_width, addSetButton_height);
 		frame.getContentPane().add(addSetButton);		
 	}
 	
@@ -160,6 +168,7 @@ public class Exercise{
 	public void setExerciseNumber(ArrayList<Exercise> e) {
 		exercises = e;
 		exerciseNumber = e.size();
+		exerciseNumberLabel.setText(Integer.toString(exerciseNumber));
 		//add code to display number to the left of the reps counter
 	}
 	
