@@ -5,8 +5,10 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 //exercise class
 public class Exercise{
@@ -19,18 +21,57 @@ public class Exercise{
 	public ArrayList<Exercise> exercises = new ArrayList<Exercise>();
 	
 	public Exercise(JFrame frame,int Y,JLabel H,JLabel L){
+		int Frame_Width = 450;
+		int Frame_ActualWidth = Frame_Width - 14;
 		int distanceBetweenExerciseAndReps = 25;
 		//creates the exercise name label
 		nameLabel = new JLabel("Exercise Name:");
 		nameLabel.setBounds(80, Y, 90, 20);
 		frame.getContentPane().add(nameLabel);
 		
-		//creates the exercise name field
+		int fieldHeight = 20;
+		int nameFieldLength =125;
+		
+		//creates the exercise name field	
 		nameField = new JTextField();
-		nameField.setBounds(175, Y, 125, 20);
+		nameField.setBounds(Frame_ActualWidth/2 - nameFieldLength/2, Y, nameFieldLength, fieldHeight);
 		frame.getContentPane().add(nameField);
 		nameField.setColumns(10);
 		
+		int nameLabelWidth = 90;
+		JLabel nameLabel = new JLabel("Exercise Name:");
+		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		nameLabel.setForeground(new Color(255, 255, 255));
+		nameLabel.setBounds(nameField.getX()-nameLabelWidth, Y, nameLabelWidth, fieldHeight);
+		frame.getContentPane().add(nameLabel);
+		
+		int numberLabelWidth = 18;
+		JLabel exerciseNumberLabel = new JLabel("1");
+		exerciseNumberLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		exerciseNumberLabel.setForeground(Color.WHITE);
+		exerciseNumberLabel.setBounds(nameLabel.getX()-numberLabelWidth, Y, numberLabelWidth, fieldHeight);
+		frame.getContentPane().add(exerciseNumberLabel);
+		
+		int setRepWeightLabelHeight = exerciseNumberLabel.getY() + exerciseNumberLabel.getHeight()+5;
+		int setRepWeightLabelWidth = 35;
+		
+		JLabel setCount = new JLabel("Set");
+		setCount.setHorizontalAlignment(SwingConstants.CENTER);
+		setCount.setForeground(new Color(255, 255, 255));
+		setCount.setBounds(Frame_ActualWidth/4 - setRepWeightLabelWidth/2, setRepWeightLabelHeight, setRepWeightLabelWidth, fieldHeight);
+		frame.getContentPane().add(setCount);
+		
+		JLabel repsLabel = new JLabel("Reps");
+		repsLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		repsLabel.setForeground(new Color(255, 255, 255));
+		repsLabel.setBounds(Frame_ActualWidth/2 - setRepWeightLabelWidth/2, setRepWeightLabelHeight, setRepWeightLabelWidth, fieldHeight);
+		frame.getContentPane().add(repsLabel);
+		
+		JLabel weightLabel = new JLabel("Weight");
+		weightLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		weightLabel.setForeground(new Color(255, 255, 255));
+		weightLabel.setBounds(Frame_ActualWidth*3/4 - setRepWeightLabelWidth/2, setRepWeightLabelHeight, setRepWeightLabelWidth, fieldHeight);
+		frame.getContentPane().add(weightLabel);
 		//reprints the frame
 		frame.validate();
 		frame.repaint();

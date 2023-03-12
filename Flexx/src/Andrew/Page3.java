@@ -1,11 +1,13 @@
 package Andrew;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import Ava.*;
 import otherUtil.*;
@@ -155,22 +157,32 @@ public class Page3 {
 		int Frame_Width = 450;
 		int Frame_Top = 100;
 		int Frame_Height = 600;
-		int Frame_Center = Frame_Width/2;
+		int Frame_ActualWidth = Frame_Width - 14;
 		
 		//creates the frame
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(77, 77, 77));
 		frame.setBounds(Frame_Left, Frame_Top, Frame_Width, Frame_Height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.getContentPane().setLayout(null);
 		
 		//creates the Track work-out Title
-		int pageLabel_width = 200;
-		JLabel pageLabel = new JLabel("Track Workout");
-		pageLabel.setBounds(Frame_Center-pageLabel_width/2, 10, pageLabel_width, 35);
-		pageLabel.setFont(new Font("Berlin Sans FB", Font.PLAIN, 31));
-		frame.getContentPane().add(pageLabel);
+		int topLabelHeight = 50;
+		JLabel lblTrackWorkout = new JLabel("Track Workout");
+		lblTrackWorkout.setVerticalAlignment(SwingConstants.CENTER);
+		lblTrackWorkout.setOpaque(true);
+		lblTrackWorkout.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTrackWorkout.setForeground(Color.WHITE);
+		lblTrackWorkout.setFont(new Font("SansSerif", Font.BOLD, 30));
+		lblTrackWorkout.setBackground(new Color(43, 87, 154));
+		lblTrackWorkout.setBounds(0, 0, Frame_ActualWidth, topLabelHeight);
+		frame.getContentPane().add(lblTrackWorkout);
 		
 		//creates the back button
+		int buttonWidth = 70;
+		int buttonDistanceFromSides = 10;
+		int buttonHeight = 30;
 		JButton backButton = new JButton("Back");
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -184,7 +196,7 @@ public class Page3 {
 		        }
 			}
 		});
-		backButton.setBounds(10, 10, 75, 35);
+		backButton.setBounds(buttonDistanceFromSides, buttonDistanceFromSides, buttonWidth, buttonHeight);
 		frame.getContentPane().add(backButton);
 		
 		//creates the done button
@@ -241,22 +253,22 @@ public class Page3 {
 				
 			}
 		});
-		doneButton.setBounds(Frame_Width-100, 10, 75, 35);
+		doneButton.setBounds(Frame_ActualWidth-buttonWidth-buttonDistanceFromSides, buttonDistanceFromSides, buttonWidth, buttonHeight);
 		frame.getContentPane().add(doneButton);
 		
 		
 		//sets the bounds of the new exercise button and creates the button
 		int newExerciseButton_width = 150;
 		int newExerciseButton_height = 35;	
-		int newExerciseButton_distanceFromTop = 50;
 		int moveDown = 10;
+		int NewExerciseButtonY = 55;
 		JButton newExerciseButton = new JButton("New Exercise");
 		newExerciseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//removes any error labels
 				canNotScrollHigherLabel.setVisible(false);
 				canNotScrollLowerLabel.setVisible(false);
-				int newY = 50;
+				int newY = NewExerciseButtonY;
 				if (exercises.size() != 0){ // not the first exercise button to be added
 					JButton oldAddSetButton = exercises.get(exercises.size()-1).addSetButton; //keeps track of the old set button
 					newY = oldAddSetButton.getY()+oldAddSetButton.getHeight()+moveDown; //finds the position where the new exercise will start
@@ -274,7 +286,7 @@ public class Page3 {
 				frame.repaint();
 			}
 		});
-		newExerciseButton.setBounds(Frame_Center-newExerciseButton_width/2, newExerciseButton_distanceFromTop, newExerciseButton_width, newExerciseButton_height);
+		newExerciseButton.setBounds(Frame_ActualWidth/2 - newExerciseButton_width/2, NewExerciseButtonY, newExerciseButton_width, newExerciseButton_height);
 		frame.getContentPane().add(newExerciseButton);
 		
 		//creates the text field for the amount the user wants to scroll down
