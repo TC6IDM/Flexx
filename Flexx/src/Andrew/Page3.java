@@ -318,6 +318,8 @@ public class Page3 {
 		
 		//creates a label to go above the scroll by field
 		JLabel scrollByLabel = new JLabel("Scroll By:");
+		scrollByLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		scrollByLabel.setForeground(Color.ORANGE);
 		scrollByLabel.setBounds(scrollByField.getX(), scrollByField.getY()-scrollLabelHeight, scrollWidth, scrollLabelHeight);
 		frame.getContentPane().add(scrollByLabel);
 		
@@ -350,12 +352,16 @@ public class Page3 {
 		
 		//creates a label which will appear when the user can not scroll higher
 		canNotScrollHigherLabel = new JLabel("Can Not Scroll Higher");
+		canNotScrollHigherLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		canNotScrollHigherLabel.setForeground(Color.RED);
 		canNotScrollHigherLabel.setBounds(scrollByField.getX(), moveUpButton.getY()-scrollLabelHeight, scrollWidth, scrollLabelHeight);
 		canNotScrollHigherLabel.setVisible(false);
 		frame.getContentPane().add(canNotScrollHigherLabel);
 				
 		//creates a label which will appear when the user inputs an invalid input for the scroll field
 		invalidInputLabel = new JLabel("Invalid Input");
+		invalidInputLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		invalidInputLabel.setForeground(Color.RED);
 		invalidInputLabel.setBounds(scrollByField.getX(), scrollByField.getY()+scrollFieldHeight, scrollWidth, scrollLabelHeight);
 		invalidInputLabel.setVisible(false);
 		frame.getContentPane().add(invalidInputLabel);
@@ -388,6 +394,8 @@ public class Page3 {
 				
 		//creates a label which will appear when the user can not scroll lower
 		canNotScrollLowerLabel = new JLabel("Can Not Scroll Lower");
+		canNotScrollLowerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		canNotScrollLowerLabel.setForeground(Color.RED);
 		canNotScrollLowerLabel.setBounds(scrollByField.getX(), moveDownButton.getY()+scrollButtonHeight, scrollWidth, scrollLabelHeight);
 		canNotScrollLowerLabel.setVisible(false);
 		frame.getContentPane().add(canNotScrollLowerLabel);
