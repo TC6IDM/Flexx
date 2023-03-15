@@ -24,13 +24,12 @@ public class Exercise{
 	public JLabel repsLabel;
 	public JLabel weightLabel;
 	
-	public Exercise(JFrame frame,int Y,JLabel H,JLabel L){
-		int Frame_Width = 450;
-		int Frame_ActualWidth = Frame_Width - 14;
+	public Exercise(Page3 page,int Y){
+		int Frame_ActualWidth = page.Frame_ActualWidth;
 		int distanceBetweenExerciseAndReps = 25;
 		int fieldHeight = 20;
 		int nameFieldLength =125;
-		
+		JFrame frame = page.frame;
 		//creates the exercise name field	
 		nameField = new JTextField();
 		nameField.setBounds(Frame_ActualWidth/2 - nameFieldLength/2, Y, nameFieldLength, fieldHeight);
@@ -42,7 +41,7 @@ public class Exercise{
 		nameLabel = new JLabel("Exercise Name:");
 		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		nameLabel.setForeground(new Color(255, 255, 255));
-		nameLabel.setBounds(Frame_Width/4 - nameLabelWidth/2, Y, nameLabelWidth, fieldHeight);
+		nameLabel.setBounds(Frame_ActualWidth/4 - nameLabelWidth/2, Y, nameLabelWidth, fieldHeight);
 		frame.getContentPane().add(nameLabel);
 		
 		int numberLabelWidth = 18;
@@ -78,7 +77,7 @@ public class Exercise{
 		frame.repaint();
 		
 		//creates a new set with a certain distance below the exercise
-		Set thisSet = new Set (frame,setRepWeightLabelHeight+distanceBetweenExerciseAndReps);	
+		Set thisSet = new Set (page,setRepWeightLabelHeight+distanceBetweenExerciseAndReps);	
 		thisSet.setSetNumber(sets);
 		
 		sets.add(thisSet);//adds the set to the 
@@ -93,9 +92,9 @@ public class Exercise{
 		addSetButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//removes the error labels when a new set is added
-				H.setVisible(false);
-				L.setVisible(false);
-				Set newSet = new Set (frame,addSetButton.getY());//creates a new set with the last set button's Y value
+				page.upBackground.setVisible(false);
+				page.downBackground.setVisible(false);
+				Set newSet = new Set (page,addSetButton.getY());//creates a new set with the last set button's Y value
 				newSet.setSetNumber(sets); //sets the number of sets
 				JTextField newRepsField = newSet.repsField;//gets the new weight field
 				sets.add(newSet);//adds the set to the list

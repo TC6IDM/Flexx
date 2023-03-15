@@ -30,11 +30,23 @@ import java.awt.Canvas;
 public class Page3 {
 	public JFrame frame;
 	public ArrayList<Exercise> exercises = new ArrayList<Exercise>();
-	private JTextField scrollByField;
-	private JLabel invalidInputLabel;
-	private JLabel canNotScrollHigherLabel;
-	private JLabel canNotScrollLowerLabel;
-
+	public JTextField scrollByField;
+	public JLabel invalidInputLabel;
+	public JButton backButton;
+	public JButton doneButton;
+	public JLabel lblTrackWorkout;
+	public JButton newExerciseButton;
+	public JLabel scrollByLabel;
+	public JButton moveUpButton;
+	public Canvas upBackground;
+	public JButton moveDownButton;
+	public Canvas downBackground;
+	public int Frame_Left = 100;
+	public int Frame_Width = 450;
+	public int Frame_Top = 100;
+	public int Frame_Height = 600;
+	public int Frame_ActualWidth = Frame_Width - 14;
+	public int Frame_ActualHeight = Frame_Height-36;
 
 	/** 
 	 * Launch the application.
@@ -158,13 +170,7 @@ public class Page3 {
 	 * @wbp.parser.entryPoint
 	 */
 	private void initialize() {
-		//sets the bounds of the frame
-		int Frame_Left = 100;
-		int Frame_Width = 450;
-		int Frame_Top = 100;
-		int Frame_Height = 600;
-		int Frame_ActualWidth = Frame_Width - 14;
-		int Frame_ActualHeight = Frame_Height-36;
+		
 		//creates the frame
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(77, 77, 77));
@@ -179,7 +185,7 @@ public class Page3 {
 		int buttonWidth = 70;
 		int buttonDistanceFromSides = 10;
 		int buttonHeight = 30;
-		JButton backButton = new JButton("Back");
+		backButton = new JButton("Back");
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		        //creates a pop up confirmation for going back to the home page
@@ -196,7 +202,7 @@ public class Page3 {
 		frame.getContentPane().add(backButton);
 		
 		//creates the done button
-		JButton doneButton = new JButton("Done");
+		doneButton = new JButton("Done");
 		doneButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -254,7 +260,7 @@ public class Page3 {
 		
 		//creates the Track work-out Title
 		int topLabelHeight = 50;
-		JLabel lblTrackWorkout = new JLabel("Track Workout");
+		lblTrackWorkout = new JLabel("Track Workout");
 		lblTrackWorkout.setVerticalAlignment(SwingConstants.CENTER);
 		lblTrackWorkout.setOpaque(true);
 		lblTrackWorkout.setHorizontalAlignment(SwingConstants.CENTER);
@@ -269,20 +275,21 @@ public class Page3 {
 		int newExerciseButton_height = 35;	
 		int moveDown = 10;
 		int NewExerciseButtonY = 55;
-		JButton newExerciseButton = new JButton("New Exercise");
+
+		newExerciseButton = new JButton("New Exercise");
 		newExerciseButton.setForeground(Color.ORANGE);
 		newExerciseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//removes any error labels
-				canNotScrollHigherLabel.setVisible(false);
-				canNotScrollLowerLabel.setVisible(false);
+				upBackground.setVisible(false);
+				downBackground.setVisible(false);
 				int newY = NewExerciseButtonY;
 				if (exercises.size() != 0){ // not the first exercise button to be added
 					JButton oldAddSetButton = exercises.get(exercises.size()-1).addSetButton; //keeps track of the old set button
 					int distanceBetweenExercises =20;
 					newY = oldAddSetButton.getY()+oldAddSetButton.getHeight()+distanceBetweenExercises; //finds the position where the new exercise will start
 				}
-				Exercise thisExercise = new Exercise(frame,newY, canNotScrollHigherLabel, canNotScrollLowerLabel);//creates a new exercise to put at the given Y value
+				Exercise thisExercise = new Exercise(Page3.this,newY);//creates a new exercise to put at the given Y value
 				exercises.add(thisExercise);//adds the exercise to the exercise list
 				JButton addSetButton = thisExercise.addSetButton; //keeps track of the new add set button
 				
@@ -318,30 +325,36 @@ public class Page3 {
 		scrollByField.setColumns(10);
 		
 		//creates a label to go above the scroll by field
-		JLabel scrollByLabel = new JLabel("Scroll By:");
+		scrollByLabel = new JLabel("Scroll By:");
 		scrollByLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		scrollByLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		scrollByLabel.setForeground(Color.ORANGE);
 		scrollByLabel.setBounds(scrollByField.getX(), scrollByField.getY()-scrollLabelHeight, scrollWidth, scrollLabelHeight);
 		frame.getContentPane().add(scrollByLabel);
 		
+		upBackground = new Canvas();
+		upBackground.setBackground(new Color(255, 0, 0));
+		upBackground.setBounds(scrollByField.getX(), scrollByLabel.getY()-scrollButtonHeight, scrollWidth, scrollButtonHeight);
+		upBackground.setVisible(false);
+		frame.getContentPane().add(upBackground);
+		
 		//creates the scroll up button
-		JButton moveUpButton = new JButton("");
+		moveUpButton = new JButton("");
 		moveUpButton.setIcon(new ImageIcon(Page3.class.getResource("/Andrew/uparrow.png")));
 		moveUpButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int moveBy = Integer.parseInt(scrollByField.getText()); //attempts to turns the string in the field to an integer
-					if (!move(-moveBy)) canNotScrollHigherLabel.setVisible(true); else canNotScrollHigherLabel.setVisible(false); //if we can not move up then we display that we can not move up, however if we can move up, we take away this error
+					if (!move(-moveBy)) upBackground.setVisible(true); else upBackground.setVisible(false); //if we can not move up then we display that we can not move up, however if we can move up, we take away this error
 					
 					//sets the other labels invisible
-					canNotScrollLowerLabel.setVisible(false);
+					downBackground.setVisible(false);
 					invalidInputLabel.setVisible(false);
 				}
 				catch (NumberFormatException ek) {
 					//not a valid input, so we display that it is not a valid input
-					canNotScrollHigherLabel.setVisible(false);
-					canNotScrollLowerLabel.setVisible(false);
+					upBackground.setVisible(false);
+					downBackground.setVisible(false);
 					invalidInputLabel.setVisible(true);
 				}
 			}
@@ -351,20 +364,6 @@ public class Page3 {
 		moveUpButton.setBorderPainted(false);
 		moveUpButton.setBounds(scrollByField.getX(), scrollByLabel.getY()-scrollButtonHeight, scrollWidth, scrollButtonHeight);
 		frame.getContentPane().add(moveUpButton);
-		
-		Canvas upBackground = new Canvas();
-		upBackground.setForeground(new Color(255, 0, 0));
-		upBackground.setBounds(moveUpButton.getX(), moveUpButton.getY(), moveUpButton.getWidth(), moveUpButton.getHeight());
-		upBackground.setVisible(false);
-		frame.getContentPane().add(upBackground);
-		
-		//creates a label which will appear when the user can not scroll higher
-		canNotScrollHigherLabel = new JLabel("Can Not Scroll Higher");
-		canNotScrollHigherLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		canNotScrollHigherLabel.setForeground(Color.RED);
-		canNotScrollHigherLabel.setBounds(scrollByField.getX(), moveUpButton.getY()-scrollLabelHeight, scrollWidth, scrollLabelHeight);
-		canNotScrollHigherLabel.setVisible(false);
-		frame.getContentPane().add(canNotScrollHigherLabel);
 				
 		//creates a label which will appear when the user inputs an invalid input for the scroll field
 		invalidInputLabel = new JLabel("Invalid Input");
@@ -375,23 +374,28 @@ public class Page3 {
 		invalidInputLabel.setVisible(false);
 		frame.getContentPane().add(invalidInputLabel);
 
+		downBackground = new Canvas();
+		downBackground.setBackground(new Color(255, 0, 0));
+		downBackground.setBounds(scrollByField.getX(), invalidInputLabel.getY()+scrollLabelHeight, scrollWidth, scrollButtonHeight);
+		downBackground.setVisible(false);
+		frame.getContentPane().add(downBackground);
 		
 		//creates the scroll down button
-		JButton moveDownButton = new JButton("");
+		moveDownButton = new JButton("");
 		moveDownButton.setIcon(new ImageIcon(Page3.class.getResource("/Andrew/downarrow.png")));
 		moveDownButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int moveBy = Integer.parseInt(scrollByField.getText());//attempts to turns the string in the field to an integer
-					if (!move(moveBy)) canNotScrollLowerLabel.setVisible(true); else canNotScrollLowerLabel.setVisible(false);//if we can not move down then we display that we can not move down, however if we can move down, we take away this error
+					if (!move(moveBy)) downBackground.setVisible(true); else downBackground.setVisible(false);//if we can not move down then we display that we can not move down, however if we can move down, we take away this error
 					
 					//sets the other labels invisible
-					canNotScrollHigherLabel.setVisible(false);
+					upBackground.setVisible(false);
 					invalidInputLabel.setVisible(false);
 				}catch (NumberFormatException ek) {
 					//not a valid input, so we display that it is not a valid input
-					canNotScrollHigherLabel.setVisible(false);
-					canNotScrollLowerLabel.setVisible(false);
+					upBackground.setVisible(false);
+					downBackground.setVisible(false);
 					invalidInputLabel.setVisible(true);
 				}
 			}
@@ -401,20 +405,6 @@ public class Page3 {
 		moveDownButton.setBorderPainted(false);
 		moveDownButton.setBounds(scrollByField.getX(), invalidInputLabel.getY()+scrollLabelHeight, scrollWidth, scrollButtonHeight);
 		frame.getContentPane().add(moveDownButton);
-		
-		Canvas downBackground = new Canvas();
-		downBackground.setForeground(new Color(255, 0, 0));
-		downBackground.setBounds(scrollByField.getX(), invalidInputLabel.getY()+scrollLabelHeight, scrollWidth, scrollButtonHeight);
-		downBackground.setVisible(false);
-		frame.getContentPane().add(downBackground);
-		
-		//creates a label which will appear when the user can not scroll lower
-		canNotScrollLowerLabel = new JLabel("Can Not Scroll Lower");
-		canNotScrollLowerLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		canNotScrollLowerLabel.setForeground(Color.RED);
-		canNotScrollLowerLabel.setBounds(scrollByField.getX(), moveDownButton.getY()+scrollButtonHeight, scrollWidth, scrollLabelHeight);
-		canNotScrollLowerLabel.setVisible(false);
-		frame.getContentPane().add(canNotScrollLowerLabel);
 		
 		
 		

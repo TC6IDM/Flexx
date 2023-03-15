@@ -16,10 +16,9 @@ public class Set{
 	public JFrame frame;
 	
 	//creates a set of an exercise
-	public Set(JFrame f,int Y) {
-		frame = f;
-		int Frame_Width = 450;
-		int Frame_ActualWidth = Frame_Width - 14;
+	public Set(Page3 page,int Y) {
+		frame = page.frame;
+		int Frame_ActualWidth = page.Frame_ActualWidth;
 		int fieldHeight = 20;
 		int numberLabelWidth = 18;
 		setCount = new JLabel("1");
