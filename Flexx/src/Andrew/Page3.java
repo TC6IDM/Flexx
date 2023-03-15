@@ -23,6 +23,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import java.awt.Canvas;
 
 /* Andrew Tissi */
 
@@ -318,6 +319,7 @@ public class Page3 {
 		
 		//creates a label to go above the scroll by field
 		JLabel scrollByLabel = new JLabel("Scroll By:");
+		scrollByLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		scrollByLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		scrollByLabel.setForeground(Color.ORANGE);
 		scrollByLabel.setBounds(scrollByField.getX(), scrollByField.getY()-scrollLabelHeight, scrollWidth, scrollLabelHeight);
@@ -350,6 +352,12 @@ public class Page3 {
 		moveUpButton.setBounds(scrollByField.getX(), scrollByLabel.getY()-scrollButtonHeight, scrollWidth, scrollButtonHeight);
 		frame.getContentPane().add(moveUpButton);
 		
+		Canvas upBackground = new Canvas();
+		upBackground.setForeground(new Color(255, 0, 0));
+		upBackground.setBounds(moveUpButton.getX(), moveUpButton.getY(), moveUpButton.getWidth(), moveUpButton.getHeight());
+		upBackground.setVisible(false);
+		frame.getContentPane().add(upBackground);
+		
 		//creates a label which will appear when the user can not scroll higher
 		canNotScrollHigherLabel = new JLabel("Can Not Scroll Higher");
 		canNotScrollHigherLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -360,12 +368,14 @@ public class Page3 {
 				
 		//creates a label which will appear when the user inputs an invalid input for the scroll field
 		invalidInputLabel = new JLabel("Invalid Input");
+		invalidInputLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		invalidInputLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		invalidInputLabel.setForeground(Color.RED);
 		invalidInputLabel.setBounds(scrollByField.getX(), scrollByField.getY()+scrollFieldHeight, scrollWidth, scrollLabelHeight);
 		invalidInputLabel.setVisible(false);
 		frame.getContentPane().add(invalidInputLabel);
-				
+
+		
 		//creates the scroll down button
 		JButton moveDownButton = new JButton("");
 		moveDownButton.setIcon(new ImageIcon(Page3.class.getResource("/Andrew/downarrow.png")));
@@ -391,7 +401,13 @@ public class Page3 {
 		moveDownButton.setBorderPainted(false);
 		moveDownButton.setBounds(scrollByField.getX(), invalidInputLabel.getY()+scrollLabelHeight, scrollWidth, scrollButtonHeight);
 		frame.getContentPane().add(moveDownButton);
-				
+		
+		Canvas downBackground = new Canvas();
+		downBackground.setForeground(new Color(255, 0, 0));
+		downBackground.setBounds(scrollByField.getX(), invalidInputLabel.getY()+scrollLabelHeight, scrollWidth, scrollButtonHeight);
+		downBackground.setVisible(false);
+		frame.getContentPane().add(downBackground);
+		
 		//creates a label which will appear when the user can not scroll lower
 		canNotScrollLowerLabel = new JLabel("Can Not Scroll Lower");
 		canNotScrollLowerLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -399,6 +415,10 @@ public class Page3 {
 		canNotScrollLowerLabel.setBounds(scrollByField.getX(), moveDownButton.getY()+scrollButtonHeight, scrollWidth, scrollLabelHeight);
 		canNotScrollLowerLabel.setVisible(false);
 		frame.getContentPane().add(canNotScrollLowerLabel);
+		
+		
+		
+		
 		
 		
 		
