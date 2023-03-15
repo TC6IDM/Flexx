@@ -59,6 +59,7 @@ public class Login implements ActionListener{
 		
 		// Creating the main frame
 		frame = new JFrame();
+		frame.getContentPane().setEnabled(false);
 		frame.getContentPane().setForeground(new Color(77, 77, 77));
 		frame.getContentPane().setBackground(new Color(77, 77, 77));
 		frame.setBounds(100, 100, 450, 300);
@@ -92,7 +93,6 @@ public class Login implements ActionListener{
 		
 		// Creating the Login button
 		JButton btnNewButton = new JButton("Login");
-		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBackground(new Color(0, 122, 255));
 		btnNewButton.setFont(new Font("San Francisco", Font.BOLD, 14));
 		btnNewButton.addActionListener(new ActionListener() {
@@ -126,7 +126,6 @@ public class Login implements ActionListener{
 		
 		// Create a Clear button and set its properties
 		JButton btnClearButton = new JButton("Clear");
-		btnClearButton.setForeground(Color.WHITE);
 		btnClearButton.setBackground(new Color(0, 122, 255));
 		btnClearButton.setFont(new Font("San Francisco", Font.BOLD, 14));
 		
@@ -144,7 +143,6 @@ public class Login implements ActionListener{
 		
 		// Create a Sign up button and set its properties
 		JButton btnNewButton_1 = new JButton("Sign up");
-		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.setBackground(new Color(0, 122, 255));
 		btnNewButton_1.setFont(new Font("San Francisco", Font.BOLD, 14));
 		

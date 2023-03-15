@@ -107,7 +107,7 @@ public class Home {
 //	    });
 
 	    JButton personalizedWorkoutButton = new JButton("Personalized Workout");
-	    personalizedWorkoutButton.setForeground(Color.WHITE);
+	   personalizedWorkoutButton.setForeground(Color.WHITE);
 	    personalizedWorkoutButton.setBackground(new Color(0, 122, 255));
 	    personalizedWorkoutButton.setFont(new Font("San Francisco", Font.PLAIN, 14));
 	    personalizedWorkoutButton.addActionListener(new ActionListener() {
@@ -122,7 +122,7 @@ public class Home {
 
 		
 		JButton Page2Button = new JButton("Page2");
-		Page2Button.setForeground(new Color(255, 255, 255));
+		//Page2Button.setForeground(new Color(255, 255, 255));
 		Page2Button.setBackground(new Color(77, 77, 77));
 		Page2Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -135,7 +135,7 @@ public class Home {
 	    frame.getContentPane().add(Page2Button);
 		
 	    JButton trackWorkoutButton = new JButton("Track Workout");
-	    trackWorkoutButton.setForeground(Color.WHITE);
+	   // trackWorkoutButton.setForeground(Color.WHITE);
 	    trackWorkoutButton.setBackground(new Color(0, 122, 255));
 	    trackWorkoutButton.setFont(new Font("San Francisco", Font.PLAIN, 14));
 	    trackWorkoutButton.addActionListener(new ActionListener() {
@@ -149,7 +149,7 @@ public class Home {
 	    frame.getContentPane().add(trackWorkoutButton);
 	    
 	    JButton progressTrackerButton = new JButton("Progress Tracker");
-	    progressTrackerButton.setForeground(Color.WHITE);
+	   // progressTrackerButton.setForeground(Color.WHITE);
 	    progressTrackerButton.setBackground(new Color(0, 122, 255));
 	    progressTrackerButton.setFont(new Font("San Francisco", Font.PLAIN, 14));
 	    progressTrackerButton.addActionListener(new ActionListener() {
@@ -163,7 +163,7 @@ public class Home {
 	    frame.getContentPane().add(progressTrackerButton);
 		
 	    JButton foodTrackerButton = new JButton("Food Tracker");
-	    foodTrackerButton.setForeground(Color.WHITE);
+	    //foodTrackerButton.setForeground(Color.WHITE);
 	    foodTrackerButton.setBackground(new Color(0, 122, 255));
 	    foodTrackerButton.setFont(new Font("San Francisco", Font.PLAIN, 14));
 	    foodTrackerButton.addActionListener(new ActionListener() {
@@ -177,7 +177,7 @@ public class Home {
 	    frame.getContentPane().add(foodTrackerButton);
 	    
 	    JButton loginButton = new JButton("logout");
-	    loginButton.setForeground(Color.WHITE);
+	   // loginButton.setForeground(Color.WHITE);
 	    loginButton.setBackground(new Color(255, 74, 74));
 	    loginButton.setFont(new Font("San Francisco", Font.PLAIN, 14));
 	    loginButton.addActionListener(new ActionListener() {
@@ -192,7 +192,7 @@ public class Home {
 	    
 	    JLabel usernameLabel = new JLabel("Home");
 	    usernameLabel.setFont(new Font("Helvetica", Font.BOLD, 30));
-	    usernameLabel.setForeground(Color.WHITE);
+	   // usernameLabel.setForeground(Color.WHITE);
 	    usernameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 	    usernameLabel.setVerticalAlignment(SwingConstants.CENTER);
 	    usernameLabel.setBounds(0, 0, 442, 61);
