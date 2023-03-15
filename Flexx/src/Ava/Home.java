@@ -107,7 +107,7 @@ public class Home {
 //	    });
 
 	    JButton personalizedWorkoutButton = new JButton("Personalized Workout");
-	   personalizedWorkoutButton.setForeground(Color.WHITE);
+	  // personalizedWorkoutButton.setForeground(Color.WHITE);
 	    personalizedWorkoutButton.setBackground(new Color(0, 122, 255));
 	    personalizedWorkoutButton.setFont(new Font("San Francisco", Font.PLAIN, 14));
 	    personalizedWorkoutButton.addActionListener(new ActionListener() {
