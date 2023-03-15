@@ -163,4 +163,8 @@ public class JDBC{
 
 	    return found;
 	}
+	
+	public static void setPassword(String pw) {
+		password = pw;
+	}
 }
