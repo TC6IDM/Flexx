@@ -290,8 +290,8 @@ public class Page3 {
 				JButton addSetButton = thisExercise.addSetButton; //keeps track of the new add set button
 				newExerciseButton.setLocation(newExerciseButton.getX(), addSetButton.getY()+addSetButton.getHeight()+moveDown);	//moves the new Exercise Button to where it is supposed to be (relative to the add set button)
 				if (newExerciseButton.getY()+newExerciseButton.getHeight() > Frame_ActualHeight) {
-					moveDownButton.setVisible(true); //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
-					move(-(newExerciseButton.getY()+newExerciseButton.getHeight()-Frame_ActualHeight));
+					moveUpButton.setVisible(true); //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
+//					move(-(newExerciseButton.getY()+newExerciseButton.getHeight()-Frame_ActualHeight));
 				}
 				
 				thisExercise.setNewExerciseButton(newExerciseButton); //adds the new exercise button to the exercise object
