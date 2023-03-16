@@ -321,8 +321,10 @@ public class Page3 {
 		scrollByField = new JTextField();
 		scrollByField.setBounds(Frame_ActualWidth - scrollWidth -padding, Frame_ActualHeight/2-scrollFieldHeight/2, scrollWidth, scrollFieldHeight);
 		scrollByField.setText("20");
-		frame.getContentPane().add(scrollByField);
 		scrollByField.setColumns(10);
+		scrollByField.setVisible(false);
+		frame.getContentPane().add(scrollByField);
+		
 		
 		//creates a label to go above the scroll by field
 		scrollByLabel = new JLabel("Scroll By:");
@@ -330,13 +332,14 @@ public class Page3 {
 		scrollByLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		scrollByLabel.setForeground(Color.ORANGE);
 		scrollByLabel.setBounds(scrollByField.getX(), scrollByField.getY()-scrollLabelHeight, scrollWidth, scrollLabelHeight);
+		scrollByLabel.setVisible(false);
 		frame.getContentPane().add(scrollByLabel);
 		
 		upBackground = new Canvas();
 		upBackground.setBackground(new Color(255, 0, 0));
 		upBackground.setBounds(scrollByField.getX(), scrollByLabel.getY()-scrollButtonHeight, scrollWidth, scrollButtonHeight);
 		upBackground.setVisible(false);
-		frame.getContentPane().add(upBackground);
+//		frame.getContentPane().add(upBackground);
 		
 		//creates the scroll up button
 		moveUpButton = new JButton("");
@@ -345,16 +348,14 @@ public class Page3 {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int moveBy = Integer.parseInt(scrollByField.getText()); //attempts to turns the string in the field to an integer
-					if (!move(-moveBy)) upBackground.setVisible(true); else upBackground.setVisible(false); //if we can not move up then we display that we can not move up, however if we can move up, we take away this error
+					if (!move(-moveBy)) moveUpButton.setVisible(false); else moveUpButton.setVisible(true); //if we can not move up then we display that we can not move up, however if we can move up, we take away this error
 					
 					//sets the other labels invisible
-					downBackground.setVisible(false);
+					moveDownButton.setVisible(true);
 					invalidInputLabel.setVisible(false);
 				}
 				catch (NumberFormatException ek) {
 					//not a valid input, so we display that it is not a valid input
-					upBackground.setVisible(false);
-					downBackground.setVisible(false);
 					invalidInputLabel.setVisible(true);
 				}
 			}
@@ -363,6 +364,7 @@ public class Page3 {
 		moveUpButton.setContentAreaFilled(false);
 		moveUpButton.setBorderPainted(false);
 		moveUpButton.setBounds(scrollByField.getX(), scrollByLabel.getY()-scrollButtonHeight, scrollWidth, scrollButtonHeight);
+		moveUpButton.setVisible(false);
 		frame.getContentPane().add(moveUpButton);
 				
 		//creates a label which will appear when the user inputs an invalid input for the scroll field
@@ -378,7 +380,7 @@ public class Page3 {
 		downBackground.setBackground(new Color(255, 0, 0));
 		downBackground.setBounds(scrollByField.getX(), invalidInputLabel.getY()+scrollLabelHeight, scrollWidth, scrollButtonHeight);
 		downBackground.setVisible(false);
-		frame.getContentPane().add(downBackground);
+//		frame.getContentPane().add(downBackground);
 		
 		//creates the scroll down button
 		moveDownButton = new JButton("");
@@ -387,15 +389,13 @@ public class Page3 {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int moveBy = Integer.parseInt(scrollByField.getText());//attempts to turns the string in the field to an integer
-					if (!move(moveBy)) downBackground.setVisible(true); else downBackground.setVisible(false);//if we can not move down then we display that we can not move down, however if we can move down, we take away this error
+					if (!move(moveBy)) moveDownButton.setVisible(false); else moveDownButton.setVisible(true);//if we can not move down then we display that we can not move down, however if we can move down, we take away this error
 					
 					//sets the other labels invisible
-					upBackground.setVisible(false);
+					moveUpButton.setVisible(true);
 					invalidInputLabel.setVisible(false);
 				}catch (NumberFormatException ek) {
 					//not a valid input, so we display that it is not a valid input
-					upBackground.setVisible(false);
-					downBackground.setVisible(false);
 					invalidInputLabel.setVisible(true);
 				}
 			}
@@ -404,6 +404,7 @@ public class Page3 {
 		moveDownButton.setContentAreaFilled(false);
 		moveDownButton.setBorderPainted(false);
 		moveDownButton.setBounds(scrollByField.getX(), invalidInputLabel.getY()+scrollLabelHeight, scrollWidth, scrollButtonHeight);
+		moveDownButton.setVisible(false);
 		frame.getContentPane().add(moveDownButton);
 		
 		

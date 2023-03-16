@@ -72,6 +72,9 @@ public class Exercise{
 		weightLabel.setBounds(Frame_ActualWidth*3/4 - setRepWeightLabelWidth/2, setRepWeightLabelHeight, setRepWeightLabelWidth, fieldHeight);
 		frame.getContentPane().add(weightLabel);
 		
+		page.moveUpButton.setVisible(true);
+		page.scrollByLabel.setVisible(true);
+		page.scrollByField.setVisible(true);
 		//reprints the frame
 		frame.validate();
 		frame.repaint();
@@ -92,8 +95,6 @@ public class Exercise{
 		addSetButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//removes the error labels when a new set is added
-				page.upBackground.setVisible(false);
-				page.downBackground.setVisible(false);
 				Set newSet = new Set (page,addSetButton.getY());//creates a new set with the last set button's Y value
 				newSet.setSetNumber(sets); //sets the number of sets
 				JTextField newRepsField = newSet.repsField;//gets the new weight field
