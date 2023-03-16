@@ -38,9 +38,7 @@ public class Page3 {
 	public JButton newExerciseButton;
 	public JLabel scrollByLabel;
 	public JButton moveUpButton;
-	public Canvas upBackground;
 	public JButton moveDownButton;
-	public Canvas downBackground;
 	public int Frame_Left = 100;
 	public int Frame_Width = 450;
 	public int Frame_Top = 100;
@@ -120,7 +118,7 @@ public class Page3 {
 		int CUTOFF = 55; //height cutoff, the exercise button can not go above this point, and the first exercise can not be below this point
 		boolean canMove = true;//keeps track if the exercises can move
 		if (exercises.size()==0) return false; //no exercises and therefore return false, nothing will move
-		if (exercises.get(0).newExerciseButton.getY()+move < CUTOFF) {move = -1*(exercises.get(0).newExerciseButton.getY() - CUTOFF); canMove = false;} //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
+		if (exercises.get(0).newExerciseButton.getY()+move <= Frame_ActualHeight-exercises.get(0).newExerciseButton.getHeight()) {move = -1*(exercises.get(0).newExerciseButton.getY() - (Frame_ActualHeight-exercises.get(0).newExerciseButton.getHeight())); canMove = false;} //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
 		if (exercises.get(0).nameField.getY()+move > CUTOFF) {move = CUTOFF - exercises.get(0).nameField.getY(); canMove = false;}//if the next move will put the first exercise below the cutoff, then only move by however much can keep it right at the cutoff
 		exercises.get(0).newExerciseButton.setLocation(exercises.get(0).newExerciseButton.getX(),exercises.get(0).newExerciseButton.getY()+move); //moves the new exercise button
 		
@@ -281,8 +279,6 @@ public class Page3 {
 		newExerciseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//removes any error labels
-				upBackground.setVisible(false);
-				downBackground.setVisible(false);
 				int newY = NewExerciseButtonY;
 				if (exercises.size() != 0){ // not the first exercise button to be added
 					JButton oldAddSetButton = exercises.get(exercises.size()-1).addSetButton; //keeps track of the old set button
@@ -292,8 +288,8 @@ public class Page3 {
 				Exercise thisExercise = new Exercise(Page3.this,newY);//creates a new exercise to put at the given Y value
 				exercises.add(thisExercise);//adds the exercise to the exercise list
 				JButton addSetButton = thisExercise.addSetButton; //keeps track of the new add set button
-				
 				newExerciseButton.setLocation(newExerciseButton.getX(), addSetButton.getY()+addSetButton.getHeight()+moveDown);	//moves the new Exercise Button to where it is supposed to be (relative to the add set button)
+				if (newExerciseButton.getY()+newExerciseButton.getHeight() > Frame_ActualHeight) moveUpButton.setVisible(true); //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
 				thisExercise.setNewExerciseButton(newExerciseButton); //adds the new exercise button to the exercise object
 				thisExercise.setExerciseNumber(exercises); //sets the number of the exercise
 				
@@ -322,7 +318,7 @@ public class Page3 {
 		scrollByField.setBounds(Frame_ActualWidth - scrollWidth -padding, Frame_ActualHeight/2-scrollFieldHeight/2, scrollWidth, scrollFieldHeight);
 		scrollByField.setText("20");
 		scrollByField.setColumns(10);
-		scrollByField.setVisible(false);
+//		scrollByField.setVisible(true);
 		frame.getContentPane().add(scrollByField);
 		
 		
@@ -332,14 +328,8 @@ public class Page3 {
 		scrollByLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		scrollByLabel.setForeground(Color.ORANGE);
 		scrollByLabel.setBounds(scrollByField.getX(), scrollByField.getY()-scrollLabelHeight, scrollWidth, scrollLabelHeight);
-		scrollByLabel.setVisible(false);
+//		scrollByLabel.setVisible(false);
 		frame.getContentPane().add(scrollByLabel);
-		
-		upBackground = new Canvas();
-		upBackground.setBackground(new Color(255, 0, 0));
-		upBackground.setBounds(scrollByField.getX(), scrollByLabel.getY()-scrollButtonHeight, scrollWidth, scrollButtonHeight);
-		upBackground.setVisible(false);
-//		frame.getContentPane().add(upBackground);
 		
 		//creates the scroll up button
 		moveUpButton = new JButton("");
@@ -375,12 +365,6 @@ public class Page3 {
 		invalidInputLabel.setBounds(scrollByField.getX(), scrollByField.getY()+scrollFieldHeight, scrollWidth, scrollLabelHeight);
 		invalidInputLabel.setVisible(false);
 		frame.getContentPane().add(invalidInputLabel);
-
-		downBackground = new Canvas();
-		downBackground.setBackground(new Color(255, 0, 0));
-		downBackground.setBounds(scrollByField.getX(), invalidInputLabel.getY()+scrollLabelHeight, scrollWidth, scrollButtonHeight);
-		downBackground.setVisible(false);
-//		frame.getContentPane().add(downBackground);
 		
 		//creates the scroll down button
 		moveDownButton = new JButton("");

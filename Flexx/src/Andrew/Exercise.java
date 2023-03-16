@@ -72,9 +72,9 @@ public class Exercise{
 		weightLabel.setBounds(Frame_ActualWidth*3/4 - setRepWeightLabelWidth/2, setRepWeightLabelHeight, setRepWeightLabelWidth, fieldHeight);
 		frame.getContentPane().add(weightLabel);
 		
-		page.moveUpButton.setVisible(true);
-		page.scrollByLabel.setVisible(true);
-		page.scrollByField.setVisible(true);
+//		page.moveUpButton.setVisible(true);
+//		page.scrollByLabel.setVisible(true);
+//		page.scrollByField.setVisible(true);
 		//reprints the frame
 		frame.validate();
 		frame.repaint();
@@ -101,7 +101,10 @@ public class Exercise{
 				sets.add(newSet);//adds the set to the list
 				addSetButton.setLocation(addSetButton.getX(), newRepsField.getY()+newRepsField.getHeight()+5);//sets the location of the add set button
 				
-				if (exerciseNumber == exercises.size()) newExerciseButton.setLocation(newExerciseButton.getX(), addSetButton.getY()+addSetButton.getHeight()+10); // if this is the last exercise, only the exercise button needs to be moved down
+				if (exerciseNumber == exercises.size()) {
+					newExerciseButton.setLocation(newExerciseButton.getX(), addSetButton.getY()+addSetButton.getHeight()+10); // if this is the last exercise, only the exercise button needs to be moved down
+					if (newExerciseButton.getY()+newExerciseButton.getHeight() > page.Frame_ActualHeight) page.moveUpButton.setVisible(true); //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
+				}
 				else{
 					// if this is not the last exercise (IE: somewhere in the middle or beginning) move all exercises and sets down to accommodate for the new set
 					//loop through all exercises starting at the current one
@@ -151,6 +154,7 @@ public class Exercise{
 						
 						//set the location of the new Exercise Button
 						newExerciseButton.setLocation(newExerciseButton.getX(), tempAddSetButton.getY()+tempAddSetButton.getHeight()+10);
+						if (newExerciseButton.getY()+newExerciseButton.getHeight() > page.Frame_ActualHeight) page.moveUpButton.setVisible(true); //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
 					}
 				}
 			}
