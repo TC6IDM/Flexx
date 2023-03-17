@@ -180,10 +180,12 @@ public class Page3 {
 		
 		
 		//creates the back button
-		int buttonWidth = 70;
-		int buttonDistanceFromSides = 10;
-		int buttonHeight = 30;
-		backButton = new JButton("Back");
+		int buttonWidth = 100;
+		int buttonDistanceFromSides = 0;
+		int buttonHeight = 50;
+		backButton = new JButton("");
+		backButton.setHorizontalAlignment(SwingConstants.LEFT);
+		backButton.setIcon(new ImageIcon(Page3.class.getResource("/Andrew/x-mark-32.png")));
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		        //creates a pop up confirmation for going back to the home page
@@ -196,11 +198,16 @@ public class Page3 {
 		        }
 			}
 		});
+		backButton.setOpaque(false);
+		backButton.setContentAreaFilled(false);
+		backButton.setBorderPainted(false);
 		backButton.setBounds(buttonDistanceFromSides, buttonDistanceFromSides, buttonWidth, buttonHeight);
 		frame.getContentPane().add(backButton);
 		
 		//creates the done button
 		doneButton = new JButton("Done");
+		doneButton.setFont(new Font("SansSerif", Font.BOLD, 20));
+		doneButton.setForeground(Color.ORANGE);
 		doneButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -253,6 +260,9 @@ public class Page3 {
 				
 			}
 		});
+		doneButton.setOpaque(false);
+		doneButton.setContentAreaFilled(false);
+		doneButton.setBorderPainted(false);
 		doneButton.setBounds(Frame_ActualWidth-buttonWidth-buttonDistanceFromSides, buttonDistanceFromSides, buttonWidth, buttonHeight);
 		frame.getContentPane().add(doneButton);
 		
@@ -290,13 +300,13 @@ public class Page3 {
 				JButton addSetButton = thisExercise.addSetButton; //keeps track of the new add set button
 				newExerciseButton.setLocation(newExerciseButton.getX(), addSetButton.getY()+addSetButton.getHeight()+moveDown);	//moves the new Exercise Button to where it is supposed to be (relative to the add set button)
 				if (newExerciseButton.getY()+newExerciseButton.getHeight() > Frame_ActualHeight) {
-					moveUpButton.setVisible(true); //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
-//					move(-(newExerciseButton.getY()+newExerciseButton.getHeight()-Frame_ActualHeight));
+					moveDownButton.setVisible(true); //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
+					move(-(newExerciseButton.getY()+newExerciseButton.getHeight()-Frame_ActualHeight));
 				}
 				
 				thisExercise.setNewExerciseButton(newExerciseButton); //adds the new exercise button to the exercise object
 				thisExercise.setExerciseNumber(exercises); //sets the number of the exercise
-				
+//				move(-100);
 				//reprints the frame
 				frame.validate();
 				frame.repaint();
