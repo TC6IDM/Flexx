@@ -216,14 +216,14 @@ public class Page3 {
 				if (!invalidInfo.equals("\n")) {JOptionPane.showMessageDialog(frame, "Invalid Input:\n"+invalidInfo);return;} //makes a pop up message with the invalid information if there is any
 				
 				//Searches the database for how many previous exercises there are
-				String sizeQuery = "SELECT COUNT(*) FROM exerciselogs";
+				String sizeQuery = "SELECT MAX(WorkoutNumber) FROM exerciselogs";
 				int tableSize =0;
 				try {
 					Connection con = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
 					Statement statement = con.createStatement();
 					ResultSet rs = statement.executeQuery(sizeQuery);
 					rs.next();
-					tableSize = rs.getInt(1); //stores the size of the table
+					tableSize = rs.getInt(1)+1; //stores the size of the table
 				} catch (SQLException err) {
 					err.printStackTrace();
 				}
