@@ -1,4 +1,4 @@
-package otherUtil;
+package Andrew;
 
 import java.awt.EventQueue;
 
@@ -23,11 +23,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import Ava.*;
+import otherUtil.Flexx;
+
 import java.awt.Color;
 import javax.swing.SwingConstants;
-
-import Andrew.Exercise;
-import Andrew.Set;
 
 public class Page2 {
 
