@@ -17,6 +17,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -114,16 +115,28 @@ public class Page2 {
 		lblTrackWorkout.setBackground(new Color(43, 87, 154));
 		lblTrackWorkout.setBounds(0, 0, Frame_ActualWidth, topLabelHeight);
 		frame.getContentPane().add(lblTrackWorkout);
-		
+		ArrayList<Workout> workouts = new ArrayList<Workout>();
 		String exercisesQuery = "SELECT DISTINCT ExerciseName FROM exerciselogs";
 		try {
 			Connection con = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
 			Statement statement = con.createStatement();
 			ResultSet rs = statement.executeQuery(exercisesQuery);
-			int i=0;
 			while (rs.next()) {
-				System.out.println(rs.getString(1));
-				i++;
+				Workout thisWorkout = new Workout(rs.getString(1));
+				String findAllExercisesQuery = "SELECT * FROM exerciselogs HAVING ExerciseName='"+thisWorkout.workoutName+"'";
+				System.out.println(thisWorkout.workoutName);
+				Connection con2 = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
+				Statement statement2 = con2.createStatement();
+				ResultSet rs2 = statement2.executeQuery(findAllExercisesQuery);
+				while (rs2.next()) {
+					System.out.println(rs2.getInt(2)+" "+rs2.getInt(3)+" "+rs2.getInt(4));
+					thisWorkout.addDataPoint(rs2.getInt(2),rs2.getInt(3) ,rs2.getInt(4) );
+				}
+				workouts.add(thisWorkout);
+			}
+			
+			for (int i=0;i<workouts.size();i++) {
+				
 			}
 		} catch (SQLException err) {
 			err.printStackTrace();
