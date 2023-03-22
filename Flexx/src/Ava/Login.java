@@ -42,8 +42,7 @@ public class Login implements ActionListener{
 		});
 	}
 
-	// delete me
-	
+		
 	/**
 	 * Create the application.
 	 * The constructor for the Login class
@@ -182,6 +181,7 @@ public class Login implements ActionListener{
 			  }
 			});
 		
+		
 		// Set the bounds of the Sign up button and add it to the frame
 		btnNewButton_1.setBounds(285, 183, 115, 30);
 		frame.getContentPane().add(btnNewButton_1);
@@ -191,6 +191,7 @@ public class Login implements ActionListener{
 		Image img = new ImageIcon(this.getClass().getResource("/Flexx_icon.png")).getImage();
 		lblNewLabel_1.setIcon(new ImageIcon(img));
 		lblNewLabel_1.setBounds(184, 11, 70, 70);
+		frame.setLocationRelativeTo(null);
 
 		frame.getContentPane().add(lblNewLabel_1); // Add the label to the frame
 	

@@ -1,5 +1,7 @@
 package otherUtil;
 import java.sql.*;
+
+import javax.swing.JOptionPane;
 public class JDBC{
 	public static String password = "MyN3wP4ssw0rd";// replace ... with your password
 	public static String databaseURL = "jdbc:mysql://localhost:3306/Flexx" ;
@@ -135,6 +137,7 @@ public class JDBC{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	
 	}
 	
 	/* Checks if a user exists in the "userInfo" 
