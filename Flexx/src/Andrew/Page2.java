@@ -34,7 +34,7 @@ import javax.swing.SwingConstants;
 public class Page2 {
 
 	public JFrame frame;
-
+	public ArrayList<Workout> workouts = new ArrayList<Workout>();
 	/**
 	 * Launch the application.
 	 */
@@ -88,14 +88,10 @@ public class Page2 {
 		backButton.setIcon(new ImageIcon(Page3.class.getResource("/Andrew/x-mark-32.png")));
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        //creates a pop up confirmation for going back to the home page
-				int option = JOptionPane.showConfirmDialog(frame, "Are you sure you would like to go back? This Current Workout will be Lost...", "Cancel?", JOptionPane.YES_NO_OPTION);
-		        if (option == JOptionPane.YES_OPTION) { //user chooses yes
-		        	//go back to home page
-		        	Home home = new Home();
-					home.frame.setVisible(true);
-					frame.setVisible(false);
-		        }
+				Home home = new Home();
+				home.frame.setVisible(true);
+				frame.setVisible(false);
+		        
 			}
 		});
 		backButton.setOpaque(false);
@@ -115,7 +111,8 @@ public class Page2 {
 		lblTrackWorkout.setBackground(new Color(43, 87, 154));
 		lblTrackWorkout.setBounds(0, 0, Frame_ActualWidth, topLabelHeight);
 		frame.getContentPane().add(lblTrackWorkout);
-		ArrayList<Workout> workouts = new ArrayList<Workout>();
+		
+		
 		String exercisesQuery = "SELECT DISTINCT ExerciseName FROM exerciselogs";
 		try {
 			Connection con = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
@@ -136,6 +133,11 @@ public class Page2 {
 			}
 			
 			for (int i=0;i<workouts.size();i++) {
+				Workout thisWorkout = workouts.get(i);
+				JButton btnNewButton = new JButton(thisWorkout.workoutName);
+				btnNewButton.setBounds(100, 50+100*i, Frame_ActualWidth-200, 50);
+				frame.getContentPane().add(btnNewButton);
+				thisWorkout.setButton(btnNewButton);
 				
 			}
 		} catch (SQLException err) {

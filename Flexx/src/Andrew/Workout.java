@@ -14,19 +14,18 @@ import javax.swing.SwingConstants;
 public class Workout{
 	public String workoutName;
 	
-	public ArrayList<Integer> weight = new ArrayList<Integer>();
-	public ArrayList<Integer> reps = new ArrayList<Integer>();
-	public ArrayList<Integer> number = new ArrayList<Integer>();
+	public ArrayList <workoutSet> sets = new ArrayList<workoutSet>();
+	
+	public JButton button;
 	
 	public Workout(String s){
 		workoutName = s;
 	}
 	//sets the new exercise button to the given button
 	public void addDataPoint(int r,int w,int n){
-		reps.add(r);
-		weight.add(w);
-		number.add(n);
-		
-		
+		sets.add(new workoutSet(r,w,n));
+	}
+	public void setButton(JButton b){
+		button = b;
 	}
 }
