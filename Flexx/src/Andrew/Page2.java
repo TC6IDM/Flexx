@@ -30,6 +30,9 @@ import otherUtil.JDBC;
 
 import java.awt.Color;
 import javax.swing.SwingConstants;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class Page2 {
 
@@ -112,6 +115,16 @@ public class Page2 {
 		lblTrackWorkout.setBounds(0, 0, Frame_ActualWidth, topLabelHeight);
 		frame.getContentPane().add(lblTrackWorkout);
 		
+		JSlider slider = new JSlider();
+		slider.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				System.out.println(slider.getValue());
+			}
+		});
+		slider.setOrientation(SwingConstants.VERTICAL);
+		slider.setBounds(29, 117, 51, 185);
+		frame.getContentPane().add(slider);
+		
 		
 		String exercisesQuery = "SELECT DISTINCT ExerciseName FROM exerciselogs";
 		try {
@@ -136,6 +149,12 @@ public class Page2 {
 				Workout thisWorkout = workouts.get(i);
 				JButton btnNewButton = new JButton(thisWorkout.workoutName);
 				btnNewButton.setBounds(100, 50+100*i, Frame_ActualWidth-200, 50);
+				btnNewButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						GraphPanel.createAndShowGui(thisWorkout.getORMs());						
+						System.out.println(thisWorkout.workoutName);
+					}
+				});
 				frame.getContentPane().add(btnNewButton);
 				thisWorkout.setButton(btnNewButton);
 				

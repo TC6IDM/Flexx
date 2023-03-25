@@ -9,12 +9,20 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.Stroke;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+
+import Ava.Home;
 
 //THIS IS AN IMPORTED PACKAGE NOT MADE BY ME, IT IS UED TO PLOT GRAPHS USING JAVA SWING
 
@@ -36,6 +44,7 @@ public class GraphPanel extends JPanel {
     private Color lineColor = new Color(44, 102, 230, 180);
     private Color pointColor = new Color(100, 100, 100, 180);
     private Color gridColor = new Color(200, 200, 200, 200);
+    private Color textColor = new Color(0, 0, 0, 200);
     private static final Stroke GRAPH_STROKE = new BasicStroke(2f);
     private int pointWidth = 4;
     private int numberYDivisions = 10;
@@ -56,7 +65,7 @@ public class GraphPanel extends JPanel {
 
         List<Point> graphPoints = new ArrayList<>();
         for (int i = 0; i < scores.size(); i++) {
-            int x1 = (int) (i * xScale + padding + labelPadding);
+        	int x1 = (int) (i * xScale + padding + labelPadding); // change this to change the x on the bottom, "i" can change to the workout number
             int y1 = (int) ((getMaxScore() - scores.get(i)) * yScale + padding);
             graphPoints.add(new Point(x1, y1));
         }
@@ -126,8 +135,14 @@ public class GraphPanel extends JPanel {
             int y = graphPoints.get(i).y - pointWidth / 2;
             int ovalW = pointWidth;
             int ovalH = pointWidth;
+            g2.drawString(String.valueOf(y), x, y);
             g2.fillOval(x, y, ovalW, ovalH);
         }
+        g2.setStroke(GRAPH_STROKE); //maybe change this???
+        g2.setColor(textColor);
+        g2.drawString("Click Anywhere to Exit", getWidth()/2 - 30 , 15);
+        g2.drawString("One Rep Max", 10, 15);
+        g2.drawString("Workout Number", getWidth()/2 - 30 , getHeight()-15);
     }
 
 //    @Override
@@ -161,7 +176,8 @@ public class GraphPanel extends JPanel {
         return scores;
     }
     
-    private static void createAndShowGui(List<Double> scores) {
+    public static void createAndShowGui(List<Double> scores) {
+    	
         GraphPanel mainPanel = new GraphPanel(scores);
         mainPanel.setPreferredSize(new Dimension(800, 600));
         JFrame frame = new JFrame("DrawGraph");
@@ -170,6 +186,26 @@ public class GraphPanel extends JPanel {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+      //creates the back button
+		int buttonWidth = 100;
+		int buttonDistanceFromSides = 0;
+		int buttonHeight = 50;
+		JButton backButton = new JButton("");
+		backButton.setHorizontalAlignment(SwingConstants.LEFT);
+		backButton.setIcon(new ImageIcon(Page3.class.getResource("/Andrew/x-mark-32.png")));
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+//				Home home = new Home();
+//				home.frame.setVisible(true);
+				frame.setVisible(false);
+		        
+			}
+		});
+		backButton.setOpaque(false);
+		backButton.setContentAreaFilled(false);
+		backButton.setBorderPainted(false);
+		backButton.setBounds(buttonDistanceFromSides, buttonDistanceFromSides, buttonWidth, buttonHeight);
+		frame.getContentPane().add(backButton);
     }
     
     public static void main(String[] args) {
