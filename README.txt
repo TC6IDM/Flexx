@@ -2,3 +2,6 @@ to get this project, close the repository, go to eclipse, file > new > Java proj
 
 
 change the password in JDBC.java to your password for your sql
+
+
+before running each new iteration, DROP DATABASE flexx; to insure any changes go through
