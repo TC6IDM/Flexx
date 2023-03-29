@@ -134,13 +134,13 @@ public class Page3 {
 			currentExercise.weightLabel.setLocation(currentExercise.weightLabel.getX(),currentExercise.weightLabel.getY()+move); 
 			
 			//for each element of exercise, it will turn invisible if it is beyond the cutoff and it will be visible if not beyond the cutoff
-			if (currentExercise.nameLabel.getY()<CUTOFF) currentExercise.nameLabel.setVisible(false); else currentExercise.nameLabel.setVisible(true); 
-			if (currentExercise.nameField.getY()<CUTOFF) currentExercise.nameField.setVisible(false); else currentExercise.nameField.setVisible(true);
-			if (currentExercise.addSetButton.getY()<CUTOFF) currentExercise.addSetButton.setVisible(false); else currentExercise.addSetButton.setVisible(true);
-			if (currentExercise.exerciseNumberLabel.getY()<CUTOFF) currentExercise.exerciseNumberLabel.setVisible(false); else currentExercise.exerciseNumberLabel.setVisible(true);
-			if (currentExercise.setLabel.getY()<CUTOFF) currentExercise.setLabel.setVisible(false); else currentExercise.setLabel.setVisible(true);
-			if (currentExercise.repsLabel.getY()<CUTOFF) currentExercise.repsLabel.setVisible(false); else currentExercise.repsLabel.setVisible(true);
-			if (currentExercise.weightLabel.getY()<CUTOFF) currentExercise.weightLabel.setVisible(false); else currentExercise.weightLabel.setVisible(true);
+//			if (currentExercise.nameLabel.getY()<CUTOFF) currentExercise.nameLabel.setVisible(false); else currentExercise.nameLabel.setVisible(true); 
+//			if (currentExercise.nameField.getY()<CUTOFF) currentExercise.nameField.setVisible(false); else currentExercise.nameField.setVisible(true);
+//			if (currentExercise.addSetButton.getY()<CUTOFF) currentExercise.addSetButton.setVisible(false); else currentExercise.addSetButton.setVisible(true);
+//			if (currentExercise.exerciseNumberLabel.getY()<CUTOFF) currentExercise.exerciseNumberLabel.setVisible(false); else currentExercise.exerciseNumberLabel.setVisible(true);
+//			if (currentExercise.setLabel.getY()<CUTOFF) currentExercise.setLabel.setVisible(false); else currentExercise.setLabel.setVisible(true);
+//			if (currentExercise.repsLabel.getY()<CUTOFF) currentExercise.repsLabel.setVisible(false); else currentExercise.repsLabel.setVisible(true);
+//			if (currentExercise.weightLabel.getY()<CUTOFF) currentExercise.weightLabel.setVisible(false); else currentExercise.weightLabel.setVisible(true);
 			
 			for (int k=0;k<currentExercise.sets.size();k++) { //loops through all sets
 				Set currentSet = currentExercise.sets.get(k); //finds the current set
@@ -150,9 +150,9 @@ public class Page3 {
 				currentSet.weightField.setLocation(currentSet.weightField.getX(),currentSet.weightField.getY()+move);
 				
 				//for each element of the set, it will turn invisible if it is beyond the cutoff and it will be visible if not beyond the cutoff
-				if (currentSet.setCount.getY()<CUTOFF) currentSet.setCount.setVisible(false); else currentSet.setCount.setVisible(true);
-				if (currentSet.repsField.getY()<CUTOFF) currentSet.repsField.setVisible(false); else currentSet.repsField.setVisible(true);
-				if (currentSet.weightField.getY()<CUTOFF) currentSet.weightField.setVisible(false); else currentSet.weightField.setVisible(true);
+//				if (currentSet.setCount.getY()<CUTOFF) currentSet.setCount.setVisible(false); else currentSet.setCount.setVisible(true);
+//				if (currentSet.repsField.getY()<CUTOFF) currentSet.repsField.setVisible(false); else currentSet.repsField.setVisible(true);
+//				if (currentSet.weightField.getY()<CUTOFF) currentSet.weightField.setVisible(false); else currentSet.weightField.setVisible(true);
 				
 				//updates the frame
 				frame.validate();
@@ -242,7 +242,7 @@ public class Page3 {
 						String weight = currentSet.weightField.getText(); 
 						
 						//inserts all information into the table
-						String insertQuery = "INSERT INTO exerciselogs VALUE(\""+exerciseName+"\", "+reps+", "+weight+", "+tableSize+");";
+						String insertQuery = "INSERT INTO exerciselogs VALUE(\""+exerciseName+"\", "+reps+", "+weight+", "+tableSize+", \""+JDBC.user+"\");";
 						try {
 							Connection con = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
 							Statement statement = con.createStatement();
@@ -300,7 +300,7 @@ public class Page3 {
 				JButton addSetButton = thisExercise.addSetButton; //keeps track of the new add set button
 				newExerciseButton.setLocation(newExerciseButton.getX(), addSetButton.getY()+addSetButton.getHeight()+moveDown);	//moves the new Exercise Button to where it is supposed to be (relative to the add set button)
 				if (newExerciseButton.getY()+newExerciseButton.getHeight() > Frame_ActualHeight) {
-					moveDownButton.setVisible(true); //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
+					moveUpButton.setVisible(true); //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
 					move(-(newExerciseButton.getY()+newExerciseButton.getHeight()-Frame_ActualHeight));
 				}
 				
@@ -352,7 +352,7 @@ public class Page3 {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int moveBy = Integer.parseInt(scrollByField.getText()); //attempts to turns the string in the field to an integer
-					if (!move(-moveBy)) moveUpButton.setVisible(false); else moveUpButton.setVisible(true); //if we can not move up then we display that we can not move up, however if we can move up, we take away this error
+					if (!move(moveBy)) moveUpButton.setVisible(false); else moveUpButton.setVisible(true); //if we can not move up then we display that we can not move up, however if we can move up, we take away this error
 					
 					//sets the other labels invisible
 					moveDownButton.setVisible(true);
@@ -387,7 +387,7 @@ public class Page3 {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int moveBy = Integer.parseInt(scrollByField.getText());//attempts to turns the string in the field to an integer
-					if (!move(moveBy)) moveDownButton.setVisible(false); else moveDownButton.setVisible(true);//if we can not move down then we display that we can not move down, however if we can move down, we take away this error
+					if (!move(-moveBy)) moveDownButton.setVisible(false); else moveDownButton.setVisible(true);//if we can not move down then we display that we can not move down, however if we can move down, we take away this error
 					
 					//sets the other labels invisible
 					moveUpButton.setVisible(true);
