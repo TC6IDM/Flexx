@@ -139,7 +139,7 @@ public class Page2 {
 				Statement statement2 = con2.createStatement();
 				ResultSet rs2 = statement2.executeQuery(findAllExercisesQuery);
 				while (rs2.next()) {
-					System.out.println(rs2.getInt(2)+" "+rs2.getInt(3)+" "+rs2.getInt(4));
+//					System.out.println(rs2.getInt(2)+" "+rs2.getInt(3)+" "+rs2.getInt(4));
 					thisWorkout.addDataPoint(rs2.getInt(2),rs2.getInt(3) ,rs2.getInt(4) );
 				}
 				workouts.add(thisWorkout);
@@ -151,8 +151,8 @@ public class Page2 {
 				btnNewButton.setBounds(100, 50+100*i, Frame_ActualWidth-200, 50);
 				btnNewButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						GraphPanel.createAndShowGui(thisWorkout.getORMs());						
-						System.out.println(thisWorkout.workoutName);
+						GraphPanel.createAndShowGui(thisWorkout.getORMs(),thisWorkout.getxAxis());						
+//						System.out.println(thisWorkout.workoutName);
 					}
 				});
 				frame.getContentPane().add(btnNewButton);

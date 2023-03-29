@@ -49,9 +49,11 @@ public class GraphPanel extends JPanel {
     private int pointWidth = 4;
     private int numberYDivisions = 10;
     private List<Double> scores;
+	private List<Integer> xAxis;
 
-    public GraphPanel(List<Double> scores) {
+    public GraphPanel(List<Double> scores,List<Integer> xAxis) {
         this.scores = scores;
+        this.xAxis = xAxis;
     }
 
     @Override
@@ -60,12 +62,12 @@ public class GraphPanel extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        double xScale = ((double) getWidth() - (2 * padding) - labelPadding) / (scores.size() - 1);
+        double xScale = ((double) getWidth() - (2 * padding) - labelPadding) / (xAxis.get(xAxis.size()-1));
         double yScale = ((double) getHeight() - 2 * padding - labelPadding) / (getMaxScore() - getMinScore());
 
         List<Point> graphPoints = new ArrayList<>();
         for (int i = 0; i < scores.size(); i++) {
-        	int x1 = (int) (i * xScale + padding + labelPadding); // change this to change the x on the bottom, "i" can change to the workout number
+        	int x1 = (int) (xAxis.get(i) * xScale + padding + labelPadding); // change this to change the x on the bottom, "i" can change to the workout number
             int y1 = (int) ((getMaxScore() - scores.get(i)) * yScale + padding);
             graphPoints.add(new Point(x1, y1));
         }
@@ -94,13 +96,13 @@ public class GraphPanel extends JPanel {
         }
 
         // and for x axis
-        for (int i = 0; i < scores.size(); i++) {
+        for (int i = 0; i < xAxis.get(xAxis.size()-1)+1; i++) {
             if (scores.size() > 1) {
-                int x0 = i * (getWidth() - padding * 2 - labelPadding) / (scores.size() - 1) + padding + labelPadding;
+                int x0 = i * (getWidth() - padding * 2 - labelPadding) / (xAxis.get(xAxis.size()-1)) + padding + labelPadding;
                 int x1 = x0;
                 int y0 = getHeight() - padding - labelPadding;
                 int y1 = y0 - pointWidth;
-                if ((i % ((int) ((scores.size() / 20.0)) + 1)) == 0) {
+                if ((i % ((int) (((xAxis.get(xAxis.size()-1)+1) / 20.0)) + 1)) == 0) {
                     g2.setColor(gridColor);
                     g2.drawLine(x0, getHeight() - padding - labelPadding - 1 - pointWidth, x1, padding);
                     g2.setColor(Color.BLACK);
@@ -176,9 +178,9 @@ public class GraphPanel extends JPanel {
         return scores;
     }
     
-    public static void createAndShowGui(List<Double> scores) {
+    public static void createAndShowGui(List<Double> scores,List<Integer> xAxis) {
     	
-        GraphPanel mainPanel = new GraphPanel(scores);
+        GraphPanel mainPanel = new GraphPanel(scores,xAxis);
         mainPanel.setPreferredSize(new Dimension(800, 600));
         JFrame frame = new JFrame("DrawGraph");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -212,14 +214,16 @@ public class GraphPanel extends JPanel {
       SwingUtilities.invokeLater(new Runnable() {
          public void run() {
         	 List<Double> scores = new ArrayList<>();
+        	 List<Integer> xAxis = new ArrayList<>();
              Random random = new Random();
              int maxDataPoints = 40;
              int maxScore = 10;
              for (int i = 0; i < maxDataPoints; i++) {
                  scores.add((double) random.nextDouble() * maxScore);
+                 xAxis.add(i+5);
 //                 scores.add((double) i);
              }
-             createAndShowGui(scores);
+             createAndShowGui(scores,xAxis);
          }
       });
    }

@@ -49,4 +49,17 @@ public class Workout{
 	    }
 	    return ORMs;
 	}
+	public ArrayList<Integer> getxAxis() {
+	    ArrayList<Integer> xAxis = new ArrayList<Integer>();
+	    int currentWorkout = 0;
+	    for (workoutSet set : sets) {
+	    	if (set.number!=currentWorkout) {
+	    		currentWorkout = set.number;
+	    		System.out.println(set.number);
+		    	xAxis.add(set.number);
+	    	}
+		    
+	    }
+	    return xAxis;
+	}
 }
