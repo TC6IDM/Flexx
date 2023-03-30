@@ -171,6 +171,7 @@ public class Page3 {
 		
 		//creates the frame
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(77, 77, 77));
 		frame.setBounds(Frame_Left, Frame_Top, Frame_Width, Frame_Height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -189,6 +190,12 @@ public class Page3 {
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		        //creates a pop up confirmation for going back to the home page
+				if (exercises.size()==0) {
+					Home home = new Home();
+					home.frame.setVisible(true);
+					frame.setVisible(false);
+					return;
+				}
 				int option = JOptionPane.showConfirmDialog(frame, "Are you sure you would like to go back? This Current Workout will be Lost...", "Cancel?", JOptionPane.YES_NO_OPTION);
 		        if (option == JOptionPane.YES_OPTION) { //user chooses yes
 		        	//go back to home page

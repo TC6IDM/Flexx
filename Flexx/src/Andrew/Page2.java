@@ -115,6 +115,7 @@ public class Page2 {
 		int Frame_ActualWidth = page3.Frame_ActualWidth;
 		
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(77, 77, 77));
 		frame.setBounds(Frame_Left, Frame_Top, Frame_Width, Frame_Height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

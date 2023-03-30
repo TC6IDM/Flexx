@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
@@ -141,8 +142,8 @@ public class GraphPanel extends JPanel {
             int ovalH = pointWidth;
             g2.setStroke(GRAPH_STROKE); //maybe change this???
             g2.setColor(textColor);
-            g2.drawString(bestSets.get(i), x-5, y-5);
-            g2.drawString(scores.get(i)+"",x-5,y+15);
+            g2.drawString(bestSets.get(i), x-15, y-5);
+            g2.drawString(scores.get(i)+"",x-10,y+15);
             g2.setStroke(oldStroke);
             g2.setColor(pointColor);
             g2.fillOval(x, y, ovalW, ovalH);
@@ -190,6 +191,9 @@ public class GraphPanel extends JPanel {
         GraphPanel mainPanel = new GraphPanel(scores,xAxis, bestSets);
         mainPanel.setPreferredSize(new Dimension(800, 600));
         JFrame frame = new JFrame("DrawGraph");
+        frame.setUndecorated(true);
+        frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(mainPanel);
         frame.pack();
