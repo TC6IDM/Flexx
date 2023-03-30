@@ -168,7 +168,7 @@ public class Page2 {
 		scrollByField.setBounds(Frame_ActualWidth - scrollWidth -padding, Frame_ActualHeight/2-scrollFieldHeight/2, scrollWidth, scrollFieldHeight);
 		scrollByField.setText("20");
 		scrollByField.setColumns(10);
-//		scrollByField.setVisible(true);
+		scrollByField.setVisible(false);
 		frame.getContentPane().add(scrollByField);
 				
 				
@@ -178,7 +178,7 @@ public class Page2 {
 		scrollByLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		scrollByLabel.setForeground(Color.ORANGE);
 		scrollByLabel.setBounds(scrollByField.getX(), scrollByField.getY()-scrollLabelHeight, scrollWidth, scrollLabelHeight);
-//		scrollByLabel.setVisible(false);
+		scrollByLabel.setVisible(false);
 		frame.getContentPane().add(scrollByLabel);
 				
 		//creates the scroll up button
@@ -241,6 +241,20 @@ public class Page2 {
 		moveDownButton.setBounds(scrollByField.getX(), invalidInputLabel.getY()+scrollLabelHeight, scrollWidth, scrollButtonHeight);
 		moveDownButton.setVisible(false);
 		frame.getContentPane().add(moveDownButton);
+		
+		int newExerciseButton_width = Frame_ActualWidth;
+		int newExerciseButton_height = 50;	
+		int NewExerciseButtonY = 55;
+		
+		JLabel newExerciseLabel = new JLabel("No Exercises To Show Here, Complete More For Them To Appear");
+		newExerciseLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		newExerciseLabel.setForeground(Color.ORANGE);
+		newExerciseLabel.setBounds(Frame_ActualWidth/2 - newExerciseButton_width/2, NewExerciseButtonY, newExerciseButton_width, newExerciseButton_height);
+		newExerciseLabel.setOpaque(false);
+//		newExerciseButton.setContentAreaFilled(false);
+//		newExerciseButton.setBorderPainted(false);
+		newExerciseLabel.setVisible(false);
+		frame.getContentPane().add(newExerciseLabel);
 
 		
 		String exercisesQuery = "SELECT DISTINCT ExerciseName FROM (Select * FROM exerciselogs HAVING User='"+Login.USERID+"') AS test";
@@ -262,7 +276,7 @@ public class Page2 {
 				}
 				workouts.add(thisWorkout);
 			}
-			
+			if (workouts.size()==0) newExerciseLabel.setVisible(true);
 			for (int i=0;i<workouts.size();i++) {
 				Workout thisWorkout = workouts.get(i);
 				JButton btnNewButton = new JButton(thisWorkout.workoutName);
@@ -281,7 +295,11 @@ public class Page2 {
 //						System.out.println(thisWorkout.workoutName);
 					}
 				});
-				if (buttonY + buttonHeight2 > Frame_ActualHeight) moveDownButton.setVisible(true);
+				if (buttonY + buttonHeight2 > Frame_ActualHeight) {
+					moveDownButton.setVisible(true);
+					scrollByField.setVisible(true);
+					scrollByLabel.setVisible(true);
+				}
 				frame.getContentPane().add(btnNewButton);
 				thisWorkout.setButton(btnNewButton);
 				

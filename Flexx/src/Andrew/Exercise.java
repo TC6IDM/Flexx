@@ -105,6 +105,8 @@ public class Exercise{
 					newExerciseButton.setLocation(newExerciseButton.getX(), addSetButton.getY()+addSetButton.getHeight()+10); // if this is the last exercise, only the exercise button needs to be moved down
 					if (newExerciseButton.getY()+newExerciseButton.getHeight() > page.Frame_ActualHeight) {
 						page.moveUpButton.setVisible(true); //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
+						page.scrollByField.setVisible(true);
+						page.scrollByLabel.setVisible(true);
 						page.move(-(newExerciseButton.getY()+newExerciseButton.getHeight()-page.Frame_ActualHeight));
 					}
 				
@@ -160,6 +162,8 @@ public class Exercise{
 						newExerciseButton.setLocation(newExerciseButton.getX(), tempAddSetButton.getY()+tempAddSetButton.getHeight()+10);
 						if (newExerciseButton.getY()+newExerciseButton.getHeight() > page.Frame_ActualHeight) {
 							page.moveUpButton.setVisible(true); //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
+							page.scrollByField.setVisible(true);
+							page.scrollByLabel.setVisible(true);
 						}
 					}
 				}

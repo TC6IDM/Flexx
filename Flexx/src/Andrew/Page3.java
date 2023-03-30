@@ -308,6 +308,8 @@ public class Page3 {
 				newExerciseButton.setLocation(newExerciseButton.getX(), addSetButton.getY()+addSetButton.getHeight()+moveDown);	//moves the new Exercise Button to where it is supposed to be (relative to the add set button)
 				if (newExerciseButton.getY()+newExerciseButton.getHeight() > Frame_ActualHeight) {
 					moveUpButton.setVisible(true); //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
+					scrollByField.setVisible(true);
+					scrollByLabel.setVisible(true);
 					move(-(newExerciseButton.getY()+newExerciseButton.getHeight()-Frame_ActualHeight));
 				}
 				
@@ -339,7 +341,7 @@ public class Page3 {
 		scrollByField.setBounds(Frame_ActualWidth - scrollWidth -padding, Frame_ActualHeight/2-scrollFieldHeight/2, scrollWidth, scrollFieldHeight);
 		scrollByField.setText("20");
 		scrollByField.setColumns(10);
-//		scrollByField.setVisible(true);
+		scrollByField.setVisible(false);
 		frame.getContentPane().add(scrollByField);
 		
 		
@@ -349,7 +351,7 @@ public class Page3 {
 		scrollByLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		scrollByLabel.setForeground(Color.ORANGE);
 		scrollByLabel.setBounds(scrollByField.getX(), scrollByField.getY()-scrollLabelHeight, scrollWidth, scrollLabelHeight);
-//		scrollByLabel.setVisible(false);
+		scrollByLabel.setVisible(false);
 		frame.getContentPane().add(scrollByLabel);
 		
 		//creates the scroll up button
