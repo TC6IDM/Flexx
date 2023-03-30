@@ -34,22 +34,40 @@ public class Workout{
 	    ArrayList<Double> ORMs = new ArrayList<Double>();
 	    ArrayList<Double> ORMsTEMP = new ArrayList<Double>();
 	    ArrayList<Integer> xAxis = new ArrayList<Integer>();
-	    ArrayList<Integer> xAxisTEMP = new ArrayList<Integer>();
-	    int currentWorkout = 1;
-	    for (workoutSet set : sets) { //only puts the best set into the list
+	    ArrayList<String> bestSets = new ArrayList<String>();
+	    int last=0;
+	    for (int i=0;i<sets.size();i++) { //only puts the best set into the list
+	    	workoutSet set = sets.get(i);
+//	    	System.out.println(set);
 	    	double thisORM = set.weight / ((1.0278) - (0.0278 * set.reps));
 	    	ORMsTEMP.add(thisORM);
-	    	xAxisTEMP.add(set.number);
-	    	if (currentWorkout != set.number) {
-	    		Collections.sort(ORMsTEMP);
-	    		Collections.reverse(ORMsTEMP);
-	    		ORMs.add(ORMsTEMP.get(0)); ORMsTEMP.clear(); ORMsTEMP.add(thisORM);
-	    		xAxis.add(xAxisTEMP.get(0)); xAxisTEMP.clear(); xAxisTEMP.add(set.number);
-	    		currentWorkout = set.number;
+	    	
+	    	if (i==sets.size()-1 || sets.get(i+1).number!=set.number) {
+//	    		Collections.sort(ORMsTEMP);
+//	    		Collections.reverse(ORMsTEMP);
+	    		double bestORM = Collections.max(ORMsTEMP);
+	    		int bestORMIndex = ORMsTEMP.indexOf(bestORM);
+//	    		System.out.println(i);
+//	    		System.out.println(last);
+//	    		System.out.println(bestORMIndex+"\n");
+	    		bestSets.add(sets.get(last+bestORMIndex).toStringCompressed());
+	    		ORMs.add(bestORM); ORMsTEMP.clear();
+	    		xAxis.add(set.number);
+	    		last = i+1;
 	    	}
 	    	
 	    }
-	    
-	    return new GraphXY(xAxis,ORMs);
+//	    System.out.println(bestSets);
+	    return new GraphXY(xAxis,ORMs,bestSets);
+	}
+	
+	public String toString() {
+		String ret = "";
+		for (int i=0;i<sets.size();i++) {
+			workoutSet thisSet = sets.get(i);
+			ret+=thisSet.toString()+"\n";
+			
+		}
+		return ret;
 	}
 }

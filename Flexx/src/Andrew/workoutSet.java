@@ -22,4 +22,11 @@ public class workoutSet{
 		number = n;
 	}
 	
+	public String toString() {
+		return "Reps: "+reps+" Weight: "+weight+" Number: "+number;
+	}
+	public String toStringCompressed() {
+		return weight+"x"+reps;
+	}
+	
 }

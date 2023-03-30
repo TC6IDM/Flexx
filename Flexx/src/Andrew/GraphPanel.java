@@ -50,10 +50,12 @@ public class GraphPanel extends JPanel {
     private int numberYDivisions = 10;
     private List<Double> scores;
 	private List<Integer> xAxis;
+	private List<String> bestSets;
 
-    public GraphPanel(List<Double> scores,List<Integer> xAxis) {
+    public GraphPanel(List<Double> scores,List<Integer> xAxis,List<String> bestSets) {
         this.scores = scores;
         this.xAxis = xAxis;
+        this.bestSets = bestSets;
     }
 
     @Override
@@ -62,12 +64,12 @@ public class GraphPanel extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        double xScale = ((double) getWidth() - (2 * padding) - labelPadding) / (xAxis.get(xAxis.size()-1));
+        double xScale = ((double) getWidth() - (2 * padding) - labelPadding) / (xAxis.get(xAxis.size()-1)-xAxis.get(0));
         double yScale = ((double) getHeight() - 2 * padding - labelPadding) / (getMaxScore() - getMinScore());
 
         List<Point> graphPoints = new ArrayList<>();
         for (int i = 0; i < scores.size(); i++) {
-        	int x1 = (int) (xAxis.get(i) * xScale + padding + labelPadding); // change this to change the x on the bottom, "i" can change to the workout number
+        	int x1 = (int) ((xAxis.get(i)-xAxis.get(0)) * xScale + padding + labelPadding); // change this to change the x on the bottom, "i" can change to the workout number
             int y1 = (int) ((getMaxScore() - scores.get(i)) * yScale + padding);
             graphPoints.add(new Point(x1, y1));
         }
@@ -96,9 +98,9 @@ public class GraphPanel extends JPanel {
         }
 
         // and for x axis
-        for (int i = 0; i < xAxis.get(xAxis.size()-1)+1; i++) {
+        for (int i = xAxis.get(0); i < xAxis.get(xAxis.size()-1)+1; i++) {
             if (scores.size() > 1) {
-                int x0 = i * (getWidth() - padding * 2 - labelPadding) / (xAxis.get(xAxis.size()-1)) + padding + labelPadding;
+                int x0 = (i-xAxis.get(0)) * (getWidth() - padding * 2 - labelPadding) / (xAxis.get(xAxis.size()-1)-xAxis.get(0)) + padding + labelPadding;
                 int x1 = x0;
                 int y0 = getHeight() - padding - labelPadding;
                 int y1 = y0 - pointWidth;
@@ -137,7 +139,12 @@ public class GraphPanel extends JPanel {
             int y = graphPoints.get(i).y - pointWidth / 2;
             int ovalW = pointWidth;
             int ovalH = pointWidth;
-            g2.drawString(String.valueOf(y), x, y);
+            g2.setStroke(GRAPH_STROKE); //maybe change this???
+            g2.setColor(textColor);
+            g2.drawString(bestSets.get(i), x-5, y-5);
+            g2.drawString(scores.get(i)+"",x-5,y+15);
+            g2.setStroke(oldStroke);
+            g2.setColor(pointColor);
             g2.fillOval(x, y, ovalW, ovalH);
         }
         g2.setStroke(GRAPH_STROKE); //maybe change this???
@@ -178,9 +185,9 @@ public class GraphPanel extends JPanel {
         return scores;
     }
     
-    public static void createAndShowGui(List<Double> scores,List<Integer> xAxis) {
+    public static void createAndShowGui(List<Double> scores,List<Integer> xAxis, List<String> bestSets) {
     	
-        GraphPanel mainPanel = new GraphPanel(scores,xAxis);
+        GraphPanel mainPanel = new GraphPanel(scores,xAxis, bestSets);
         mainPanel.setPreferredSize(new Dimension(800, 600));
         JFrame frame = new JFrame("DrawGraph");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -215,15 +222,21 @@ public class GraphPanel extends JPanel {
          public void run() {
         	 List<Double> scores = new ArrayList<>();
         	 List<Integer> xAxis = new ArrayList<>();
-             Random random = new Random();
-             int maxDataPoints = 40;
-             int maxScore = 10;
-             for (int i = 0; i < maxDataPoints; i++) {
-                 scores.add((double) random.nextDouble() * maxScore);
-                 xAxis.add(i+5);
-//                 scores.add((double) i);
-             }
-             createAndShowGui(scores,xAxis);
+        	 List<String> bestSets = new ArrayList<>();
+//             Random random = new Random();
+//             int maxDataPoints = 40;
+//             int maxScore = 10;
+             scores.add(1.0); xAxis.add(10); bestSets.add("1");
+             scores.add(5.0); xAxis.add(13); bestSets.add("1");
+             scores.add(20.0); xAxis.add(17); bestSets.add("1");
+             scores.add(10.0); xAxis.add(20); bestSets.add("1");
+             scores.add(2.0); xAxis.add(25); bestSets.add("1");
+//             for (int i = 0; i < maxDataPoints; i++) {
+//                 scores.add((double) random.nextDouble() * maxScore);
+//                 xAxis.add(i+5);
+////                 scores.add((double) i);
+//             }
+             createAndShowGui(scores,xAxis,bestSets);
          }
       });
    }

@@ -254,6 +254,7 @@ public class Page2 {
 				Connection con2 = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
 				Statement statement2 = con2.createStatement();
 				ResultSet rs2 = statement2.executeQuery(findAllExercisesQuery);
+				
 				while (rs2.next()) {
 //					System.out.println(rs2.getInt(2)+" "+rs2.getInt(3)+" "+rs2.getInt(4));
 					thisWorkout.addDataPoint(rs2.getInt(2),rs2.getInt(3) ,rs2.getInt(4) );
@@ -273,7 +274,9 @@ public class Page2 {
 					public void actionPerformed(ActionEvent e) {
 						if (thisWorkout.sets.size()<2) {JOptionPane.showMessageDialog(frame, "Not Enough data points to plot this exercise\nPlease preform this exercise again\nto generate a graph");return;}
 						GraphXY graphxy = thisWorkout.getGraphXY();
-						GraphPanel.createAndShowGui(graphxy.yValues,graphxy.xValues);						
+//						System.out.println(thisWorkout.toString());
+//						System.out.println(graphxy.toString());
+						GraphPanel.createAndShowGui(graphxy.yValues,graphxy.xValues,graphxy.bestSets);						
 //						System.out.println(thisWorkout.workoutName);
 					}
 				});

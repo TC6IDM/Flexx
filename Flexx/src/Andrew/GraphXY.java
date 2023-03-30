@@ -15,11 +15,20 @@ import javax.swing.SwingConstants;
 public class GraphXY{
 	public List<Integer> xValues;
 	public List<Double> yValues;
+	public List<String> bestSets;
 
 	
-	public GraphXY(List<Integer> x, List<Double> y){
+	public GraphXY(List<Integer> x, List<Double> y, List<String> s){
 		xValues = x;
 		yValues = y;
+		bestSets = s;
 	}
 	
+	public String toString() {
+		String ret = "";
+		for (int i=0;i<xValues.size();i++) {
+			ret+="("+xValues.get(i)+","+yValues.get(i)+")\n";
+		}
+		return ret;
+	}
 }
