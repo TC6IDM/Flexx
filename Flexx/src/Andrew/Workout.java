@@ -30,36 +30,26 @@ public class Workout{
 		button = b;
 	}
 	
-	public ArrayList<Double> getORMs() {
+	public GraphXY getGraphXY() {
 	    ArrayList<Double> ORMs = new ArrayList<Double>();
 	    ArrayList<Double> ORMsTEMP = new ArrayList<Double>();
+	    ArrayList<Integer> xAxis = new ArrayList<Integer>();
+	    ArrayList<Integer> xAxisTEMP = new ArrayList<Integer>();
 	    int currentWorkout = 1;
 	    for (workoutSet set : sets) { //only puts the best set into the list
 	    	double thisORM = set.weight / ((1.0278) - (0.0278 * set.reps));
 	    	ORMsTEMP.add(thisORM);
+	    	xAxisTEMP.add(set.number);
 	    	if (currentWorkout != set.number) {
 	    		Collections.sort(ORMsTEMP);
 	    		Collections.reverse(ORMsTEMP);
-	    		ORMs.add(ORMsTEMP.get(0));
-	    		ORMsTEMP.clear();
-	    		ORMsTEMP.add(thisORM);
+	    		ORMs.add(ORMsTEMP.get(0)); ORMsTEMP.clear(); ORMsTEMP.add(thisORM);
+	    		xAxis.add(xAxisTEMP.get(0)); xAxisTEMP.clear(); xAxisTEMP.add(set.number);
 	    		currentWorkout = set.number;
 	    	}
 	    	
 	    }
-	    return ORMs;
-	}
-	public ArrayList<Integer> getxAxis() {
-	    ArrayList<Integer> xAxis = new ArrayList<Integer>();
-	    int currentWorkout = 0;
-	    for (workoutSet set : sets) {
-	    	if (set.number!=currentWorkout) {
-	    		currentWorkout = set.number;
-	    		System.out.println(set.number);
-		    	xAxis.add(set.number);
-	    	}
-		    
-	    }
-	    return xAxis;
+	    
+	    return new GraphXY(xAxis,ORMs);
 	}
 }

@@ -216,7 +216,7 @@ public class Page3 {
 				if (!invalidInfo.equals("\n")) {JOptionPane.showMessageDialog(frame, "Invalid Input:\n"+invalidInfo);return;} //makes a pop up message with the invalid information if there is any
 				
 				//Searches the database for how many previous exercises there are
-				String sizeQuery = "SELECT MAX(WorkoutNumber) FROM exerciselogs";
+				String sizeQuery = "SELECT MAX(WorkoutNumber) FROM (SELECT * FROM exerciselogs HAVING User='"+Login.USERID+"' )AS test1;";
 				int tableSize =0;
 				try {
 					Connection con = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
@@ -242,7 +242,7 @@ public class Page3 {
 						String weight = currentSet.weightField.getText(); 
 						
 						//inserts all information into the table
-						String insertQuery = "INSERT INTO exerciselogs VALUE(\""+exerciseName+"\", "+reps+", "+weight+", "+tableSize+", \""+JDBC.user+"\");";
+						String insertQuery = "INSERT INTO exerciselogs VALUE(\""+exerciseName+"\", "+reps+", "+weight+", "+tableSize+", \""+Login.USERID+"\");";
 						try {
 							Connection con = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
 							Statement statement = con.createStatement();

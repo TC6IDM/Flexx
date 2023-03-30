@@ -242,14 +242,14 @@ public class Page2 {
 		frame.getContentPane().add(moveDownButton);
 
 		
-		String exercisesQuery = "SELECT DISTINCT ExerciseName FROM exerciselogs";
+		String exercisesQuery = "SELECT DISTINCT ExerciseName FROM (Select * FROM exerciselogs HAVING User='"+Login.USERID+"') AS test";
 		try {
 			Connection con = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
 			Statement statement = con.createStatement();
 			ResultSet rs = statement.executeQuery(exercisesQuery);
 			while (rs.next()) {
 				Workout thisWorkout = new Workout(rs.getString(1));
-				String findAllExercisesQuery = "SELECT * FROM exerciselogs HAVING ExerciseName='"+thisWorkout.workoutName+"'";
+				String findAllExercisesQuery = "SELECT * FROM exerciselogs HAVING ExerciseName='"+thisWorkout.workoutName+"' AND User='"+Login.USERID+"'";
 //				System.out.println(thisWorkout.workoutName);
 				Connection con2 = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
 				Statement statement2 = con2.createStatement();
@@ -272,7 +272,8 @@ public class Page2 {
 				btnNewButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if (thisWorkout.sets.size()<2) {JOptionPane.showMessageDialog(frame, "Not Enough data points to plot this exercise\nPlease preform this exercise again\nto generate a graph");return;}
-						GraphPanel.createAndShowGui(thisWorkout.getORMs(),thisWorkout.getxAxis());						
+						GraphXY graphxy = thisWorkout.getGraphXY();
+						GraphPanel.createAndShowGui(graphxy.yValues,graphxy.xValues);						
 //						System.out.println(thisWorkout.workoutName);
 					}
 				});

@@ -13,11 +13,11 @@ import javax.swing.SwingConstants;
 
 //exercise class
 public class GraphXY{
-	public List<Double> xValues;
+	public List<Integer> xValues;
 	public List<Double> yValues;
 
 	
-	public GraphXY(List<Double> x, List<Double> y){
+	public GraphXY(List<Integer> x, List<Double> y){
 		xValues = x;
 		yValues = y;
 	}
