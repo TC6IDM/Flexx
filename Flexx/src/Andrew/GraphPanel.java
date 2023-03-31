@@ -140,10 +140,10 @@ public class GraphPanel extends JPanel {
             int y = graphPoints.get(i).y - pointWidth / 2;
             int ovalW = pointWidth;
             int ovalH = pointWidth;
-            g2.setStroke(GRAPH_STROKE); //maybe change this???
-            g2.setColor(textColor);
-            g2.drawString(bestSets.get(i), x-15, y-5);
-            g2.drawString(scores.get(i)+"",x-10,y+15);
+//            g2.setStroke(GRAPH_STROKE); //maybe change this???
+//            g2.setColor(textColor);
+//            g2.drawString(bestSets.get(i), x-15, y-5);
+//            g2.drawString(scores.get(i)+"",x-10,y+15);
             g2.setStroke(oldStroke);
             g2.setColor(pointColor);
             g2.fillOval(x, y, ovalW, ovalH);
