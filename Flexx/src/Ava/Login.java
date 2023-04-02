@@ -101,6 +101,9 @@ public class Login implements ActionListener{
 		        String password = passwordField.getText();
 		        boolean found = false;
 		        
+		        
+		        if(!username.isEmpty() && !password.isEmpty()) {
+		        	
 		        try {
 		        	// Creating tables and checking user credentials from database
 		        	JDBC.createTables();
@@ -119,6 +122,9 @@ public class Login implements ActionListener{
 		        } else {
 		            JOptionPane.showMessageDialog(frame, "Invalid Login");
 		        }
+		    } else {
+		    	JOptionPane.showMessageDialog(frame, "Please enter both username and password");
+		    	}
 		    }
 		});
 		btnNewButton.setBounds(160, 183, 115, 30);
@@ -166,17 +172,28 @@ public class Login implements ActionListener{
 			      String username = usernameField.getText();
 			      String password = passwordField.getText();
 			      
+		        if (!username.isEmpty() && !password.isEmpty()) {
 			      try {
+			    	  boolean usernameExists = JDBC.checkUsernameExists(username);
+			    	  
+			    if(!usernameExists) {
+			    	
 			    	  JDBC.insertUser(username, password);
 			    	  JOptionPane.showMessageDialog(frame,  "You have successfully signed up!");
 			    	  USERID = username;
 			          Home home = new Home();
 			          home.frame.setVisible(true);
 			          frame.setVisible(false);
+			    	} else {
+			    		JOptionPane.showMessageDialog(frame, "Username already exists.");
+			    	}
 			      } catch (Exception ex) {
 			    	  JOptionPane.showMessageDialog(frame, "An error occurred while signing up.");
 			          ex.printStackTrace();
 			      }
+			    } else {
+			    	JOptionPane.showMessageDialog(frame, "Please enter both username and password.");
+			    	}
 			    }
 			  }
 			});

@@ -152,6 +152,7 @@ public class JDBC{
 
 	    // create prepared statement
 	    PreparedStatement stmt = conn.prepareStatement(query);
+	    
 	    stmt.setString(1, Uname);
 	    stmt.setString(2, Upassword);
 
@@ -166,6 +167,31 @@ public class JDBC{
 
 	    return found;
 	}
+	
+	public static boolean checkUsernameExists(String Uname) throws SQLException {
+		String query = "SELECT * FROM userinfo WHERE Uname = ?";
+	    boolean exists = false;
+
+	    // create connection
+	    Connection conn = DriverManager.getConnection(databaseURL, user, password);
+
+	    // create prepared statement
+	    PreparedStatement stmt = conn.prepareStatement(query);
+	    
+	    stmt.setString(1, Uname);
+
+	    // execute query and check result
+	    ResultSet rs = stmt.executeQuery();
+	    exists = rs.next();
+
+	    // close resources
+	    rs.close();
+	    stmt.close();
+	    conn.close();
+
+	    return exists;
+	}
+	
 	
 	public static void setPassword(String pw) {
 		password = pw;
