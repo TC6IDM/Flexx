@@ -62,16 +62,10 @@ public class Page4 {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(207, 225, 235));
+		frame.getContentPane().setBackground(new Color(77, 77, 77));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-
-		// Create progress tracker
-		JLabel lblNewLabel = new JLabel("Progress Tracker");
-		lblNewLabel.setBounds(140, 10, 187, 35);
-		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 23));
-		frame.getContentPane().add(lblNewLabel);
 
 		JButton btnNewButton = new JButton("Back");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -81,8 +75,18 @@ public class Page4 {
 				frame.setVisible(false);
 			}
 		});
-		btnNewButton.setBounds(10, 10, 77, 35);
+		btnNewButton.setBounds(6, 10, 77, 35);
 		frame.getContentPane().add(btnNewButton);
+		
+				// Create progress tracker
+				JLabel lblNewLabel = new JLabel("Progress Tracker");
+				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+				lblNewLabel.setBackground(new Color(40, 84, 148));
+				lblNewLabel.setOpaque(true);
+				lblNewLabel.setForeground(Color.WHITE);
+				lblNewLabel.setBounds(0, 0, 450, 45);
+				lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 23));
+				frame.getContentPane().add(lblNewLabel);
 
 		// Create progress bar
 		JProgressBar progressBar = new JProgressBar();
@@ -93,6 +97,7 @@ public class Page4 {
 
 		// Add button to implement new goals and add checkboxes alongside
 		JButton btnNewButton_1 = new JButton("Add");
+		btnNewButton_1.setForeground(new Color(215, 104, 0));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int lastTextFieldY = 122;
@@ -116,7 +121,7 @@ public class Page4 {
 						}
 					}
 				}
-				// once clicked off textbox it locks
+				// once clicked off text box it locks
 				newGoal.addFocusListener(new FocusAdapter() {
 					@Override
 					public void focusLost(FocusEvent e) {
@@ -151,6 +156,7 @@ public class Page4 {
 
 		// Delete button where you are able to select goals to delete
 		JButton btnNewButton_1_1 = new JButton("Delete");
+		btnNewButton_1_1.setForeground(new Color(215, 104, 0));
 		btnNewButton_1_1.setBackground(SystemColor.window);
 		btnNewButton_1_1.setBounds(252, 117, 54, 16);
 		btnNewButton_1_1.setEnabled(false);
@@ -181,6 +187,7 @@ public class Page4 {
 
 		// Combo box with all features
 		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setForeground(new Color(255, 199, 0));
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// If statements to enable the feature selected
@@ -216,6 +223,7 @@ public class Page4 {
 
 		// Menu label
 		JLabel lblNewLabel_1 = new JLabel("Menu:");
+		lblNewLabel_1.setForeground(new Color(255, 199, 0));
 		lblNewLabel_1.setBounds(163, 61, 61, 16);
 		frame.getContentPane().add(lblNewLabel_1);
 
