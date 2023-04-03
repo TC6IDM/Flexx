@@ -42,6 +42,7 @@ public class Login implements ActionListener{
 		});
 	}
 
+		
 	/**
 	 * Create the application.
 	 * The constructor for the Login class
@@ -100,6 +101,9 @@ public class Login implements ActionListener{
 		        String password = passwordField.getText();
 		        boolean found = false;
 		        
+		        
+		        if(!username.isEmpty() && !password.isEmpty()) {
+		        	
 		        try {
 		        	// Creating tables and checking user credentials from database
 		        	JDBC.createTables();
@@ -118,6 +122,9 @@ public class Login implements ActionListener{
 		        } else {
 		            JOptionPane.showMessageDialog(frame, "Invalid Login");
 		        }
+		    } else {
+		    	JOptionPane.showMessageDialog(frame, "Please enter both username and password");
+		    	}
 		    }
 		});
 		btnNewButton.setBounds(160, 183, 115, 30);
@@ -165,20 +172,32 @@ public class Login implements ActionListener{
 			      String username = usernameField.getText();
 			      String password = passwordField.getText();
 			      
+		        if (!username.isEmpty() && !password.isEmpty()) {
 			      try {
+			    	  boolean usernameExists = JDBC.checkUsernameExists(username);
+			    	  
+			    if(!usernameExists) {
+			    	
 			    	  JDBC.insertUser(username, password);
 			    	  JOptionPane.showMessageDialog(frame,  "You have successfully signed up!");
 			    	  USERID = username;
 			          Home home = new Home();
 			          home.frame.setVisible(true);
 			          frame.setVisible(false);
+			    	} else {
+			    		JOptionPane.showMessageDialog(frame, "Username already exists.");
+			    	}
 			      } catch (Exception ex) {
 			    	  JOptionPane.showMessageDialog(frame, "An error occurred while signing up.");
 			          ex.printStackTrace();
 			      }
+			    } else {
+			    	JOptionPane.showMessageDialog(frame, "Please enter both username and password.");
+			    	}
 			    }
 			  }
 			});
+		
 		
 		// Set the bounds of the Sign up button and add it to the frame
 		btnNewButton_1.setBounds(285, 183, 115, 30);
@@ -189,6 +208,7 @@ public class Login implements ActionListener{
 		Image img = new ImageIcon(this.getClass().getResource("/Flexx_icon.png")).getImage();
 		lblNewLabel_1.setIcon(new ImageIcon(img));
 		lblNewLabel_1.setBounds(184, 11, 70, 70);
+		frame.setLocationRelativeTo(null);
 
 		frame.getContentPane().add(lblNewLabel_1); // Add the label to the frame
 	

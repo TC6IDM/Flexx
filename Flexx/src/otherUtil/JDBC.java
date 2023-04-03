@@ -1,5 +1,7 @@
 package otherUtil;
 import java.sql.*;
+
+import javax.swing.JOptionPane;
 public class JDBC{
 	public static String password = "Oromidayo01";// replace ... with your password
 	public static String databaseURL = "jdbc:mysql://localhost:3306/Flexx" ;
@@ -235,6 +237,7 @@ public class JDBC{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	
 	}
 	
 	/* Checks if a user exists in the "userInfo" 
@@ -249,6 +252,7 @@ public class JDBC{
 
 	    // create prepared statement
 	    PreparedStatement stmt = conn.prepareStatement(query);
+	    
 	    stmt.setString(1, Uname);
 	    stmt.setString(2, Upassword);
 
@@ -263,6 +267,31 @@ public class JDBC{
 
 	    return found;
 	}
+	
+	public static boolean checkUsernameExists(String Uname) throws SQLException {
+		String query = "SELECT * FROM userinfo WHERE Uname = ?";
+	    boolean exists = false;
+
+	    // create connection
+	    Connection conn = DriverManager.getConnection(databaseURL, user, password);
+
+	    // create prepared statement
+	    PreparedStatement stmt = conn.prepareStatement(query);
+	    
+	    stmt.setString(1, Uname);
+
+	    // execute query and check result
+	    ResultSet rs = stmt.executeQuery();
+	    exists = rs.next();
+
+	    // close resources
+	    rs.close();
+	    stmt.close();
+	    conn.close();
+
+	    return exists;
+	}
+	
 	
 	public static void setPassword(String pw) {
 		password = pw;
