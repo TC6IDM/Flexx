@@ -49,7 +49,7 @@ public class JDBC{
 		
 		
 		
-		String query2 = "CREATE TABLE IF NOT EXISTS ExerciseLogs( ExerciseName VARCHAR(255) NOT NULL, Reps INT NOT NULL, Weight FLOAT(2) NOT NULL, WorkoutNumber INT NOT NULL);" ;
+		String query2 = "CREATE TABLE IF NOT EXISTS ExerciseLogs( ExerciseName VARCHAR(255) NOT NULL, Reps INT NOT NULL, Weight FLOAT(2) NOT NULL, WorkoutNumber INT NOT NULL, User VARCHAR(255) NOT NULL);" ;
 		
 		try {
 			// create connection
