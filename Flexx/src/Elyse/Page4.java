@@ -50,6 +50,8 @@ public class Page4 {
 	/**
 	 * Create the application.
 	 */
+	private int deletedCount = 0; // add a variable to keep track of deleted goals
+
 	public Page4() {
 		initialize();
 	}
@@ -163,27 +165,50 @@ public class Page4 {
 		frame.getContentPane().add(btnNewButton_1_1);
 
 		// getting components to delete when checkboxes are selected
-		btnNewButton_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Component[] components = frame.getContentPane().getComponents();
-				List<Component> componentsToRemove = new ArrayList<>();
-				for (Component component : components) {
-					if (component instanceof JCheckBox && ((JCheckBox) component).isSelected()) {
-						Component[] componentsAbove = Arrays.copyOfRange(components, 0,
-								Arrays.asList(components).indexOf(component));
-						List<Component> correspondingTextFields = Arrays.stream(componentsAbove)
-								.filter(c -> c instanceof JTextField).filter(c -> c.getY() == component.getY())
-								.collect(Collectors.toList());
-						componentsToRemove.addAll(correspondingTextFields);
-						componentsToRemove.add(component);
-					}
-				}
-				componentsToRemove.forEach(component -> frame.getContentPane().remove(component));
-				updateProgressBar(progressBar);
-				frame.validate();
-				frame.repaint();
-			}
-		});
+
+btnNewButton_1_1.addActionListener(new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+        List<Component> componentsToRemove = new ArrayList<>();
+        for (Component component : frame.getContentPane().getComponents()) {
+            if (component instanceof JCheckBox && ((JCheckBox) component).isSelected()) {
+                for (Component textFieldComponent : frame.getContentPane().getComponents()) {
+                    if (textFieldComponent instanceof JTextField &&
+                        textFieldComponent.getY() == component.getY() &&
+                        textFieldComponent.getX() == component.getX() + 40) {
+                        componentsToRemove.add(textFieldComponent);
+                        break;
+                    }
+                }
+                componentsToRemove.add(component);
+            }
+        }
+
+        componentsToRemove.forEach(component -> frame.getContentPane().remove(component));
+
+        // Adjust the positions of the remaining goals and checkboxes
+        int deltaY = 30;
+        int minY = Math.max(progressBar.getY() + progressBar.getHeight() + 10, btnNewButton_1.getY() + btnNewButton_1.getHeight() + 10);
+        for (Component component : frame.getContentPane().getComponents()) {
+            if (component instanceof JTextField || component instanceof JCheckBox) {
+                int newY = component.getY();
+                for (Component removedComponent : componentsToRemove) {
+                    if (component.getY() > removedComponent.getY()) {
+                        newY -= deltaY;
+                    }
+                }
+                if (newY < minY) {
+                    newY = minY;
+                }
+                component.setLocation(component.getX(), newY);
+            }
+        }
+
+        updateProgressBar(progressBar);
+        frame.validate();
+        frame.repaint();
+    }
+});
+
 
 		// Combo box with all features
 		JComboBox<String> comboBox = new JComboBox<String>();
@@ -279,7 +304,7 @@ public class Page4 {
 
 	}
 
-//	Method to update progress bar as checkboxes are selected true
+//	Method to update progress bar as check boxes are selected true
 	private void updateProgressBar(JProgressBar progressBar) {
 		Component[] components = frame.getContentPane().getComponents();
 		int totalGoals = 0;
