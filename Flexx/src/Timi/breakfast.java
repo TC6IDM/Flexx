@@ -72,7 +72,7 @@ public class breakfast {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("BREAKFAST");
+		JLabel lblNewLabel = new JLabel("CALORIES BURNED");
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(171, 6, 81, 16);
 		frame.getContentPane().add(lblNewLabel);
