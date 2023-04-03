@@ -1,6 +1,7 @@
 package Timi;
 
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -33,6 +34,7 @@ public class breakfast {
 	private JTextField textField_6;
 	private JTextField textField_7;
 	private String textFieldValue = "";
+	private JLabel lblNewLabel_2;
 
 
 	/**
@@ -70,9 +72,12 @@ public class breakfast {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("BREAKFAST");
+		JLabel lblNewLabel = new JLabel("CALORIES BURNED");
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(171, 6, 81, 16);
 		frame.getContentPane().add(lblNewLabel);
+		frame.getContentPane().setBackground(new Color(77, 77, 77));
+
 
 		JButton btnNewButton = new JButton("BACK");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -87,37 +92,37 @@ public class breakfast {
 
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(10, 105, 130, 26);
+		textField_1.setBounds(41, 105, 130, 26);
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 
 		textField_2 = new JTextField();
-		textField_2.setBounds(10, 157, 130, 26);
+		textField_2.setBounds(41, 157, 130, 26);
 		frame.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 
 		textField_3 = new JTextField();
-		textField_3.setBounds(10, 214, 130, 26);
+		textField_3.setBounds(41, 214, 130, 26);
 		frame.getContentPane().add(textField_3);
 		textField_3.setColumns(10);
 
 		textField_4 = new JTextField();
-		textField_4.setBounds(13, 57, 130, 26);
+		textField_4.setBounds(41, 57, 130, 26);
 		frame.getContentPane().add(textField_4);
 		textField_4.setColumns(10);
 
 		textField_5 = new JTextField();
-		textField_5.setBounds(171, 105, 130, 26);
+		textField_5.setBounds(220, 105, 130, 26);
 		frame.getContentPane().add(textField_5);
 		textField_5.setColumns(10);
 
 		textField_6 = new JTextField();
-		textField_6.setBounds(171, 157, 130, 26);
+		textField_6.setBounds(220, 157, 130, 26);
 		frame.getContentPane().add(textField_6);
 		textField_6.setColumns(10);
 
 		textField_7 = new JTextField();
-		textField_7.setBounds(173, 61, 130, 26);
+		textField_7.setBounds(220, 57, 130, 26);
 		frame.getContentPane().add(textField_7);
 		textField_7.setColumns(10);
 		
@@ -167,8 +172,18 @@ public class breakfast {
              }
          });
 		
-		btnNewButton_1.setBounds(385, 241, 60, 29);
+		btnNewButton_1.setBounds(384, 237, 60, 29);
 		frame.getContentPane().add(btnNewButton_1);
+		
+		JLabel lblNewLabel_1 = new JLabel("Total Cal:");
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setBounds(220, 219, 61, 16);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		lblNewLabel_2 = new JLabel("---cal");
+		lblNewLabel_2.setForeground(Color.ORANGE);
+		lblNewLabel_2.setBounds(289, 219, 61, 16);
+		frame.getContentPane().add(lblNewLabel_2);
 
 		   // Add document listeners to the text fields to update their values
 	    // whenever the user types in them
