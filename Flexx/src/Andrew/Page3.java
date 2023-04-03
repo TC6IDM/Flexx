@@ -259,7 +259,7 @@ public class Page3 {
 						}
 					}
 				}
-
+				JOptionPane.showMessageDialog(frame, "Data has been saved to the database.");
 				//returns to the home page
 				Home home = new Home();
 				home.frame.setVisible(true);
