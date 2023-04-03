@@ -290,7 +290,7 @@ public class Page3 {
 		int newExerciseButton_height = 35;	
 		int moveDown = 10;
 		int NewExerciseButtonY = 55;
-
+//comment
 		newExerciseButton = new JButton("New Exercise");
 		newExerciseButton.setForeground(Color.ORANGE);
 		newExerciseButton.addActionListener(new ActionListener() {
