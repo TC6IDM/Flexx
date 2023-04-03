@@ -3,7 +3,7 @@ import java.sql.*;
 
 import javax.swing.JOptionPane;
 public class JDBC{
-	public static String password = "Oromidayo01";// replace ... with your password
+	public static String password = "MyN3wP4ssw0rd";// replace ... with your password
 	public static String databaseURL = "jdbc:mysql://localhost:3306/Flexx" ;
 	public static String hostURL = "jdbc:mysql://localhost:3306/" ;
 	public static String user = "root" ;
