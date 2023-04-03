@@ -112,6 +112,106 @@ public class JDBC{
 			e.printStackTrace () ;
 		}
         
+        try {
+			String query5 = "CREATE TABLE IF NOT EXISTS lunch (" +
+					"id INT NOT NULL AUTO_INCREMENT," +
+					"calories VARCHAR(255)," +
+					"PRIMARY KEY (id)" +
+					")";
+			// create connection
+			Connection con = DriverManager.getConnection(databaseURL, user, password) ;
+			// create statement
+			Statement statement = con. createStatement ();
+			// execute query
+			statement.executeUpdate (query5) ;
+			// close statement and connection 
+			statement.close();
+			con.close();
+			System.out.println("Table created successfully!");
+		} catch (SQLException e) {
+			e.printStackTrace () ;
+		}
+        
+        try {
+			String query6 = "CREATE TABLE IF NOT EXISTS dinner (" +
+					"id INT NOT NULL AUTO_INCREMENT," +
+					"calories VARCHAR(255)," +
+					"PRIMARY KEY (id)" +
+					")";
+			// create connection
+			Connection con = DriverManager.getConnection(databaseURL, user, password) ;
+			// create statement
+			Statement statement = con. createStatement ();
+			// execute query
+			statement.executeUpdate (query6) ;
+			// close statement and connection 
+			statement.close();
+			con.close();
+			System.out.println("Table created successfully!");
+		} catch (SQLException e) {
+			e.printStackTrace () ;
+		}
+        
+        try {
+			String query7 = "CREATE TABLE IF NOT EXISTS snacks (" +
+					"id INT NOT NULL AUTO_INCREMENT," +
+					"calories VARCHAR(255)," +
+					"PRIMARY KEY (id)" +
+					")";
+			// create connection
+			Connection con = DriverManager.getConnection(databaseURL, user, password) ;
+			// create statement
+			Statement statement = con. createStatement ();
+			// execute query
+			statement.executeUpdate (query7) ;
+			// close statement and connection 
+			statement.close();
+			con.close();
+			System.out.println("Table created successfully!");
+		} catch (SQLException e) {
+			e.printStackTrace () ;
+		}
+        
+        try {
+			String query8 = "CREATE TABLE IF NOT EXISTS water (" +
+					"id INT NOT NULL AUTO_INCREMENT," +
+					"calories VARCHAR(255)," +
+					"PRIMARY KEY (id)" +
+					")";
+			// create connection
+			Connection con = DriverManager.getConnection(databaseURL, user, password) ;
+			// create statement
+			Statement statement = con. createStatement ();
+			// execute query
+			statement.executeUpdate (query8) ;
+			// close statement and connection 
+			statement.close();
+			con.close();
+			System.out.println("Table created successfully!");
+		} catch (SQLException e) {
+			e.printStackTrace () ;
+		}
+        
+        try {
+			String query9 = "CREATE TABLE IF NOT EXISTS calburned (" +
+					"id INT NOT NULL AUTO_INCREMENT," +
+					"calories VARCHAR(255)," +
+					"PRIMARY KEY (id)" +
+					")";
+			// create connection
+			Connection con = DriverManager.getConnection(databaseURL, user, password) ;
+			// create statement
+			Statement statement = con. createStatement ();
+			// execute query
+			statement.executeUpdate (query9) ;
+			// close statement and connection 
+			statement.close();
+			con.close();
+			System.out.println("Table created successfully!");
+		} catch (SQLException e) {
+			e.printStackTrace () ;
+		}
+        
 	}
 	
 	public static void insertUser(String Uname, String Upassword) {
