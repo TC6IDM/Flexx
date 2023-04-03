@@ -124,7 +124,7 @@ public class Home {
         frame.getContentPane().add(personalizedWorkoutButton, gbc);
 
 		
-		JButton Page2Button = new JButton("Page2");
+		JButton Page2Button = new JButton("Workout Graphs");
 		//Page2Button.setForeground(new Color(255, 255, 255));
 		Page2Button.setBackground(new Color(77, 77, 77));
 	    Page2Button.setPreferredSize(new Dimension(100, 25)); // Set preferred size
