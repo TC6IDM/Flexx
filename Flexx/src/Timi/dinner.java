@@ -180,7 +180,7 @@ public class dinner {
 		lblNewLabel_1.setBounds(220, 219, 61, 16);
 		frame.getContentPane().add(lblNewLabel_1);
 		
-		lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2 = new JLabel("---cal");
 		lblNewLabel_2.setForeground(Color.ORANGE);
 		lblNewLabel_2.setBounds(289, 219, 61, 16);
 		frame.getContentPane().add(lblNewLabel_2);
