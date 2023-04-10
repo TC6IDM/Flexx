@@ -50,6 +50,10 @@ public class Home {
 	// Constructor that initializes the GUI
 	public Home() {
 		initialize();
+	    frame.setBounds(100, 100, 912, 626); // Set the bounds of the frame
+
+		frame.setLocationRelativeTo(null);
+
 	}
 
 
@@ -61,6 +65,8 @@ public class Home {
 	    frame.setBounds(100, 100, 456, 313); // Set the bounds of the frame
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.getContentPane().setLayout(null);
+	    frame.setLocationRelativeTo(null);
+
 	    
         // Create a new GridBagLayout instance for the frame
 	    GridBagLayout gridBagLayout = new GridBagLayout();
@@ -83,7 +89,6 @@ public class Home {
 	    homeLabel.setFont(new Font("Helvetica", Font.BOLD, 15));
 	    homeLabel.setForeground(Color.WHITE);
 	    homeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-	    homeLabel.setVerticalAlignment(SwingConstants.CENTER);
 	    homeLabel.setOpaque(true);
 	    homeLabel.setBackground(new Color(0x2B579A)); 
 	    // Set positions of grid
