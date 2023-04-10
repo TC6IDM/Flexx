@@ -29,7 +29,7 @@ import otherUtil.*;
 public class Page4 {
 
 	public JFrame frame;
-	private JTextField goal1TextField;
+	public JTextField goal1TextField;
 	private boolean isEditSelected = false;
 
 	/**
@@ -63,12 +63,14 @@ public class Page4 {
 	 * @wbp.parser.entryPoint
 	 */
 	private void initialize() {
+		// Frame contents
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(77, 77, 77));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
+		// Action listener for the back button
 		JButton btnNewButton = new JButton("Back");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -78,17 +80,17 @@ public class Page4 {
 			}
 		});
 		btnNewButton.setBounds(6, 10, 77, 35);
-		frame.getContentPane().add(btnNewButton);
-		
-				// Create progress tracker
-				JLabel lblNewLabel = new JLabel("Progress Tracker");
-				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-				lblNewLabel.setBackground(new Color(40, 84, 148));
-				lblNewLabel.setOpaque(true);
-				lblNewLabel.setForeground(Color.WHITE);
-				lblNewLabel.setBounds(0, 0, 450, 45);
-				lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 23));
-				frame.getContentPane().add(lblNewLabel);
+		frame.getContentPane().add(btnNewButton);// show button on page
+
+		// Create progress tracker title page
+		JLabel lblNewLabel = new JLabel("Progress Tracker");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBackground(new Color(40, 84, 148));
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBounds(0, 0, 450, 45);
+		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 23));
+		frame.getContentPane().add(lblNewLabel);
 
 		// Create progress bar
 		JProgressBar progressBar = new JProgressBar();
@@ -106,13 +108,14 @@ public class Page4 {
 				Component[] components = frame.getContentPane().getComponents();
 				for (Component component : components) {
 					if (component instanceof JTextField) {
-						lastTextFieldY = component.getY();
+						lastTextFieldY = component.getY(); // dimensions for the textbox
 					}
 				}
 				JTextField newGoal = new JTextField();
-				newGoal.setBounds(170, lastTextFieldY + 30, 134, 20);
+				newGoal.setBounds(170, lastTextFieldY + 30, 134, 20); // dimensions for textbox whne there is more than
+																		// one goal
 				newGoal.setEnabled(true);
-				List<String> goals = new ArrayList<>();
+				List<String> goals = new ArrayList<>(); // arraylist of goals inputted by user
 				Component[] components1 = frame.getContentPane().getComponents();
 				for (Component component : components1) {
 					if (component instanceof JTextField) {
@@ -123,7 +126,7 @@ public class Page4 {
 						}
 					}
 				}
-				// once clicked off text box it locks
+				// once clicked off text box it locks until edit button is clicked
 				newGoal.addFocusListener(new FocusAdapter() {
 					@Override
 					public void focusLost(FocusEvent e) {
@@ -143,6 +146,7 @@ public class Page4 {
 				});
 				frame.getContentPane().add(newCheckBox);
 
+				// progress bar gets updated when textboxes are checked off as completed
 				updateProgressBar(progressBar);
 
 				frame.validate();
@@ -165,50 +169,49 @@ public class Page4 {
 		frame.getContentPane().add(btnNewButton_1_1);
 
 		// getting components to delete when checkboxes are selected
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				List<Component> componentsToRemove = new ArrayList<>(); //arraylist for deleting multiple goals at one time
+				for (Component component : frame.getContentPane().getComponents()) { 
+					if (component instanceof JCheckBox && ((JCheckBox) component).isSelected()) { //checking to see whether the checkbox is selected
+						for (Component textFieldComponent : frame.getContentPane().getComponents()) {
+							if (textFieldComponent instanceof JTextField
+									&& textFieldComponent.getY() == component.getY()
+									&& textFieldComponent.getX() == component.getX() + 40) {  //removing textfields when deleted
+								componentsToRemove.add(textFieldComponent);
+								break;
+							}
+						}
+						componentsToRemove.add(component);
+					}
+				}
+				//Removing checkboxes from the page
+				componentsToRemove.forEach(component -> frame.getContentPane().remove(component));
 
-btnNewButton_1_1.addActionListener(new ActionListener() {
-    public void actionPerformed(ActionEvent e) {
-        List<Component> componentsToRemove = new ArrayList<>();
-        for (Component component : frame.getContentPane().getComponents()) {
-            if (component instanceof JCheckBox && ((JCheckBox) component).isSelected()) {
-                for (Component textFieldComponent : frame.getContentPane().getComponents()) {
-                    if (textFieldComponent instanceof JTextField &&
-                        textFieldComponent.getY() == component.getY() &&
-                        textFieldComponent.getX() == component.getX() + 40) {
-                        componentsToRemove.add(textFieldComponent);
-                        break;
-                    }
-                }
-                componentsToRemove.add(component);
-            }
-        }
+				// Adjust the positions of the remaining goals and checkboxes
+				int deltaY = 30;
+				int minY = Math.max(progressBar.getY() + progressBar.getHeight() + 10,
+						btnNewButton_1.getY() + btnNewButton_1.getHeight() + 10);
+				for (Component component : frame.getContentPane().getComponents()) {
+					if (component instanceof JTextField || component instanceof JCheckBox) { //changing dimensions
+						int newY = component.getY();
+						for (Component removedComponent : componentsToRemove) {
+							if (component.getY() > removedComponent.getY()) {
+								newY -= deltaY;
+							}
+						}
+						if (newY < minY) {
+							newY = minY;
+						}
+						component.setLocation(component.getX(), newY);
+					}
+				}
 
-        componentsToRemove.forEach(component -> frame.getContentPane().remove(component));
-
-        // Adjust the positions of the remaining goals and checkboxes
-        int deltaY = 30;
-        int minY = Math.max(progressBar.getY() + progressBar.getHeight() + 10, btnNewButton_1.getY() + btnNewButton_1.getHeight() + 10);
-        for (Component component : frame.getContentPane().getComponents()) {
-            if (component instanceof JTextField || component instanceof JCheckBox) {
-                int newY = component.getY();
-                for (Component removedComponent : componentsToRemove) {
-                    if (component.getY() > removedComponent.getY()) {
-                        newY -= deltaY;
-                    }
-                }
-                if (newY < minY) {
-                    newY = minY;
-                }
-                component.setLocation(component.getX(), newY);
-            }
-        }
-
-        updateProgressBar(progressBar);
-        frame.validate();
-        frame.repaint();
-    }
-});
-
+				updateProgressBar(progressBar);
+				frame.validate();
+				frame.repaint();
+			}
+		});
 
 		// Combo box with all features
 		JComboBox<String> comboBox = new JComboBox<String>();
@@ -217,7 +220,7 @@ btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// If statements to enable the feature selected
 				String selectedOption = (String) comboBox.getSelectedItem();
-				
+
 				if (selectedOption.equals("Add goal")) {
 					btnNewButton_1.setEnabled(true);
 				} else {
@@ -305,8 +308,8 @@ btnNewButton_1_1.addActionListener(new ActionListener() {
 
 	}
 
-//	Method to update progress bar as check boxes are selected true
-	private void updateProgressBar(JProgressBar progressBar) {
+	// Method to update progress bar as check boxes are selected true
+	public int updateProgressBar(JProgressBar progressBar) {
 		Component[] components = frame.getContentPane().getComponents();
 		int totalGoals = 0;
 		int completedGoals = 0;
@@ -320,9 +323,10 @@ btnNewButton_1_1.addActionListener(new ActionListener() {
 		}
 		int percentage = 0;
 		if (totalGoals > 0) {
-			percentage = (int) (((double) completedGoals / totalGoals) * 100);
+			percentage = (int) (((double) completedGoals / totalGoals) * 100); //math for the percentage of the progress bar
 		}
-		progressBar.setValue(percentage);
+		progressBar.setValue(percentage); //print the correct percentage onto the progress bar
+		return percentage;
 	}
 
 }
