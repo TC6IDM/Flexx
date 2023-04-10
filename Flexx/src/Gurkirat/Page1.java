@@ -86,6 +86,7 @@ public class Page1 {
 		frame.getContentPane().add(btnNewButton);
 		
 		JTextArea txtrMuscleGroup = new JTextArea(); // Create a new JTextArea
+		txtrMuscleGroup.setName("txtrMuscleGroup");
 		txtrMuscleGroup.setForeground(new Color(255, 200, 0));
 		txtrMuscleGroup.setToolTipText(""); // Set the tooltip text to an empty string
 		txtrMuscleGroup.setBackground(new Color(77, 77, 77)); // Set the background color
@@ -97,6 +98,7 @@ public class Page1 {
 		frame.getContentPane().add(txtrMuscleGroup); // Add it to the content pane of the JFrame
 
 		JTextArea txtrWorkoutTypes = new JTextArea(); // Create another JTextArea
+		txtrWorkoutTypes.setName("txtrWorkoutTypes");
 		txtrWorkoutTypes.setForeground(new Color(255, 200, 0));
 		txtrWorkoutTypes.setBackground(new Color(77, 77, 77)); // Set the background color
 		txtrWorkoutTypes.setEditable(false); // Set it to be uneditable
@@ -106,12 +108,14 @@ public class Page1 {
 		frame.getContentPane().add(txtrWorkoutTypes); // Add it to the content pane of the JFrame
 
 		JComboBox comboBox = new JComboBox(); // Create a new JComboBox
+		comboBox.setName("comboBox");
 		comboBox.setFont(new Font("Georgia", Font.PLAIN, 13));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select", "Arms", "Legs", "Chest", "Back"})); // Set the items in the combo box
 		comboBox.setBounds(252, 67, 145, 27); // Set the position and size
 		frame.getContentPane().add(comboBox); // Add it to the content pane of the JFrame
 
 		JComboBox comboBox_1 = new JComboBox(); // Create another JComboBox
+		comboBox_1.setName("comboBox_1");
 		comboBox_1.setFont(new Font("Georgia", Font.PLAIN, 13));
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select"})); // Initialize with "Select" item
 		comboBox_1.setBounds(252, 115, 145, 27); // Set the position and size
@@ -153,6 +157,7 @@ public class Page1 {
 
 		// Create a new JTextPane object named textPane, set its properties, and add it to the frame
 		JTextPane textPane = new JTextPane();
+		textPane.setName("textPane");
 		textPane.setEditable(false);
 		textPane.setBackground(new Color(77, 77, 77));
 		textPane.setBounds(0, 182, 448, 90);
@@ -160,6 +165,7 @@ public class Page1 {
 
 		// Create a new JButton object named btnNewButton_1, and add an action listener to trigger an event when it is clicked
 		JButton btnNewButton_1 = new JButton("Get Results");
+		btnNewButton_1.setName("getResultsButton");
 		btnNewButton_1.setFont(new Font("Georgia", Font.PLAIN, 13));
 		btnNewButton_1.addActionListener(new ActionListener() {
 		    // Define the actionPerformed() method for the event
