@@ -30,20 +30,16 @@ import otherUtil.*;
 
 public class Home {
 
-	public JFrame frame;
+	public JFrame frame; // Declare a JFrame instance
 	
-	
-	
-	/**
-	 * Launch the application.
-	 */
+	// Main method that creates and runs the application 
 	public static void main(String[] args) {
 		
 
 	    EventQueue.invokeLater(new Runnable() {
 	        public void run() {
 	            try {
-	                Flexx.main(args);
+	                Flexx.main(args); // Starts the application 
 	            } catch (Exception e) {
 	                e.printStackTrace();
 	            }
@@ -51,42 +47,38 @@ public class Home {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
+	// Constructor that initializes the GUI
 	public Home() {
 		initialize();
 	}
 
 
-	/**
-	 * Initialize the contents of the frame.
-	 * @wbp.parser.entryPoint
-	 */
-
+    // Method that initializes the GUI components
 	private void initialize() {	
 		
-	    frame = new JFrame();
+	    frame = new JFrame(); // Create a new JFrame instance
 	    frame.getContentPane().setBackground(new Color(77, 77, 77));
-	    frame.setBounds(100, 100, 456, 313);
+	    frame.setBounds(100, 100, 456, 313); // Set the bounds of the frame
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.getContentPane().setLayout(null);
 	    
+        // Create a new GridBagLayout instance for the frame
 	    GridBagLayout gridBagLayout = new GridBagLayout();
         frame.getContentPane().setLayout(gridBagLayout);
         
+        // Create a new GridBagConstraints instance for the layout
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.BOTH;
-        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.insets = new Insets(5, 5, 5, 5); // Set the insets for the layout
 	    
-	    JLabel lblNewLabel = new JLabel("");
+	    JLabel lblNewLabel = new JLabel(""); // Create a new JLabel instance
 	    Image img = new ImageIcon(this.getClass().getResource("/Flexx_icon.png")).getImage();
 	    lblNewLabel.setIcon(new ImageIcon(img));
 	    lblNewLabel.setBounds(5, 5, 50, 50);
 	    frame.getContentPane().add(lblNewLabel);
 	    
 	   
-	    
+	    // Create a new JLabel instance with the user ID
 	    JLabel homeLabel = new JLabel(Login.USERID);
 	    homeLabel.setFont(new Font("Helvetica", Font.BOLD, 15));
 	    homeLabel.setForeground(Color.WHITE);
@@ -94,17 +86,16 @@ public class Home {
 	    homeLabel.setVerticalAlignment(SwingConstants.CENTER);
 	    homeLabel.setOpaque(true);
 	    homeLabel.setBackground(new Color(0x2B579A)); 
-	    gbc.gridx = 1;
-        gbc.gridy = 0;
-        gbc.gridwidth = 1;
+	    // Set positions of grid
+	    gbc.gridx = 1; 
+        gbc.gridy = 0; 
+        gbc.gridwidth = 1; 
         gbc.gridheight = 1;
         gbc.weightx = 1;
         gbc.weighty = 0;
         frame.getContentPane().add(homeLabel, gbc);
 	    
-	    
-	    
-
+        // Create a new button for the personalized workout page
 	    JButton personalizedWorkoutButton = new JButton("Personalized Workout");
 	    personalizedWorkoutButton.setBackground(new Color(0, 122, 255));
 	    personalizedWorkoutButton.setFont(new Font("San Francisco", Font.PLAIN, 14));
@@ -115,6 +106,7 @@ public class Home {
 	            frame.setVisible(false);
 	        }
 	    });
+	    // Set positions of grid
 	    gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
@@ -123,18 +115,19 @@ public class Home {
         gbc.weighty = 1;
         frame.getContentPane().add(personalizedWorkoutButton, gbc);
 
-		
+        // Create a new button for the workout graphs page
 		JButton Page2Button = new JButton("Workout Graphs");
 		//Page2Button.setForeground(new Color(255, 255, 255));
 		Page2Button.setBackground(new Color(77, 77, 77));
 	    Page2Button.setPreferredSize(new Dimension(100, 25)); // Set preferred size
 		Page2Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Page2 page2 = new Page2();
+				Page3 page2 = new Page3();
 				page2.frame.setVisible(true);
-				frame.setVisible(false);
+				frame.setVisible(false); // Hide the Home frame
 			}
 		});
+	    // Set positions of grid
 		 gbc.gridx = 2;
 		 gbc.gridy = 1;
 		 gbc.gridwidth = 1;
@@ -143,6 +136,7 @@ public class Home {
 		 gbc.weighty = 0;
 		 frame.getContentPane().add(Page2Button, gbc);
 		
+		// Create a new button for the track workout page
 	    JButton trackWorkoutButton = new JButton("Track Workout");
 	    trackWorkoutButton.setBackground(new Color(0, 122, 255));
 	    trackWorkoutButton.setFont(new Font("San Francisco", Font.PLAIN, 14));
@@ -153,6 +147,7 @@ public class Home {
 	            frame.setVisible(false);
 	        }
 	    });
+	    // Set positions of grid
 	    gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
@@ -161,8 +156,7 @@ public class Home {
         gbc.weighty = 1;
         frame.getContentPane().add(trackWorkoutButton, gbc);
         
-        
-        
+        // Create a new button for the progress tracker page
 	    JButton progressTrackerButton = new JButton("Progress Tracker");
 	    progressTrackerButton.setBackground(new Color(0, 122, 255));
 	    progressTrackerButton.setFont(new Font("San Francisco", Font.PLAIN, 14));
@@ -173,6 +167,7 @@ public class Home {
 	            frame.setVisible(false);
 	        }
 	    });
+	    // Set positions of grid
 	    gbc.gridx = 1;
 	    gbc.gridy = 2;
 	    gbc.gridwidth = 1;
@@ -181,8 +176,8 @@ public class Home {
 	    gbc.weighty = 1;
 	    frame.getContentPane().add(progressTrackerButton, gbc);
 
+	    // Create a new button for the food tracker page
 	    JButton foodTrackerButton = new JButton("Food Tracker");
-	    //foodTrackerButton.setForeground(Color.WHITE);
 	    foodTrackerButton.setBackground(new Color(0, 122, 255));
 	    foodTrackerButton.setFont(new Font("San Francisco", Font.PLAIN, 14));
 	    foodTrackerButton.addActionListener(new ActionListener() {
@@ -192,6 +187,7 @@ public class Home {
 	            frame.setVisible(false);
 	        }
 	    });
+	    // Set positions of grid
 	    gbc.gridx = 0;
 	    gbc.gridy = 2;
 	    gbc.gridwidth = 1;
@@ -200,6 +196,7 @@ public class Home {
 	    gbc.weighty = 1;
 	    frame.getContentPane().add(foodTrackerButton, gbc);
 	    
+	    // Create a new button for logging out
 	    JButton loginButton = new JButton("logout");
 	    loginButton.setBackground(new Color(255, 74, 74));
 	    loginButton.setPreferredSize(new Dimension(100, 25)); // Set preferred size
@@ -211,6 +208,7 @@ public class Home {
 	            frame.setVisible(false);
 	        }
 	    });
+	    // Set positions of grid
 		 gbc.gridx = 2;
 		 gbc.gridy = 0;
 		 gbc.gridwidth = 1;
@@ -219,6 +217,7 @@ public class Home {
 		 gbc.weighty = 0;
 	    frame.getContentPane().add(loginButton, gbc);
 	    
+	    // Create a label for the home page
 	    JLabel usernameLabel = new JLabel("Home");
 	    usernameLabel.setFont(new Font("Helvetica", Font.BOLD, 30));
 	    usernameLabel.setForeground(Color.WHITE); // Change the color of the HOME font to white
@@ -226,6 +225,7 @@ public class Home {
 	    usernameLabel.setVerticalAlignment(SwingConstants.CENTER);
 	    usernameLabel.setOpaque(true);
 	    usernameLabel.setBackground(new Color(0x2B579A)); 
+	    // Set positions of grid
 	    gbc.gridx = 0;
 	    gbc.gridy = 4;
 	    gbc.gridwidth = 2;
