@@ -217,6 +217,7 @@ btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// If statements to enable the feature selected
 				String selectedOption = (String) comboBox.getSelectedItem();
+				
 				if (selectedOption.equals("Add goal")) {
 					btnNewButton_1.setEnabled(true);
 				} else {
