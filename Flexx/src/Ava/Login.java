@@ -172,18 +172,21 @@ public class Login implements ActionListener{
 			      String username = usernameField.getText();
 			      String password = passwordField.getText();
 			      
+			   // Check if both fields are not empty
 		        if (!username.isEmpty() && !password.isEmpty()) {
 			      try {
+		              // Check if the username already exists in the database
 			    	  boolean usernameExists = JDBC.checkUsernameExists(username);
 			    	  
 			    if(!usernameExists) {
 			    	
+                    // Insert the new user into the database
 			    	  JDBC.insertUser(username, password);
 			    	  JOptionPane.showMessageDialog(frame,  "You have successfully signed up!");
-			    	  USERID = username;
+			    	  USERID = username; // Set the static variable USERID to the new user's username
 			          Home home = new Home();
-			          home.frame.setVisible(true);
-			          frame.setVisible(false);
+			          home.frame.setVisible(true); // Set the Home frame to visible
+			          frame.setVisible(false); // Hide the Signup frame
 			    	} else {
 			    		JOptionPane.showMessageDialog(frame, "Username already exists.");
 			    	}
@@ -230,3 +233,7 @@ public class Login implements ActionListener{
 	}
 
 }
+
+
+
+
