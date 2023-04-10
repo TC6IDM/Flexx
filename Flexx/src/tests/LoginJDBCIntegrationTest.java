@@ -3,7 +3,6 @@ package tests;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import otherUtil.JDBC;
 
 import java.sql.Connection;
@@ -15,17 +14,23 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LoginJDBCIntegrationTest {
 
-    private static final String TEST_DB_URL = "jdbc:sqlite:testdb.sqlite";
+	public static String password = "MyN3wP4ssw0rd";// replace with your password
+	public static String user = "root" ;
+	private static final String TEST_DB_URL = "jdbc:mysql://localhost:3306/Flexx";
 
     @BeforeEach
     public void setUp() throws SQLException {
         JDBC.setDbUrl(TEST_DB_URL);
-        JDBC.createTables();
+        try (Connection connection = DriverManager.getConnection(TEST_DB_URL, user, password);
+             Statement statement = connection.createStatement()) {
+            statement.executeUpdate("DROP TABLE IF EXISTS userInfo");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS userInfo( Uname VARCHAR(255) NOT NULL, Upassword VARCHAR(255) NOT NULL);");
+        }
     }
-
+    
     @AfterEach
     public void tearDown() throws SQLException {
-        try (Connection connection = DriverManager.getConnection(TEST_DB_URL);
+        try (Connection connection = DriverManager.getConnection(TEST_DB_URL,user,password);
              Statement statement = connection.createStatement()) {
             statement.executeUpdate("DROP TABLE IF EXISTS userInfo");
         }
