@@ -115,7 +115,7 @@ public class Page3 {
 	}
 	//moves all elements of the work-outs up or down by x 
 	public boolean move(int move) {
-		int CUTOFF = 55; //height cutoff, the exercise button can not go above this point, and the first exercise can not be below this point
+		int CUTOFF = (int) Math.round(Frame_ActualHeight/10.2545455); //height cutoff, the exercise button can not go above this point, and the first exercise can not be below this point
 		boolean canMove = true;//keeps track if the exercises can move
 		if (exercises.size()==0) return false; //no exercises and therefore return false, nothing will move
 		if (exercises.get(0).newExerciseButton.getY()+move <= Frame_ActualHeight-exercises.get(0).newExerciseButton.getHeight()) {move = -1*(exercises.get(0).newExerciseButton.getY() - (Frame_ActualHeight-exercises.get(0).newExerciseButton.getHeight())); canMove = false;} //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
@@ -276,7 +276,6 @@ public class Page3 {
 		int newExerciseButton_height = 35;	
 		int moveDown = 10;
 		int NewExerciseButtonY = 55;
-//comment
 		newExerciseButton = new JButton("New Exercise");
 		newExerciseButton.setForeground(Color.ORANGE);
 		newExerciseButton.addActionListener(new ActionListener() {
