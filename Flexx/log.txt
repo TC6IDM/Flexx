@@ -113,3 +113,79 @@ Touch-ups on certain pages
 Database and testing assembly
 Page 3 Workout Tracker - Andrew
 Created a new way to scroll instead of a built-in scroll bar, Andrew made a move up and down button to control where the exercises are 
+
+ITERATION 3 
+
+Team Meetings:
+**Throughout Iteration 3, group members would actively touch base with one another through a group chat, where we would periodically check-in on progress, concerns, tasks etc. 
+
+
+Meeting #1:
+Date: March 15, 2023
+Minutes: 1 hour and 30 minutes
+Notes:
+Tasks allocated for each group member to continue working on their allocated page and implement any detailed user stories that were needed.
+
+Gurkirat to work on Personalised workouts on Page 1
+Ava to work on Sign-in & Log-in system on Page 2
+Andrew to work on exercise tracking on Page 3
+Elyse to work on Progress Tracker on Page 4
+Timi to work on Calorie Intake Tracker/Log on Page 5
+
+
+Meeting #2:
+Date: March 22, 2023
+Minutes: 1 hour and 30 minutes
+Notes:
+
+Update on everyone’s progress
+Discussed bugs throughout the application and necessary steps to implement fixes
+Ava to work on Home and Sign up page
+Bug uncovered with logging in with blank text fields
+
+
+Meeting #3:
+Date: March 29, 2023
+Minutes: 1 hour and 30 minutes
+Notes:
+
+
+Updates on everyone's progress
+Discussions about final integration testing and JUnit test cases
+Discussion about home GUI window size
+Documentation edits
+Ava to work on Home and Sign up page
+Another bug with the application allowing sign up with the existing username
+
+Meeting #4:
+Date: April 2, 2023
+Minutes: 1 hour and 30 minutes
+Notes:
+
+Updates on everyone's progress
+Touch-ups on pages
+JUnit tests completed, with integration testing to follow
+
+Meeting #5:
+Date: April 5, 2023
+Minutes: 1 hour and 30 minutes
+Notes:
+
+
+Final bug fixes implemented with full functionality
+Home window size is now larger and GUI elements adjust with size
+Discussed any remaining issues and finalized the project.
+
+Meeting #6:
+Date: April 10, 2023
+Minutes: 2 hours
+Notes:
+
+
+Final discussion and bug fixes
+Removed the last of the code smells and bugs
+Merged all outstanding branches
+Added all new files to the github repo
+
+
+
