@@ -286,4 +286,13 @@ public class JDBC{
 	public static void setPassword(String pw) {
 		password = pw;
 	}
+	
+	// FOR INTEGRATION TESTING
+    private static String dbUrl = "jdbc:sqlite:productionDb.sqlite"; // Replace with the URL of your production database
+
+    // Add a static method to set the database URL
+    public static void setDbUrl(String dbUrl) {
+        JDBC.dbUrl = dbUrl;
+    }
+
 }
