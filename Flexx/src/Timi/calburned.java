@@ -72,7 +72,7 @@ public class calburned {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("CALORIES BURNED");
+		JLabel lblNewLabel = new JLabel("CAL BURNED");
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(171, 6, 81, 16);
 		frame.getContentPane().add(lblNewLabel);
@@ -90,7 +90,7 @@ public class calburned {
 		btnNewButton.setBounds(0, 1, 89, 29);
 		frame.getContentPane().add(btnNewButton);
 
-		
+
 		textField_1 = new JTextField();
 		textField_1.setBounds(41, 105, 130, 26);
 		frame.getContentPane().add(textField_1);
@@ -125,176 +125,177 @@ public class calburned {
 		textField_7.setBounds(220, 57, 130, 26);
 		frame.getContentPane().add(textField_7);
 		textField_7.setColumns(10);
-		
+
 		JButton btnNewButton_1 = new JButton("Save");
+		lblNewLabel_2 = new JLabel("---cal");
+		lblNewLabel_2.setForeground(Color.ORANGE);
+		lblNewLabel_2.setBounds(289, 219, 61, 16);
+		frame.getContentPane().add(lblNewLabel_2);
 		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				try {
-                    // Establish a connection to the database
-                    Connection con = DriverManager.getConnection(JDBC.databaseURL, JDBC.user, JDBC.password);
+		    public void actionPerformed(ActionEvent e) {
+		        try {
+		            // Establish a connection to the database
+		            Connection con = DriverManager.getConnection(JDBC.databaseURL, JDBC.user, JDBC.password);
 
-                    // Create a table to store the data
-            		String query = "INSERT INTO CALBURNED (calories) VALUES ('" + textFieldValue + "')";
+		            // Create a table to store the data
+		            String insertSql = "INSERT INTO CALBURNED (calories) VALUES (?)";
+		            PreparedStatement pstmt = con.prepareStatement(insertSql);
+		            Component[] components = frame.getContentPane().getComponents();
+		            boolean dataInserted = false;
+		            int totalCalories = 0; // Initialize totalCalories to 0
+		            for (Component component : components) {
+		                if (component instanceof JTextField) {
+		                    String calories = ((JTextField) component).getText();
+		                    if (!calories.isEmpty()) { // Check if the input field is empty
+		                        pstmt.setString(1, calories);
+		                        int rows = pstmt.executeUpdate();
+		                        if (rows > 0) {
+		                            dataInserted = true;
+		                            totalCalories += Integer.parseInt(calories); // Add the calories to the totalCalories
+		                        }
+		                    }
+		                }
+		            }
 
-            		 Statement stmt = con.createStatement();
-                     stmt.executeUpdate(query);
+		            // Set the label text to the sum of all input data
+		            if (totalCalories == 0) {
+		                lblNewLabel_2.setText("---cal"); // If there is no input, set the label text to "---cal"
+		            } else {
+		                lblNewLabel_2.setText(totalCalories + " cal");
+		            }
 
-                     // Insert the data into the table
-                     String insertSql = "INSERT INTO CALBURNED (calories) VALUES (?)";
-                     PreparedStatement pstmt = con.prepareStatement(insertSql);
-                     Component[] components = frame.getContentPane().getComponents();
-                     boolean dataInserted = false;
-                     for (Component component : components) {
-                         if (component instanceof JTextField) {
-                             String calories = ((JTextField) component).getText();
-                             pstmt.setString(1, calories);
-                             int rows = pstmt.executeUpdate();
-                             if (rows > 0) {
-                                 dataInserted = true;
-                             }
-                         }
-                     }
+		            // Close the connection
+		            pstmt.close();
+		            con.close();
 
-                     // Close the connection
-                     pstmt.close();
-                     stmt.close();
-                     con.close();
-                     // Show a message to indicate whether the data has been saved
-                     if (dataInserted) {
-                         JOptionPane.showMessageDialog(frame, "Data has been saved to the database.");
-                     } else {
-                         JOptionPane.showMessageDialog(frame, "No data was inserted into the database.");
-                     }
-                 } catch (SQLException ex) {
-                     JOptionPane.showMessageDialog(frame, "Error: " + ex.getMessage());
-                 }
-             }
-         });
-		
+		            // Show a message to indicate whether the data has been saved
+		            if (dataInserted) {
+		                JOptionPane.showMessageDialog(frame, "Data has been saved to the database.");
+		            } else {
+		                JOptionPane.showMessageDialog(frame, "No data was inserted into the database.");
+		            }
+		        } catch (SQLException ex) {
+		            JOptionPane.showMessageDialog(frame, "Error: " + ex.getMessage());
+		        }
+		    }
+		});
+	
 		btnNewButton_1.setBounds(384, 237, 60, 29);
 		frame.getContentPane().add(btnNewButton_1);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Total Cal:");
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setBounds(220, 219, 61, 16);
 		frame.getContentPane().add(lblNewLabel_1);
 		
-		lblNewLabel_2 = new JLabel("---cal");
-		lblNewLabel_2.setForeground(Color.ORANGE);
-		lblNewLabel_2.setBounds(289, 219, 61, 16);
-		frame.getContentPane().add(lblNewLabel_2);
 
-		   // Add document listeners to the text fields to update their values
-	    // whenever the user types in them
-	 
-	    textField_1.getDocument().addDocumentListener(new DocumentListener() {
-	        public void changedUpdate(DocumentEvent e) {
-	            updateTextField_1Value();
-	        }
-	        public void removeUpdate(DocumentEvent e) {
-	            updateTextField_1Value();
-	        }
-	        public void insertUpdate(DocumentEvent e) {
-	            updateTextField_1Value();
-	        }
-	    });
-	    textField_2.getDocument().addDocumentListener(new DocumentListener() {
-	        public void changedUpdate(DocumentEvent e) {
-	            updateTextField_2Value();
-	        }
-	        public void removeUpdate(DocumentEvent e) {
-	            updateTextField_2Value();
-	        }
-	        public void insertUpdate(DocumentEvent e) {
-	            updateTextField_2Value();
-	        }
-	    });
-	    textField_3.getDocument().addDocumentListener(new DocumentListener() {
-	        public void changedUpdate(DocumentEvent e) {
-	            updateTextField_3Value();
-	        }
-	        public void removeUpdate(DocumentEvent e) {
-	            updateTextField_3Value();
-	        }
-	        public void insertUpdate(DocumentEvent e) {
-	            updateTextField_3Value();
-	        }
-	    });
-	    textField_4.getDocument().addDocumentListener(new DocumentListener() {
-	        public void changedUpdate(DocumentEvent e) {
-	            updateTextField_4Value();
-	        }
-	        public void removeUpdate(DocumentEvent e) {
-	            updateTextField_4Value();
-	        }
-	        public void insertUpdate(DocumentEvent e) {
-	            updateTextField_4Value();
-	        }
-	    });
-	    textField_5.getDocument().addDocumentListener(new DocumentListener() {
-	        public void changedUpdate(DocumentEvent e) {
-	            updateTextField_5Value();
-	        }
-	        public void removeUpdate(DocumentEvent e) {
-	            updateTextField_5Value();
-	        }
-	        public void insertUpdate(DocumentEvent e) {
-	            updateTextField_5Value();
-	        }
-	    });
-	    textField_6.getDocument().addDocumentListener(new DocumentListener() {
-	        public void changedUpdate(DocumentEvent e) {
-	            updateTextField_6Value();
-	        }
-	        public void removeUpdate(DocumentEvent e) {
-	            updateTextField_6Value();
-	        }
-	        public void insertUpdate(DocumentEvent e) {
-	            updateTextField_6Value();
-	        }
-	    }
-	    );
-	    textField_7.getDocument().addDocumentListener(new DocumentListener() {
-	        public void changedUpdate(DocumentEvent e) {
-	            updateTextField_7Value();
-	        }
-	        public void removeUpdate(DocumentEvent e) {
-	            updateTextField_7Value();
-	        }
-	        public void insertUpdate(DocumentEvent e) {
-	            updateTextField_7Value();
-	        }
-	    }
-	    );
-	  
+		// Add document listeners to the text fields to update their values
+		// whenever the user types in them
+
+		textField_1.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				updateTextField_1Value();
+			}
+			public void removeUpdate(DocumentEvent e) {
+				updateTextField_1Value();
+			}
+			public void insertUpdate(DocumentEvent e) {
+				updateTextField_1Value();
+			}
+		});
+		textField_2.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				updateTextField_2Value();
+			}
+			public void removeUpdate(DocumentEvent e) {
+				updateTextField_2Value();
+			}
+			public void insertUpdate(DocumentEvent e) {
+				updateTextField_2Value();
+			}
+		});
+		textField_3.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				updateTextField_3Value();
+			}
+			public void removeUpdate(DocumentEvent e) {
+				updateTextField_3Value();
+			}
+			public void insertUpdate(DocumentEvent e) {
+				updateTextField_3Value();
+			}
+		});
+		textField_4.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				updateTextField_4Value();
+			}
+			public void removeUpdate(DocumentEvent e) {
+				updateTextField_4Value();
+			}
+			public void insertUpdate(DocumentEvent e) {
+				updateTextField_4Value();
+			}
+		});
+		textField_5.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				updateTextField_5Value();
+			}
+			public void removeUpdate(DocumentEvent e) {
+				updateTextField_5Value();
+			}
+			public void insertUpdate(DocumentEvent e) {
+				updateTextField_5Value();
+			}
+		});
+		textField_6.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				updateTextField_6Value();
+			}
+			public void removeUpdate(DocumentEvent e) {
+				updateTextField_6Value();
+			}
+			public void insertUpdate(DocumentEvent e) {
+				updateTextField_6Value();
+			}
+		}
+				);
+		textField_7.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				updateTextField_7Value();
+			}
+			public void removeUpdate(DocumentEvent e) {
+				updateTextField_7Value();
+			}
+			public void insertUpdate(DocumentEvent e) {
+				updateTextField_7Value();
+			}
+		}
+				);
+
 	}
-	
-//	public String getTextFieldValue() {
-//	    return textFieldValue;
-//	}
 
-	
+
+
 	private void updateTextField_1Value() {
-	    textFieldValue = textField_1.getText();
+		textFieldValue = textField_1.getText();
 	}
 	private void updateTextField_2Value() {
-	    textFieldValue = textField_2.getText();
+		textFieldValue = textField_2.getText();
 	}
 	private void updateTextField_3Value() {
-	    textFieldValue = textField_3.getText();
+		textFieldValue = textField_3.getText();
 	}
 	private void updateTextField_4Value() {
-	    textFieldValue = textField_4.getText();
+		textFieldValue = textField_4.getText();
 	}
 	private void updateTextField_5Value() {
-	    textFieldValue = textField_5.getText();
+		textFieldValue = textField_5.getText();
 	}
 	private void updateTextField_6Value() {
-	    textFieldValue = textField_6.getText();
+		textFieldValue = textField_6.getText();
 	}
 	private void updateTextField_7Value() {
-	    textFieldValue = textField_7.getText();
+		textFieldValue = textField_7.getText();
 	}
 
 	public JTextField getTextField() {
