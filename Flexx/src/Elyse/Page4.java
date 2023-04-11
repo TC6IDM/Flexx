@@ -99,6 +99,8 @@ public class Page4 {
 
 		// Add button to implement new goals and add checkboxes alongside
 		JButton btnNewButton_1 = new JButton("Add");
+		btnNewButton_1.setName("Add"); // For JUnit Testing
+		frame.getContentPane().add(btnNewButton_1); // For JUnit Testing of the "Add" button
 		btnNewButton_1.setForeground(new Color(215, 104, 0));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -158,6 +160,7 @@ public class Page4 {
 
 		// Delete button where you are able to select goals to delete
 		JButton btnNewButton_1_1 = new JButton("Delete");
+		btnNewButton_1_1.setName("Delete"); // For JUnit Testing
 		btnNewButton_1_1.setForeground(new Color(215, 104, 0));
 		btnNewButton_1_1.setBackground(SystemColor.window);
 		btnNewButton_1_1.setBounds(252, 117, 54, 16);
@@ -325,3 +328,4 @@ btnNewButton_1_1.addActionListener(new ActionListener() {
 	}
 
 }
+
