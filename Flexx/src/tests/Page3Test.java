@@ -28,7 +28,8 @@ class Page3Test {
 		String reps = "5";
 		String weight = "100";
 		String tableSize = "0";
-		String insertQuery = "INSERT INTO exerciselogs VALUE(\""+exerciseName+"\", "+reps+", "+weight+", "+tableSize+");";
+		String User = "TC";
+		String insertQuery = "INSERT INTO exerciselogs VALUE(\""+exerciseName+"\", "+reps+", "+weight+", "+tableSize+", \""+User+"\");";
 		try {
 			Connection con = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
 			Statement statement = con.createStatement();
@@ -36,11 +37,12 @@ class Page3Test {
 		} catch (SQLException err) {
 			err.printStackTrace();
 		}
-		String testQuery1 = "SELECT * FROM exerciselogs WHERE exerciseName='Bench Press' AND Weight=100 AND Reps=5 AND WorkoutNumber=0;";
+		String testQuery1 = "SELECT * FROM exerciselogs WHERE exerciseName='Bench Press' AND Weight=100 AND Reps=5 AND WorkoutNumber=0 AND User='TC';";
 		String exerciseNametest = null;
         int Weighttest = 0;
         int Repstest = 0;
         int WorkoutNumbertest = 0;
+        String Username = null;
 		try {
 			Connection con = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
 			Statement statement = con.createStatement();
@@ -50,6 +52,7 @@ class Page3Test {
                 Weighttest = rs.getInt("Weight");
                 Repstest = rs.getInt("Reps");
                 WorkoutNumbertest = rs.getInt("WorkoutNumber");
+                Username = rs.getString("User");
             }
 		} catch (SQLException err) {
 			err.printStackTrace();
@@ -59,6 +62,7 @@ class Page3Test {
 		assertEquals(5,Repstest);
 		assertEquals(100,Weighttest);
 		assertEquals(0,WorkoutNumbertest);
+		assertEquals("TC",Username);
 	}
 	@Test
 	void test2() {
@@ -76,7 +80,8 @@ class Page3Test {
 		String reps = "50";
 		String weight = "10";
 		String tableSize = "1";
-		String insertQuery = "INSERT INTO exerciselogs VALUE(\""+exerciseName+"\", "+reps+", "+weight+", "+tableSize+");";
+		String User = "TIMI";
+		String insertQuery = "INSERT INTO exerciselogs VALUE(\""+exerciseName+"\", "+reps+", "+weight+", "+tableSize+", \""+User+"\");";;
 		try {
 			Connection con = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
 			Statement statement = con.createStatement();
@@ -84,11 +89,12 @@ class Page3Test {
 		} catch (SQLException err) {
 			err.printStackTrace();
 		}
-		String testQuery1 = "SELECT * FROM exerciselogs WHERE exerciseName='Lateral Raise' AND Weight=10 AND Reps=50 AND WorkoutNumber=1;";
+		String testQuery1 = "SELECT * FROM exerciselogs WHERE exerciseName='Lateral Raise' AND Weight=10 AND Reps=50 AND WorkoutNumber=1 AND User='TIMI';";
 		String exerciseNametest = null;
         int Weighttest = 0;
         int Repstest = 0;
         int WorkoutNumbertest = 0;
+        String Username = null;
 		try {
 			Connection con = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
 			Statement statement = con.createStatement();
@@ -98,14 +104,17 @@ class Page3Test {
                 Weighttest = rs.getInt("Weight");
                 Repstest = rs.getInt("Reps");
                 WorkoutNumbertest = rs.getInt("WorkoutNumber");
+                Username = rs.getString("User");
             }
 		} catch (SQLException err) {
 			err.printStackTrace();
 		}
+		
 		assertEquals("Lateral Raise", exerciseNametest);
 		assertEquals(50,Repstest);
 		assertEquals(10,Weighttest);
 		assertEquals(1,WorkoutNumbertest);
+		assertEquals("TIMI",Username);
 	
 	}
 	@Test
@@ -124,7 +133,8 @@ class Page3Test {
 		String reps = "8";
 		String weight = "405";
 		String tableSize = "2";
-		String insertQuery = "INSERT INTO exerciselogs VALUE(\""+exerciseName+"\", "+reps+", "+weight+", "+tableSize+");";
+		String User = "JJ";
+		String insertQuery = "INSERT INTO exerciselogs VALUE(\""+exerciseName+"\", "+reps+", "+weight+", "+tableSize+", \""+User+"\");";;
 		try {
 			Connection con = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
 			Statement statement = con.createStatement();
@@ -132,11 +142,12 @@ class Page3Test {
 		} catch (SQLException err) {
 			err.printStackTrace();
 		}
-		String testQuery1 = "SELECT * FROM exerciselogs WHERE exerciseName='Squat' AND Weight=405 AND Reps=8 AND WorkoutNumber=2;";
+		String testQuery1 = "SELECT * FROM exerciselogs WHERE exerciseName='Squat' AND Weight=405 AND Reps=8 AND WorkoutNumber=2 AND User='JJ';";
 		String exerciseNametest = null;
         int Weighttest = 0;
         int Repstest = 0;
         int WorkoutNumbertest = 0;
+        String Username = null;
 		try {
 			Connection con = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
 			Statement statement = con.createStatement();
@@ -146,14 +157,17 @@ class Page3Test {
                 Weighttest = rs.getInt("Weight");
                 Repstest = rs.getInt("Reps");
                 WorkoutNumbertest = rs.getInt("WorkoutNumber");
+                Username = rs.getString("User");
             }
 		} catch (SQLException err) {
 			err.printStackTrace();
 		}
+		
 		assertEquals("Squat", exerciseNametest);
 		assertEquals(8,Repstest);
 		assertEquals(405,Weighttest);
 		assertEquals(2,WorkoutNumbertest);
+		assertEquals("JJ",Username);
 	}
 
 }
