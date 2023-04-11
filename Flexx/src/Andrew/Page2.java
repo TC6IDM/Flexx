@@ -73,28 +73,17 @@ public class Page2 {
 
 	
 	public boolean move(int move) {
-//		System.out.println(move);
 		int CUTOFF = 55; //height cutoff, the exercise button can not go above this point, and the first exercise can not be below this point
 		boolean canMove = true;//keeps track if the exercises can move
 		if (workouts.size()==0) return false; //no exercises and therefore return false, nothing will move
 		if (workouts.get(workouts.size()-1).button.getY()+move <= Frame_ActualHeight-workouts.get(workouts.size()-1).button.getHeight()) {move = -1*(workouts.get(workouts.size()-1).button.getY() - (Frame_ActualHeight-workouts.get(workouts.size()-1).button.getHeight())); canMove = false;} //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
-//		System.out.println(move);
 		if (workouts.get(0).button.getY()+move > CUTOFF) {move = CUTOFF - workouts.get(0).button.getY(); canMove = false;}//if the next move will put the first exercise below the cutoff, then only move by however much can keep it right at the cutoff
-//		System.out.println(move);
-		//workouts.get(0).button.setLocation(workouts.get(0).button.getX(),workouts.get(0).button.getY()+move); //moves the new exercise button
 		
 		for (int i=0;i<workouts.size();i++) { //loops through all exercises
 			
 			JButton currentExercise = workouts.get(i).button; //finds the current exercise
-			//moves the three elements of exercise
-//			System.out.println(workouts.get(i).workoutName);
-//			System.out.println(currentExercise.getY());
-//			System.out.println(move);
+			//moves the current exercise
 			currentExercise.setLocation(currentExercise.getX(),currentExercise.getY()+move);
-			
-			//for each element of exercise, it will turn invisible if it is beyond the cutoff and it will be visible if not beyond the cutoff
-//			if (currentExercise.getY()<CUTOFF) currentExercise.setVisible(false); else currentExercise.setVisible(true); 
-			
 			frame.validate();
 			frame.repaint();
 		}
@@ -246,38 +235,41 @@ public class Page2 {
 		int newExerciseButton_height = 50;	
 		int NewExerciseButtonY = 55;
 		
-		JLabel newExerciseLabel = new JLabel("No Exercises To Show Here, Complete More For Them To Appear");
+		//creates the no exercises to be shown here label
+		JLabel newExerciseLabel = new JLabel("No Exercises To Shown Here, Complete More For Them To Appear");
 		newExerciseLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		newExerciseLabel.setForeground(Color.ORANGE);
 		newExerciseLabel.setBounds(Frame_ActualWidth/2 - newExerciseButton_width/2, NewExerciseButtonY, newExerciseButton_width, newExerciseButton_height);
 		newExerciseLabel.setOpaque(false);
-//		newExerciseButton.setContentAreaFilled(false);
-//		newExerciseButton.setBorderPainted(false);
 		newExerciseLabel.setVisible(false);
 		frame.getContentPane().add(newExerciseLabel);
 
 		
+		//finds all unique exercises in the database with the user's username attached to it
 		String exercisesQuery = "SELECT DISTINCT ExerciseName FROM (Select * FROM exerciselogs HAVING User='"+Login.USERID+"') AS test";
 		try {
 			Connection con = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
 			Statement statement = con.createStatement();
 			ResultSet rs = statement.executeQuery(exercisesQuery);
+			//loops through all unique exercises
 			while (rs.next()) {
 				Workout thisWorkout = new Workout(rs.getString(1));
+				//finds all exercises done with this name
 				String findAllExercisesQuery = "SELECT * FROM exerciselogs HAVING ExerciseName='"+thisWorkout.workoutName+"' AND User='"+Login.USERID+"'";
-//				System.out.println(thisWorkout.workoutName);
 				Connection con2 = DriverManager.getConnection (JDBC.databaseURL,JDBC.user,JDBC.password);
 				Statement statement2 = con2.createStatement();
 				ResultSet rs2 = statement2.executeQuery(findAllExercisesQuery);
 				
 				while (rs2.next()) {
-//					System.out.println(rs2.getInt(2)+" "+rs2.getInt(3)+" "+rs2.getInt(4));
+//					//adds the workout number, reps and weight to the workout
 					thisWorkout.addDataPoint(rs2.getInt(2),rs2.getInt(3) ,rs2.getInt(4) );
 				}
-				workouts.add(thisWorkout);
+				workouts.add(thisWorkout); //adds the workout to the list
 			}
-			if (workouts.size()==0) newExerciseLabel.setVisible(true);
+			if (workouts.size()==0) newExerciseLabel.setVisible(true); //no exercises to show, so show the empty label
+			//loops through all workourts
 			for (int i=0;i<workouts.size();i++) {
+				//makes a button for each workout
 				Workout thisWorkout = workouts.get(i);
 				JButton btnNewButton = new JButton(thisWorkout.workoutName);
 				int buttonHeight2 = 50;
@@ -287,15 +279,12 @@ public class Page2 {
 				btnNewButton.setBounds(Frame_ActualWidth/2 - buttonWidth2/2 ,buttonY, buttonWidth2, buttonHeight2);
 				btnNewButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if (thisWorkout.sets.size()<2) {JOptionPane.showMessageDialog(frame, "Not Enough data points to plot this exercise\nPlease preform this exercise again\nto generate a graph");return;}
+						if (thisWorkout.sets.size()<2) {JOptionPane.showMessageDialog(frame, "Not Enough data points to plot this exercise\nPlease preform this exercise again\nto generate a graph");return;} //not enough data points in this workout to show a meaningful graph
 						GraphXY graphxy = thisWorkout.getGraphXY();
-//						System.out.println(thisWorkout.toString());
-//						System.out.println(graphxy.toString());
-						GraphPanel.createAndShowGui(graphxy.yValues,graphxy.xValues,graphxy.bestSets);						
-//						System.out.println(thisWorkout.workoutName);
+						GraphPanel.createAndShowGui(graphxy.yValues,graphxy.xValues,graphxy.bestSets);
 					}
 				});
-				if (buttonY + buttonHeight2 > Frame_ActualHeight) {
+				if (buttonY + buttonHeight2 > Frame_ActualHeight) { //buttons go off screen so scroll button pops up
 					moveDownButton.setVisible(true);
 					scrollByField.setVisible(true);
 					scrollByLabel.setVisible(true);

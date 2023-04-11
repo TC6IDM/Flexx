@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-//exercise class
+//GraphXY class
 public class GraphXY{
 	public List<Integer> xValues;
 	public List<Double> yValues;
@@ -24,6 +24,7 @@ public class GraphXY{
 		bestSets = s;
 	}
 	
+	//prints a string version of this class
 	public String toString() {
 		String ret = "";
 		for (int i=0;i<xValues.size();i++) {

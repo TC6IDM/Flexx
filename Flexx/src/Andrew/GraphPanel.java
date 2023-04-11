@@ -25,7 +25,7 @@ import javax.swing.SwingUtilities;
 
 import Ava.Home;
 
-//THIS IS AN IMPORTED PACKAGE NOT MADE BY ME, IT IS UED TO PLOT GRAPHS USING JAVA SWING
+//THIS IS AN IMPORTED PACKAGE, IT HAS BEEN MODIFIED BY ME BUT NOT CREATED BY ME, IT IS UED TO PLOT GRAPHS USING JAVA SWING
 
 
 /**
@@ -140,25 +140,16 @@ public class GraphPanel extends JPanel {
             int y = graphPoints.get(i).y - pointWidth / 2;
             int ovalW = pointWidth;
             int ovalH = pointWidth;
-//            g2.setStroke(GRAPH_STROKE); //maybe change this???
-//            g2.setColor(textColor);
-//            g2.drawString(bestSets.get(i), x-15, y-5);
-//            g2.drawString(scores.get(i)+"",x-10,y+15);
             g2.setStroke(oldStroke);
             g2.setColor(pointColor);
             g2.fillOval(x, y, ovalW, ovalH);
         }
-        g2.setStroke(GRAPH_STROKE); //maybe change this???
+        g2.setStroke(GRAPH_STROKE);
         g2.setColor(textColor);
         g2.drawString("Click Anywhere to Exit", getWidth()/2 - 30 , 15);
         g2.drawString("One Rep Max", 10, 15);
         g2.drawString("Workout Number", getWidth()/2 - 30 , getHeight()-15);
     }
-
-//    @Override
-//    public Dimension getPreferredSize() {
-//        return new Dimension(width, height);
-//    }
 
     private double getMinScore() {
         double minScore = Double.MAX_VALUE;
@@ -208,8 +199,6 @@ public class GraphPanel extends JPanel {
 		backButton.setIcon(new ImageIcon(Page3.class.getResource("/Andrew/x-mark-32.png")));
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				Home home = new Home();
-//				home.frame.setVisible(true);
 				frame.setVisible(false);
 		        
 			}
@@ -227,19 +216,11 @@ public class GraphPanel extends JPanel {
         	 List<Double> scores = new ArrayList<>();
         	 List<Integer> xAxis = new ArrayList<>();
         	 List<String> bestSets = new ArrayList<>();
-//             Random random = new Random();
-//             int maxDataPoints = 40;
-//             int maxScore = 10;
              scores.add(1.0); xAxis.add(10); bestSets.add("1");
              scores.add(5.0); xAxis.add(13); bestSets.add("1");
              scores.add(20.0); xAxis.add(17); bestSets.add("1");
              scores.add(10.0); xAxis.add(20); bestSets.add("1");
              scores.add(2.0); xAxis.add(25); bestSets.add("1");
-//             for (int i = 0; i < maxDataPoints; i++) {
-//                 scores.add((double) random.nextDouble() * maxScore);
-//                 xAxis.add(i+5);
-////                 scores.add((double) i);
-//             }
              createAndShowGui(scores,xAxis,bestSets);
          }
       });

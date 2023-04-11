@@ -44,6 +44,7 @@ public class Exercise{
 		nameLabel.setBounds(Frame_ActualWidth/4 - nameLabelWidth/2, Y, nameLabelWidth, fieldHeight);
 		frame.getContentPane().add(nameLabel);
 		
+		//creates the number name label
 		int numberLabelWidth = 18;
 		exerciseNumberLabel = new JLabel("1");
 		exerciseNumberLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -51,6 +52,8 @@ public class Exercise{
 		exerciseNumberLabel.setBounds(nameLabel.getX()-numberLabelWidth, Y, numberLabelWidth, fieldHeight);
 		frame.getContentPane().add(exerciseNumberLabel);
 		
+		
+		//new lables for the sets reps and weight
 		int setRepWeightLabelHeight = exerciseNumberLabel.getY() + exerciseNumberLabel.getHeight()+5;
 		int setRepWeightLabelWidth = 45;
 		
@@ -71,10 +74,7 @@ public class Exercise{
 		weightLabel.setForeground(new Color(255, 255, 255));
 		weightLabel.setBounds(Frame_ActualWidth*3/4 - setRepWeightLabelWidth/2, setRepWeightLabelHeight, setRepWeightLabelWidth, fieldHeight);
 		frame.getContentPane().add(weightLabel);
-		
-//		page.moveUpButton.setVisible(true);
-//		page.scrollByLabel.setVisible(true);
-//		page.scrollByField.setVisible(true);
+
 		//reprints the frame
 		frame.validate();
 		frame.repaint();
@@ -83,7 +83,7 @@ public class Exercise{
 		Set thisSet = new Set (page,setRepWeightLabelHeight+distanceBetweenExerciseAndReps);	
 		thisSet.setSetNumber(sets);
 		
-		sets.add(thisSet);//adds the set to the 
+		sets.add(thisSet);//adds the set to the list
 		
 		JTextField repsField = thisSet.repsField;//keeps track of the weight field as it is the lowest in the set
 		
@@ -103,8 +103,8 @@ public class Exercise{
 				
 				if (exerciseNumber == exercises.size()) {
 					newExerciseButton.setLocation(newExerciseButton.getX(), addSetButton.getY()+addSetButton.getHeight()+10); // if this is the last exercise, only the exercise button needs to be moved down
-					if (newExerciseButton.getY()+newExerciseButton.getHeight() > page.Frame_ActualHeight) {
-						page.moveUpButton.setVisible(true); //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
+					if (newExerciseButton.getY()+newExerciseButton.getHeight() > page.Frame_ActualHeight) { //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
+						page.moveUpButton.setVisible(true);
 						page.scrollByField.setVisible(true);
 						page.scrollByLabel.setVisible(true);
 						page.move(-(newExerciseButton.getY()+newExerciseButton.getHeight()-page.Frame_ActualHeight));
@@ -160,8 +160,8 @@ public class Exercise{
 						
 						//set the location of the new Exercise Button
 						newExerciseButton.setLocation(newExerciseButton.getX(), tempAddSetButton.getY()+tempAddSetButton.getHeight()+10);
-						if (newExerciseButton.getY()+newExerciseButton.getHeight() > page.Frame_ActualHeight) {
-							page.moveUpButton.setVisible(true); //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
+						if (newExerciseButton.getY()+newExerciseButton.getHeight() > page.Frame_ActualHeight) { //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
+							page.moveUpButton.setVisible(true);
 							page.scrollByField.setVisible(true);
 							page.scrollByLabel.setVisible(true);
 						}

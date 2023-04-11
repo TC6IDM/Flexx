@@ -22,6 +22,7 @@ public class workoutSet{
 		number = n;
 	}
 	
+	//prints the class in a string
 	public String toString() {
 		return "Reps: "+reps+" Weight: "+weight+" Number: "+number;
 	}

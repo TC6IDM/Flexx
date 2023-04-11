@@ -38,19 +38,12 @@ public class Workout{
 	    int last=0;
 	    for (int i=0;i<sets.size();i++) { //only puts the best set into the list
 	    	workoutSet set = sets.get(i);
-//	    	System.out.println(set);\
 	    	double thisORM = set.weight*((set.reps/30)+1);
-//	    	double thisORM = set.weight / ((1.0278) - (0.0278 * set.reps));
 	    	ORMsTEMP.add(thisORM);
 	    	
-	    	if (i==sets.size()-1 || sets.get(i+1).number!=set.number) {
-//	    		Collections.sort(ORMsTEMP);
-//	    		Collections.reverse(ORMsTEMP);
+	    	if (i==sets.size()-1 || sets.get(i+1).number!=set.number) { //last set or new set
 	    		double bestORM = Collections.max(ORMsTEMP);
 	    		int bestORMIndex = ORMsTEMP.indexOf(bestORM);
-//	    		System.out.println(i);
-//	    		System.out.println(last);
-//	    		System.out.println(bestORMIndex+"\n");
 	    		Double previousORM = 0.0;
 	    		if (ORMs.size()!=0) previousORM = ORMs.get(ORMs.size()-1);
 	    		if (ORMs.size()==0 || (bestORM>previousORM*.8 && bestORM<previousORM*1.20)) {
@@ -66,10 +59,10 @@ public class Workout{
 	    	}
 	    	
 	    }
-//	    System.out.println(bestSets);
 	    return new GraphXY(xAxis,ORMs,bestSets);
 	}
 	
+	//prints the class in a string
 	public String toString() {
 		String ret = "";
 		for (int i=0;i<sets.size();i++) {

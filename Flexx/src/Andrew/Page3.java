@@ -124,7 +124,7 @@ public class Page3 {
 		
 		for (int i=0;i<exercises.size();i++) { //loops through all exercises
 			Exercise currentExercise = exercises.get(i); //finds the current exercise
-			//moves the three elements of exercise
+			//moves all elements of exercise
 			currentExercise.nameLabel.setLocation(currentExercise.nameLabel.getX(),currentExercise.nameLabel.getY()+move);
 			currentExercise.nameField.setLocation(currentExercise.nameField.getX(),currentExercise.nameField.getY()+move);
 			currentExercise.addSetButton.setLocation(currentExercise.addSetButton.getX(),currentExercise.addSetButton.getY()+move); 
@@ -133,26 +133,12 @@ public class Page3 {
 			currentExercise.repsLabel.setLocation(currentExercise.repsLabel.getX(),currentExercise.repsLabel.getY()+move); 
 			currentExercise.weightLabel.setLocation(currentExercise.weightLabel.getX(),currentExercise.weightLabel.getY()+move); 
 			
-			//for each element of exercise, it will turn invisible if it is beyond the cutoff and it will be visible if not beyond the cutoff
-//			if (currentExercise.nameLabel.getY()<CUTOFF) currentExercise.nameLabel.setVisible(false); else currentExercise.nameLabel.setVisible(true); 
-//			if (currentExercise.nameField.getY()<CUTOFF) currentExercise.nameField.setVisible(false); else currentExercise.nameField.setVisible(true);
-//			if (currentExercise.addSetButton.getY()<CUTOFF) currentExercise.addSetButton.setVisible(false); else currentExercise.addSetButton.setVisible(true);
-//			if (currentExercise.exerciseNumberLabel.getY()<CUTOFF) currentExercise.exerciseNumberLabel.setVisible(false); else currentExercise.exerciseNumberLabel.setVisible(true);
-//			if (currentExercise.setLabel.getY()<CUTOFF) currentExercise.setLabel.setVisible(false); else currentExercise.setLabel.setVisible(true);
-//			if (currentExercise.repsLabel.getY()<CUTOFF) currentExercise.repsLabel.setVisible(false); else currentExercise.repsLabel.setVisible(true);
-//			if (currentExercise.weightLabel.getY()<CUTOFF) currentExercise.weightLabel.setVisible(false); else currentExercise.weightLabel.setVisible(true);
-			
 			for (int k=0;k<currentExercise.sets.size();k++) { //loops through all sets
 				Set currentSet = currentExercise.sets.get(k); //finds the current set
-				//moves the five elements of exercise
+				//moves the elements of exercise
 				currentSet.setCount.setLocation(currentSet.setCount.getX(),currentSet.setCount.getY()+move); 
 				currentSet.repsField.setLocation(currentSet.repsField.getX(),currentSet.repsField.getY()+move);
 				currentSet.weightField.setLocation(currentSet.weightField.getX(),currentSet.weightField.getY()+move);
-				
-				//for each element of the set, it will turn invisible if it is beyond the cutoff and it will be visible if not beyond the cutoff
-//				if (currentSet.setCount.getY()<CUTOFF) currentSet.setCount.setVisible(false); else currentSet.setCount.setVisible(true);
-//				if (currentSet.repsField.getY()<CUTOFF) currentSet.repsField.setVisible(false); else currentSet.repsField.setVisible(true);
-//				if (currentSet.weightField.getY()<CUTOFF) currentSet.weightField.setVisible(false); else currentSet.weightField.setVisible(true);
 				
 				//updates the frame
 				frame.validate();
@@ -306,8 +292,8 @@ public class Page3 {
 				exercises.add(thisExercise);//adds the exercise to the exercise list
 				JButton addSetButton = thisExercise.addSetButton; //keeps track of the new add set button
 				newExerciseButton.setLocation(newExerciseButton.getX(), addSetButton.getY()+addSetButton.getHeight()+moveDown);	//moves the new Exercise Button to where it is supposed to be (relative to the add set button)
-				if (newExerciseButton.getY()+newExerciseButton.getHeight() > Frame_ActualHeight) {
-					moveUpButton.setVisible(true); //if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
+				if (newExerciseButton.getY()+newExerciseButton.getHeight() > Frame_ActualHeight) {//if the next move will put the exercise button above the cutoff, then only move by however much can keep it right at the cutoff
+					moveUpButton.setVisible(true); 
 					scrollByField.setVisible(true);
 					scrollByLabel.setVisible(true);
 					move(-(newExerciseButton.getY()+newExerciseButton.getHeight()-Frame_ActualHeight));
@@ -315,7 +301,6 @@ public class Page3 {
 				
 				thisExercise.setNewExerciseButton(newExerciseButton); //adds the new exercise button to the exercise object
 				thisExercise.setExerciseNumber(exercises); //sets the number of the exercise
-//				move(-100);
 				//reprints the frame
 				frame.validate();
 				frame.repaint();
@@ -326,9 +311,6 @@ public class Page3 {
 		newExerciseButton.setContentAreaFilled(false);
 		newExerciseButton.setBorderPainted(false);
 		frame.getContentPane().add(newExerciseButton);
-		
-//		ImageIcon myImage = new ImageIcon("images/myImage.jpg");
-//		JButton button = new JButton(myImage);
 		
 		int scrollLabelHeight = 13;
 		int scrollFieldHeight = 19;

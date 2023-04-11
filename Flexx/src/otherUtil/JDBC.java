@@ -26,7 +26,6 @@ public class JDBC{
 		} catch (SQLException e) {
 //			e.printStackTrace();
 		}
-		System.out.println("database created");
 	}
 	public static void createTables() {
 		String query = "CREATE TABLE IF NOT EXISTS userInfo( Uname VARCHAR(255) NOT NULL, Upassword VARCHAR(255) NOT NULL);" ;
@@ -45,7 +44,6 @@ public class JDBC{
 		} catch (SQLException e) {
 //			e.printStackTrace();
 		}
-		System.out.println("table 1 created");
 		
 		
 		
@@ -67,7 +65,6 @@ public class JDBC{
 		} catch (SQLException e) {
 //			e.printStackTrace();
 		}
-		System.out.println("table 2 created");
 		
 		String query3 = "CREATE TABLE IF NOT EXISTS goals (" +
                 "id INT NOT NULL AUTO_INCREMENT," +
@@ -89,7 +86,6 @@ public class JDBC{
             statement.close();
             con.close();
 
-            System.out.println("Table created successfully!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -109,7 +105,6 @@ public class JDBC{
 			// close statement and connection 
 			statement.close();
 			con.close();
-			System.out.println("Table created successfully!");
 		} catch (SQLException e) {
 			e.printStackTrace () ;
 		}
@@ -129,7 +124,6 @@ public class JDBC{
 			// close statement and connection 
 			statement.close();
 			con.close();
-			System.out.println("Table created successfully!");
 		} catch (SQLException e) {
 			e.printStackTrace () ;
 		}
@@ -149,7 +143,6 @@ public class JDBC{
 			// close statement and connection 
 			statement.close();
 			con.close();
-			System.out.println("Table created successfully!");
 		} catch (SQLException e) {
 			e.printStackTrace () ;
 		}
@@ -169,7 +162,6 @@ public class JDBC{
 			// close statement and connection 
 			statement.close();
 			con.close();
-			System.out.println("Table created successfully!");
 		} catch (SQLException e) {
 			e.printStackTrace () ;
 		}
@@ -189,7 +181,6 @@ public class JDBC{
 			// close statement and connection 
 			statement.close();
 			con.close();
-			System.out.println("Table created successfully!");
 		} catch (SQLException e) {
 			e.printStackTrace () ;
 		}
@@ -209,7 +200,6 @@ public class JDBC{
 			// close statement and connection 
 			statement.close();
 			con.close();
-			System.out.println("Table created successfully!");
 		} catch (SQLException e) {
 			e.printStackTrace () ;
 		}
