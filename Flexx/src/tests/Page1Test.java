@@ -1,4 +1,4 @@
-package Gurkirat;
+package tests;
 
 //Import required libraries and classes
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,6 +18,7 @@ import javax.swing.JTextPane;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import Gurkirat.Page1;
 import Gurkirat.TestUtils;
 
 //Page1Test class for testing the Page1 class
